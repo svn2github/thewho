@@ -1,0 +1,7 @@
+F:\Thewho\Thewho\Thewho.LogicModel\bin\Debug\Thewho.LogicModel.dll
+F:\Thewho\Thewho\Thewho.LogicModel\bin\Debug\Thewho.LogicModel.pdb
+F:\Thewho\Thewho\Thewho.LogicModel\obj\Debug\ResolveAssemblyReference.cache
+F:\Thewho\Thewho\Thewho.LogicModel\obj\Debug\Thewho.LogicModel.dll
+F:\Thewho\Thewho\Thewho.LogicModel\obj\Debug\Thewho.LogicModel.pdb
+F:\Thewho\Thewho\Thewho.LogicModel\bin\Debug\Thewho.Model.dll
+F:\Thewho\Thewho\Thewho.LogicModel\bin\Debug\Thewho.Model.pdb
