@@ -1,5 +1,0 @@
-F:\Thewho\Thewho\Thewho.Config\bin\Debug\Thewho.Config.dll
-F:\Thewho\Thewho\Thewho.Config\bin\Debug\Thewho.Config.pdb
-F:\Thewho\Thewho\Thewho.Config\obj\Debug\ResolveAssemblyReference.cache
-F:\Thewho\Thewho\Thewho.Config\obj\Debug\Thewho.Config.dll
-F:\Thewho\Thewho\Thewho.Config\obj\Debug\Thewho.Config.pdb

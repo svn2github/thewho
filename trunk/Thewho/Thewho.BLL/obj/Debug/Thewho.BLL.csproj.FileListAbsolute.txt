@@ -1,9 +1,0 @@
-F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.BLL.dll
-F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.BLL.pdb
-F:\Thewho\Thewho\Thewho.BLL\obj\Debug\ResolveAssemblyReference.cache
-F:\Thewho\Thewho\Thewho.BLL\obj\Debug\Thewho.BLL.dll
-F:\Thewho\Thewho\Thewho.BLL\obj\Debug\Thewho.BLL.pdb
-F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.LogicModel.dll
-F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.LogicModel.pdb
-F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.Model.dll
-F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.Model.pdb
