@@ -26,3 +26,10 @@ I:\TheCode\TheCode\TheCode.Common\bin\Debug\TheCode.Common.dll
 I:\TheCode\TheCode\TheCode.Common\bin\Debug\TheCode.Common.pdb
 I:\TheCode\TheCode\TheCode.Common\bin\Debug\TheCode.Model.dll
 I:\TheCode\TheCode\TheCode.Common\bin\Debug\TheCode.Model.pdb
+F:\Project\trunk\TheCode\TheCode.Common\bin\Debug\TheCode.Common.dll
+F:\Project\trunk\TheCode\TheCode.Common\bin\Debug\TheCode.Common.pdb
+F:\Project\trunk\TheCode\TheCode.Common\bin\Debug\TheCode.Model.dll
+F:\Project\trunk\TheCode\TheCode.Common\bin\Debug\TheCode.Model.pdb
+F:\Project\trunk\TheCode\TheCode.Common\obj\Debug\ResolveAssemblyReference.cache
+F:\Project\trunk\TheCode\TheCode.Common\obj\Debug\TheCode.Common.dll
+F:\Project\trunk\TheCode\TheCode.Common\obj\Debug\TheCode.Common.pdb

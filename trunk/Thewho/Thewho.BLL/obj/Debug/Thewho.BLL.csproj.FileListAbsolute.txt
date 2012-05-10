@@ -7,3 +7,12 @@ F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.LogicModel.dll
 F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.LogicModel.pdb
 F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.Model.dll
 F:\Thewho\Thewho\Thewho.BLL\bin\Debug\Thewho.Model.pdb
+F:\Project\trunk\Thewho\Thewho.BLL\bin\Debug\Thewho.BLL.dll
+F:\Project\trunk\Thewho\Thewho.BLL\bin\Debug\Thewho.BLL.pdb
+F:\Project\trunk\Thewho\Thewho.BLL\bin\Debug\Thewho.LogicModel.dll
+F:\Project\trunk\Thewho\Thewho.BLL\bin\Debug\Thewho.Model.dll
+F:\Project\trunk\Thewho\Thewho.BLL\bin\Debug\Thewho.Model.pdb
+F:\Project\trunk\Thewho\Thewho.BLL\bin\Debug\Thewho.LogicModel.pdb
+F:\Project\trunk\Thewho\Thewho.BLL\obj\Debug\ResolveAssemblyReference.cache
+F:\Project\trunk\Thewho\Thewho.BLL\obj\Debug\Thewho.BLL.dll
+F:\Project\trunk\Thewho\Thewho.BLL\obj\Debug\Thewho.BLL.pdb

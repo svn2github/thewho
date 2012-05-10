@@ -3,3 +3,8 @@ F:\Thewho\Thewho\Thewho.Common\bin\Debug\Thewho.Common.pdb
 F:\Thewho\Thewho\Thewho.Common\obj\Debug\ResolveAssemblyReference.cache
 F:\Thewho\Thewho\Thewho.Common\obj\Debug\Thewho.Common.dll
 F:\Thewho\Thewho\Thewho.Common\obj\Debug\Thewho.Common.pdb
+F:\Project\trunk\Thewho\Thewho.Common\bin\Debug\Thewho.Common.dll
+F:\Project\trunk\Thewho\Thewho.Common\bin\Debug\Thewho.Common.pdb
+F:\Project\trunk\Thewho\Thewho.Common\obj\Debug\ResolveAssemblyReference.cache
+F:\Project\trunk\Thewho\Thewho.Common\obj\Debug\Thewho.Common.dll
+F:\Project\trunk\Thewho\Thewho.Common\obj\Debug\Thewho.Common.pdb

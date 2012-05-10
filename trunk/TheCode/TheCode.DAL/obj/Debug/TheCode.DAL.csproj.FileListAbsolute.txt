@@ -34,3 +34,12 @@ I:\TheCode\TheCode\TheCode.DAL\bin\Debug\TheCode.Model.pdb
 I:\TheCode\TheCode\TheCode.DAL\obj\Debug\ResolveAssemblyReference.cache
 I:\TheCode\TheCode\TheCode.DAL\obj\Debug\TheCode.DAL.dll
 I:\TheCode\TheCode\TheCode.DAL\obj\Debug\TheCode.DAL.pdb
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Debug\TheCode.DAL.dll
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Debug\TheCode.DAL.pdb
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Debug\TheCode.Common.dll
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Debug\TheCode.Model.dll
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Debug\TheCode.Common.pdb
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Debug\TheCode.Model.pdb
+F:\Project\trunk\TheCode\TheCode.DAL\obj\Debug\ResolveAssemblyReference.cache
+F:\Project\trunk\TheCode\TheCode.DAL\obj\Debug\TheCode.DAL.dll
+F:\Project\trunk\TheCode\TheCode.DAL\obj\Debug\TheCode.DAL.pdb

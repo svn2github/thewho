@@ -18,3 +18,8 @@ I:\TheCode\TheCode\TheCode.Model\bin\Debug\TheCode.Model.pdb
 I:\TheCode\TheCode\TheCode.Model\obj\Debug\ResolveAssemblyReference.cache
 I:\TheCode\TheCode\TheCode.Model\obj\Debug\TheCode.Model.dll
 I:\TheCode\TheCode\TheCode.Model\obj\Debug\TheCode.Model.pdb
+F:\Project\trunk\TheCode\TheCode.Model\bin\Debug\TheCode.Model.dll
+F:\Project\trunk\TheCode\TheCode.Model\bin\Debug\TheCode.Model.pdb
+F:\Project\trunk\TheCode\TheCode.Model\obj\Debug\ResolveAssemblyReference.cache
+F:\Project\trunk\TheCode\TheCode.Model\obj\Debug\TheCode.Model.dll
+F:\Project\trunk\TheCode\TheCode.Model\obj\Debug\TheCode.Model.pdb

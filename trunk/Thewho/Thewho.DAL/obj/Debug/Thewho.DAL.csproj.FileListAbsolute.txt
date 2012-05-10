@@ -7,3 +7,12 @@ F:\Thewho\Thewho\Thewho.DAL\bin\Debug\Thewho.Common.dll
 F:\Thewho\Thewho\Thewho.DAL\bin\Debug\Thewho.Model.dll
 F:\Thewho\Thewho\Thewho.DAL\bin\Debug\Thewho.Model.pdb
 F:\Thewho\Thewho\Thewho.DAL\bin\Debug\Thewho.Common.pdb
+F:\Project\trunk\Thewho\Thewho.DAL\bin\Debug\Thewho.DAL.dll
+F:\Project\trunk\Thewho\Thewho.DAL\bin\Debug\Thewho.DAL.pdb
+F:\Project\trunk\Thewho\Thewho.DAL\bin\Debug\Thewho.Common.dll
+F:\Project\trunk\Thewho\Thewho.DAL\bin\Debug\Thewho.Model.dll
+F:\Project\trunk\Thewho\Thewho.DAL\bin\Debug\Thewho.Model.pdb
+F:\Project\trunk\Thewho\Thewho.DAL\bin\Debug\Thewho.Common.pdb
+F:\Project\trunk\Thewho\Thewho.DAL\obj\Debug\ResolveAssemblyReference.cache
+F:\Project\trunk\Thewho\Thewho.DAL\obj\Debug\Thewho.DAL.dll
+F:\Project\trunk\Thewho\Thewho.DAL\obj\Debug\Thewho.DAL.pdb

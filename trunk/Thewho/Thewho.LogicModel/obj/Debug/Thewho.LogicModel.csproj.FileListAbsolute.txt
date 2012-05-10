@@ -5,3 +5,10 @@ F:\Thewho\Thewho\Thewho.LogicModel\obj\Debug\Thewho.LogicModel.dll
 F:\Thewho\Thewho\Thewho.LogicModel\obj\Debug\Thewho.LogicModel.pdb
 F:\Thewho\Thewho\Thewho.LogicModel\bin\Debug\Thewho.Model.dll
 F:\Thewho\Thewho\Thewho.LogicModel\bin\Debug\Thewho.Model.pdb
+F:\Project\trunk\Thewho\Thewho.LogicModel\bin\Debug\Thewho.LogicModel.dll
+F:\Project\trunk\Thewho\Thewho.LogicModel\bin\Debug\Thewho.LogicModel.pdb
+F:\Project\trunk\Thewho\Thewho.LogicModel\bin\Debug\Thewho.Model.dll
+F:\Project\trunk\Thewho\Thewho.LogicModel\bin\Debug\Thewho.Model.pdb
+F:\Project\trunk\Thewho\Thewho.LogicModel\obj\Debug\ResolveAssemblyReference.cache
+F:\Project\trunk\Thewho\Thewho.LogicModel\obj\Debug\Thewho.LogicModel.dll
+F:\Project\trunk\Thewho\Thewho.LogicModel\obj\Debug\Thewho.LogicModel.pdb
