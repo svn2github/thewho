@@ -55,7 +55,7 @@ namespace TheCode.Common
 
         #region 循环标签
 
-        private static string ForStar = "${ForStar:}$"; //循环开始标签 一般用作循环字段  ":"后面带的参数
+        private static string ForStar = "${ForStar}$"; //循环开始标签 一般用作循环字段  ":"后面带的参数
         private static string ForEnd = "${ForEnd}$"; //循环结束标签
 
         /*
@@ -93,13 +93,16 @@ namespace TheCode.Common
         private Regex regIsTempate = new Regex(@"[\$][\{].*?[\}][\$]", RegexOptions.IgnoreCase);
 
         //循环标签正则(筛选出数组 Matches)
-        private Regex regForArray = new Regex(@"[\$][\{]ForStar:.*?[\}][\$].*?[\$][\{]ForEnd[\}][\$]", RegexOptions.Singleline | RegexOptions.IgnoreCase);
+        private Regex regForArray = new Regex(@"[\$][\{]ForStar.*?[\}][\$].*?[\$][\{]ForEnd[\}][\$]", RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
         //循环标签的Star全文正则(筛选出ForStar全文 Matches)
-        private Regex regForStar = new Regex(@"[\$][\{]ForStar:.*?[\}][\$]", RegexOptions.IgnoreCase);
+        private Regex regForStar = new Regex(@"[\$][\{]ForStar.*?[\}][\$]", RegexOptions.IgnoreCase);
 
         //循环标签的参数正则(筛选出设定的参数属性 Matches )
         private Regex regForParm = new Regex(@"[\[].*?[\]]", RegexOptions.IgnoreCase);
+
+        //转型字符串原始类型属性 ConvertTo 如 ${ConvertTo(dr["xxx"])}$
+        private Regex regConvertTo = new Regex(@"[\$][\{]ConvertTo[\[].*?[\]][\}][\$]");
 
         public void SS(string str)
         {
@@ -206,6 +209,10 @@ namespace TheCode.Common
             str = str.Replace(DAL_NameSpace, dalNameSpace);
             str = str.Replace(BLL_NameSpace, bllNameSpace);
 
+            str = str.Replace(Model_ClassName, tableName);
+            str = str.Replace(DAL_ClassName, tableName + "_DAL");
+            str = str.Replace(BLL_ClassName, tableName + "_BLL");
+
             return str;
         }
 
@@ -266,7 +273,10 @@ namespace TheCode.Common
                 {
                     temp += ReplaceColumn(columnStr, list[j], lastChar, true);
                 }
-                columnStr = lastChar == null ? temp : temp.Remove(temp.LastIndexOf(lastChar));
+                if (!string.IsNullOrEmpty(temp))
+                {
+                    columnStr = lastChar == null ? temp : temp.Remove(temp.LastIndexOf(lastChar));
+                }
 
                 //去掉循环的标签
                 columnStr = columnStr.Replace(forStar, "");
@@ -306,6 +316,13 @@ namespace TheCode.Common
             str = str.Replace(DatabaseName, databaseName);
             str = str.Replace(TableName, tableName);
             str = str.Replace(ColumnName_Template, c.ColumnName);
+
+            //转型
+            if (regConvertTo.IsMatch(str))
+	        {
+                string temp = regConvertTo.Matches(str)[0].Value;
+        		str = str.Replace(temp, String.Format(c.ConvertStr,temp.Replace("${ConvertTo[","").Replace("]}$","")));
+	        }
 
             str = str.Replace(IsPk_Template, c.IsPk == "1" ? "[主键] " : "");
             str = str.Replace(IsIdentity_Template, c.IsIdentity == "1" ? "[自增长] " : "");
