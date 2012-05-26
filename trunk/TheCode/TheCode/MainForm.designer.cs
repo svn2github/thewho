@@ -438,7 +438,7 @@
             this.Controls.Add(this.Model);
             this.Controls.Add(this.groupBox1);
             this.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.groupBox1.ResumeLayout(false);

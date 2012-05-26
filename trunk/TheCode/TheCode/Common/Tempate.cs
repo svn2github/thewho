@@ -354,7 +354,7 @@ namespace TheCode.Common
                 else if (item.IsIdentity == "1")
                 {
                     cl = new TheCode.Model.Column();
-                    if (cl == null) //如果有多个自镇长 就用第一个
+                    if (cl == null) //如果有多个自增长 就用第一个
                     {
                         cl = item;
                     }
@@ -376,7 +376,7 @@ namespace TheCode.Common
                 if (item.IsIdentity == "1")
                 {
                     cl = new TheCode.Model.Column();
-                    if (cl == null) //如果有多个自镇长 就用第一个
+                    if (cl == null) //如果有多个自增长 就用第一个
                     {
                         cl = item;
                     }
