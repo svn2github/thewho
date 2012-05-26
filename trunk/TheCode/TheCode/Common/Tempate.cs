@@ -65,9 +65,12 @@ namespace TheCode.Common
             "ALL_NOT_ID" 为除了自增长字段外的所有字段
             "ALL_NOT_PK_ID" 为除了主键字段,自增长字段外的所有字段
 
-            第二个是需要在每次循环末尾加上的字符 (ForParmLast 选填, 没有请填"null") 如 ${For:"Column","ALL","null","true"}$
+            第二个是需要在每次循环末尾加上的字符 (ForParmLast 选填) 如 ${For:"ALL",","}$
+            ps:在选定了最末位补全字符 请在循环体中也加入，如：
+            
+            ${ForStar[ALL][,]}$new SqlParameter("@${ColumnName}$",obj.${ColumnName}$), <-- 此处也是要加的
+		    ${ForEnd}$
 
-            第三个是否启用For标签占用一行,"true"为是,"false"为否 (ForParmLine 选填, 可以留空, 不填, 默认为true) 如 ${For:"Column","ALL","null","true"}$
          */
 
         #endregion
@@ -84,6 +87,14 @@ namespace TheCode.Common
         private static string model_template = ConfigurationSettings.AppSettings["Model_Template"].ToString();//"../../Template/Model.js";
         private static string dal_template = ConfigurationSettings.AppSettings["DAL_Template"].ToString();//"../../Template/DAL.js";
         private static string bll_template = ConfigurationSettings.AppSettings["BLL_Template"].ToString();//"../../Template/BLL.js";
+
+        #endregion
+
+        #region 类名和文件后缀
+
+        private static string model_suffix = ConfigurationSettings.AppSettings["Model_Suffix"].ToString();
+        private static string dal_suffix = ConfigurationSettings.AppSettings["DAL_Suffix"].ToString();
+        private static string bll_suffix = ConfigurationSettings.AppSettings["BLL_Suffix"].ToString();
 
         #endregion
 
@@ -156,17 +167,23 @@ namespace TheCode.Common
         /// </summary>
         public void Create()
         {
+            //临时变量
+            string tempsuffix = "";
+
             //第一步 读取模版的内容
             switch (createType)
             {
                 case 1:
                     tempateStr = TheCode.Common.IO.ReadFile(model_template);
+                    tempsuffix = model_suffix;
                     break;
                 case 2:
                     tempateStr = TheCode.Common.IO.ReadFile(dal_template);
+                    tempsuffix = dal_suffix;
                     break;
                 case 3:
                     tempateStr = TheCode.Common.IO.ReadFile(bll_template);
+                    tempsuffix = bll_suffix;
                     break;
             }
 
@@ -183,8 +200,10 @@ namespace TheCode.Common
                 }
             }
 
+            
+
             //第五步 创建文件
-            TheCode.Common.IO.WriteFile(@createPath, tableName, tempateStr);
+            TheCode.Common.IO.WriteFile(@createPath, tableName + tempsuffix, tempateStr);
 
         }
 
@@ -209,9 +228,9 @@ namespace TheCode.Common
             str = str.Replace(DAL_NameSpace, dalNameSpace);
             str = str.Replace(BLL_NameSpace, bllNameSpace);
 
-            str = str.Replace(Model_ClassName, tableName);
-            str = str.Replace(DAL_ClassName, tableName + "_DAL");
-            str = str.Replace(BLL_ClassName, tableName + "_BLL");
+            str = str.Replace(Model_ClassName, tableName + model_suffix);
+            str = str.Replace(DAL_ClassName, tableName + dal_suffix);
+            str = str.Replace(BLL_ClassName, tableName + bll_suffix);
 
             return str;
         }
@@ -234,7 +253,7 @@ namespace TheCode.Common
                 //forParmType = forParmArray.Count > 0 ? ReplacePram(forParmArray[0].Value) : null;
                 forParmData = forParmArray.Count > 0 ? ReplacePram(forParmArray[0].Value) : null;
                 forParmLast = forParmArray.Count > 1 ? ReplacePram(forParmArray[1].Value) : null;
-                forParmLine = forParmArray.Count > 2 ? ReplacePram(forParmArray[2].Value) : null;
+                //forParmLine = forParmArray.Count > 2 ? ReplacePram(forParmArray[2].Value) : null;
 
 
                 //数据源
@@ -262,10 +281,14 @@ namespace TheCode.Common
 
                 //最后一个字段
                 lastChar = null;
-                if (forParmLast != "null")
+                if (forParmLast != "null" && !string.IsNullOrEmpty(forParmLast))
                 {
                     lastChar = forParmLast;
                 }
+
+                //去掉循环的标签
+                columnStr = columnStr.Replace(forStar, "");
+                columnStr = columnStr.Replace(ForEnd, "");
 
                 //临时变量
                 string temp = "";
@@ -278,9 +301,7 @@ namespace TheCode.Common
                     columnStr = lastChar == null ? temp : temp.Remove(temp.LastIndexOf(lastChar));
                 }
 
-                //去掉循环的标签
-                columnStr = columnStr.Replace(forStar, "");
-                columnStr = columnStr.Replace(ForEnd, "");
+                
                 //columnStr = ReplacePram(columnStr);
 
                 str = str.Replace(forArray[i].Value, columnStr);
@@ -332,7 +353,13 @@ namespace TheCode.Common
             str = str.Replace(ColumnByte_Template, c.ColumnByte);
             str = str.Replace(ColumnLength_Template, c.ColumnLength);
             str = str.Replace(ColumnRemark_Template, c.ColumnRemark != "" ? "[备注：" + c.ColumnRemark + "] " : "");
-            str = str + Convert.ToString(lastChar);
+            
+            //添加最后一个字符
+            //if (!string.IsNullOrEmpty(lastChar))
+            //{
+            //    str = str + Convert.ToString(lastChar);
+            //}
+           
             return str;
         }
 

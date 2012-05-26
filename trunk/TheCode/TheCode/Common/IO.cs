@@ -23,6 +23,10 @@ namespace TheCode.Common
                 Directory.CreateDirectory(path);
             }
             StreamWriter sw = File.CreateText(path + "\\" + fileName + ".cs");
+            //System.Text.UTF8Encoding utf8 = new System.Text.UTF8Encoding(false);
+            //StreamWriter sw = new StreamWriter(path + "\\" + fileName + ".cs", false, utf8);
+
+
             //sw.Write(content);
             sw.WriteLine(content);
             sw.Flush();

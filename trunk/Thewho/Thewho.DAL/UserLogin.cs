@@ -1,46 +1,55 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
-using ${Model_NameSpace}$
+using Thewho.Model
 
-namespace ${DAL_NameSpace}$
+namespace Thewho.DAL
 {
     /// <summary>
-    /// ${DAL_ClassName}$（数据层）
+    /// UserLogin_DAL
     /// </summary>
-    public class ${DAL_ClassName}$
+    public class UserLogin_DAL
     {
         #region 常量
 		// 声明静态变量 
-		${ForStar[ALL]}$private const string _PARA_${ColumnName}$ = "@${ColumnName}$";
-		${ForEnd}$
+		private const string _PARA_ID = "@ID";
+		private const string _PARA_UID = "@UID";
+		private const string _PARA_Email = "@Email";
+		private const string _PARA_LoginTime = "@LoginTime";
+		private const string _PARA_LoginIp = "@LoginIp";
+		private const string _PARA_Result = "@Result";
+		
 
         //SQL语句
-        private const string _SQL_INSERT = "INSERT INTO ${TableName}$ ${ForStar[ALL_NOT_PK_ID][,]}$[${ColumnName}$],${ForEnd}$ VALUES(${ForStar[ALL_NOT_PK_ID][,]}$@${ColumnName}$,${ForEnd}$) ";        private const string _SQL_DELETE = "DELETE FROM ${TableName}$ WHERE [${PK_Name}$] = @${PK_Name}$";        private const string _SQL_UPDATE = "UPDATE ${TableName}$ SET ${ForStar[ALL_NOT_PK_ID][,]}$[${ColumnName}$] = @${ColumnName}$,${ForEnd}$ WHERE [${PK_Name}$] = @${PK_Name}$";        private const string _SQL_SELECT = "SELECT ${TableName}$ SET ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM ${TableName}$";
+        private const string _SQL_INSERT = "INSERT INTO UserLogin [UID],[Email],[LoginTime],[LoginIp],[Result] VALUES(@UID,@Email,@LoginTime,@LoginIp,@Result) ";        private const string _SQL_DELETE = "DELETE FROM UserLogin WHERE [ID] = @ID";        private const string _SQL_UPDATE = "UPDATE UserLogin SET [UID] = @UID,[Email] = @Email,[LoginTime] = @LoginTime,[LoginIp] = @LoginIp,[Result] = @Result WHERE [ID] = @ID";        private const string _SQL_SELECT = "SELECT UserLogin SET [UID],[Email],[LoginTime],[LoginIp],[Result] FROM UserLogin";
         #endregion
 
         /// <summary>
         /// 构造方法
         /// </summary>
-        public ${DAL_ClassName}$()
+        public UserLogin_DAL()
         { 
         }
 
         /// <summary>
 	    /// 插入一条数据
 	    /// </summary>
-	    /// <param name="${Model_NameSpace}$.${TableName}$">需要插入的对象</param>
+	    /// <param name="Thewho.Model.UserLogin">需要插入的对象</param>
 	    /// <returns>影响行数</returns>
- 	    public object Insert(${Model_NameSpace}$.${TableName}$ obj)
+ 	    public object Insert(Thewho.Model.UserLogin obj)
 	    {			
 		    //声明参数数组并赋值
 		    SqlParameter[] _param=
 		    {
-		        ${ForStar[ALL][,]}$new SqlParameter("@${ColumnName}$",obj.${ColumnName}$),
-		        ${ForEnd}$
+		        new SqlParameter("@UID",obj.UID)
+		        ,new SqlParameter("@Email",obj.Email)
+		        ,new SqlParameter("@LoginTime",obj.LoginTime)
+		        ,new SqlParameter("@LoginIp",obj.LoginIp)
+		        ,new SqlParameter("@Result",obj.Result)
+		        
 		    };			
     		
 		    //返回
@@ -50,15 +59,19 @@ namespace ${DAL_NameSpace}$
         /// <summary>
 	    /// 插入一条数据并返回ID。
 	    /// </summary>
-	    /// <param name="${Model_NameSpace}$.${TableName}$">需要插入的对象</param>
+	    /// <param name="Thewho.Model.UserLogin">需要插入的对象</param>
 	    /// <returns>新插入数据的ID</returns>
- 	    public object InsertReturnID(${Model_NameSpace}$.${TableName}$ obj)
+ 	    public object InsertRetID(Thewho.Model.UserLogin obj)
 	    {			
 		    //声明参数数组并赋值
 		    SqlParameter[] _param=
 		    {
-		        ${ForStar[ALL][,]}$new SqlParameter("@${ColumnName}$",obj.${ColumnName}$),
-		        ${ForEnd}$
+		        new SqlParameter("@UID",obj.UID)
+		        ,new SqlParameter("@Email",obj.Email)
+		        ,new SqlParameter("@LoginTime",obj.LoginTime)
+		        ,new SqlParameter("@LoginIp",obj.LoginIp)
+		        ,new SqlParameter("@Result",obj.Result)
+		        
 		    };			
     		
 		    //返回
@@ -68,15 +81,19 @@ namespace ${DAL_NameSpace}$
 	    /// <summary>
 	    /// 更新一条新数据。
 	    /// </summary>
-	    /// <param name="${Model_NameSpace}$.${TableName}$">需要更新的对象</param>
+	    /// <param name="Thewho.Model.UserLogin">需要更新的对象</param>
 	    /// <returns>影响行数</returns>
- 	    public int Update(${Model_NameSpace}$.${TableName}$ obj)
+ 	    public int Update(Thewho.Model.UserLogin obj)
 	    {			
 		    //声明参数数组并赋值
 		    SqlParameter[] _param=
 		    {
-		        ${ForStar[ALL][,]}$new SqlParameter("@${ColumnName}$",obj.${ColumnName}$),
-		        ${ForEnd}$
+		        new SqlParameter("@UID",obj.UID)
+		        ,new SqlParameter("@Email",obj.Email)
+		        ,new SqlParameter("@LoginTime",obj.LoginTime)
+		        ,new SqlParameter("@LoginIp",obj.LoginIp)
+		        ,new SqlParameter("@Result",obj.Result)
+		        
 		    };			
     		
 		    //返回
@@ -86,31 +103,33 @@ namespace ${DAL_NameSpace}$
 	    /// <summary>
 	    /// 删除一条新数据。
 	    /// </summary>
-	    /// <param name="${PK_Name}$">对象ID</param>
+	    /// <param name="ID">对象ID</param>
 	    /// <returns>影响行数</returns>
- 	    public int Delete(${PK_Type}$ ${PK_Name}$)
+ 	    public int Delete(Int32 ID)
 	    {			
 		    //声明参数数组并赋值
 		    SqlParameter[] _param=
 		    {
-		        new SqlParameter("@${PK_Name}$",${PK_Name}$)
+		        new SqlParameter("@ID",ID) 
 		    };			
     		
 		    //返回
 		    return  Common.SqlHelper.ExecuteNonQuery(Common.SqlHelper.ConnectionString, CommandType.Text,_SQL_DELETE, _param);	
 	    }
+	    
+	    
 
 
         /// <summary>
-        /// 根据${PK_Name}$获取${Model_NameSpace}$对象
+        /// 根据ID获取Thewho.Model对象
         /// </summary>
-        /// <param name="${PK_Name}$"></param>
+        /// <param name="ID"></param>
         /// <returns></returns>
-        public ${Model_NameSpace}$.${TableName}$ SelectObj(${PK_Type}$ ${PK_Name}$)
+        public Thewho.Model.UserLogin SelectObj(Int32 ID)
         {
-            ${Model_NameSpace}$.${TableName}$ obj = null;
+            Thewho.Model.UserLogin obj = null;
             SqlParameter[] _param={		
-			    new SqlParameter(_PARA_${PK_Name}$,${PK_Name}$)
+			    new SqlParameter(_PARA_ID,ID)
 			};	
             using (SqlDataReader dr = Common.SqlHelper.ExecuteReader(Common.SqlHelper.ConnectionString,CommandType.Text,_SQL_SELECT,_param))
             {
@@ -129,15 +148,15 @@ namespace ${DAL_NameSpace}$
         /// 获取$TableName的所有数据
         /// </summary>
         /// <returns></returns>
-        public List<${Model_NameSpace}$.${TableName}$> SelectList()
+        public List<Thewho.Model.UserLogin> SelectList()
         {
-            List<${Model_NameSpace}$.${TableName}$> list = null;
-            ${Model_NameSpace}$.${TableName}$ obj = null;
+            List<Thewho.Model.UserLogin> list = null;
+            Thewho.Model.UserLogin obj = null;
             using (SqlDataReader dr = Common.SqlHelper.ExecuteReader(Common.SqlHelper.ConnectionString, CommandType.Text, _SQL_SELECT, null))
             {
                 if (dr.HasRows)
                 {
-                    list = new List<${Model_NameSpace}$.${TableName}$>();
+                    list = new List<Thewho.Model.UserLogin>();
                     if (dr.Read())
                     {
                         obj = ToModel(dr);
@@ -158,7 +177,7 @@ namespace ${DAL_NameSpace}$
         /// <param name="StrWhere">条件（如“ 1 = 1 and 2 = 2”）</param>
         /// <param name="RecordCount">返回数据总条数（用于计算页数）</param>
         /// <returns></returns>
-        public List<${Model_NameSpace}$.${TableName}$> SelectList(int PageIndex, int PageSize, string OrderID, string OrderType, string StrWhere, out int RecordCount)
+        public List<Thewho.Model.UserLogin> SelectList(int PageIndex, int PageSize, string OrderID, string OrderType, string StrWhere, out int RecordCount)
         {
             return PagingList(PageIndex, PageSize, OrderID, OrderType, StrWhere, out RecordCount);
         }
@@ -169,11 +188,15 @@ namespace ${DAL_NameSpace}$
         /// </summary>
         /// <param name="dr"></param>
         /// <returns></returns>
-        public ${Model_NameSpace}$.${TableName}$ ToModel(IDataReader dr)
+        public Thewho.Model.UserLogin ToModel(IDataReader dr)
         {
-            ${Model_NameSpace}$.${TableName}$ model = new ${Model_NameSpace}$.${TableName}$();
-		    ${ForStar[ALL]}$model.${ColumnName}$ = ${ConvertTo[dr["${ColumnName}$"]]}$;
-		    ${ForEnd}$
+            Thewho.Model.UserLogin model = new Thewho.Model.UserLogin();
+		    model.UID = Convert.ToInt32(dr["UID"]);
+		    model.Email = dr["Email"].ToString();
+		    model.LoginTime = Convert.ToDateTime(dr["LoginTime"]);
+		    model.LoginIp = dr["LoginIp"].ToString();
+		    model.Result = Convert.ToByte(dr["Result"]);
+		    
             return model;
         }
         #endregion
@@ -189,11 +212,11 @@ namespace ${DAL_NameSpace}$
         /// <param name="StrWhere">条件（如“ 1 = 1 and 2 = 2”）</param>
         /// <param name="RecordCount">返回数据总条数（用于计算页数）</param>
         /// <returns>作文集合</returns>
-        public List<${Model_NameSpace}$.${TableName}$> PagingList(int PageIndex, int PageSize, string OrderID, string OrderType, string StrWhere, out int RecordCount)
+        public List<Thewho.Model.UserLogin> PagingList(int PageIndex, int PageSize, string OrderID, string OrderType, string StrWhere, out int RecordCount)
         {
             RecordCount = 0;
-            List<${Model_NameSpace}$.${TableName}$> list = new List<${Model_NameSpace}$.${TableName}$>();
-            using (SqlDataReader dr = Common.SqlHelper.Paging(Common.SqlHelper.ConnectionString, PageIndex,PageSize, "${TableName}$", "${PK_Name}$", "DESC", StrWhere, out RecordCount))
+            List<Thewho.Model.UserLogin> list = new List<Thewho.Model.UserLogin>();
+            using (SqlDataReader dr = Common.SqlHelper.Paging(Common.SqlHelper.ConnectionString, PageIndex,PageSize, "UserLogin", "ID", "DESC", StrWhere, out RecordCount))
             {
                 try
                 {
@@ -212,3 +235,4 @@ namespace ${DAL_NameSpace}$
         #endregion
     }
 }
+
