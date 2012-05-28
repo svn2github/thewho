@@ -301,13 +301,17 @@ namespace TheCode
             //模型层
             if (ck_Model.Checked)
             {
-                if (string.IsNullOrEmpty(txt_Model_Path.Text))
+                if (string.IsNullOrEmpty(txt_Model_Path.Text.Trim()))
                 {
+                    txt_Model_Path.Focus();
                     MessageBox.Show("Model层生成路径不能为空！");
+                    return;
                 }
-                else if (string.IsNullOrEmpty(txt_Model_Namespace.Text))
+                else if (string.IsNullOrEmpty(txt_Model_Namespace.Text.Trim()))
                 {
+                    txt_Model_Namespace.Focus();
                     MessageBox.Show("Model层命名空间不能为空！");
+                    return;
                 }
                 else
                 {
@@ -318,13 +322,17 @@ namespace TheCode
             }//数据层
             if (ck_DAL.Checked)
             {
-                if (string.IsNullOrEmpty(txt_DAL_Path.Text))
+                if (string.IsNullOrEmpty(txt_DAL_Path.Text.Trim()))
                 {
+                    txt_DAL_Path.Focus();
                     MessageBox.Show("DAL层生成路径不能为空！");
+                    return;
                 }
-                else if (string.IsNullOrEmpty(txt_DAL_Namespace.Text))
+                else if (string.IsNullOrEmpty(txt_DAL_Namespace.Text.Trim()))
                 {
+                    txt_DAL_Namespace.Focus();
                     MessageBox.Show("DAL层命名空间不能为空！");
+                    return;
                 }
                 else
                 {
@@ -335,13 +343,17 @@ namespace TheCode
             }//逻辑层
             if (ck_BLL.Checked)
             {
-                if (string.IsNullOrEmpty(txt_BLL_Path.Text))
+                if (string.IsNullOrEmpty(txt_BLL_Path.Text.Trim()))
                 {
+                    txt_BLL_Path.Focus();
                     MessageBox.Show("BLL层生成路径不能为空！");
+                    return;
                 }
-                else if (string.IsNullOrEmpty(txt_BLL_Namespace.Text))
+                else if (string.IsNullOrEmpty(txt_BLL_Namespace.Text.Trim()))
                 {
+                    txt_BLL_Namespace.Focus();
                     MessageBox.Show("BLL层命名空间不能为空！");
+                    return;
                 }
                 else
                 {
@@ -353,6 +365,7 @@ namespace TheCode
             if (string.IsNullOrEmpty(checkNum))
             {
                 MessageBox.Show("没有可生成的项！");
+                return;
             }
             else
             {
@@ -407,23 +420,28 @@ namespace TheCode
                 Display_DAL(false);
                 Display_BLL(false);
 
-                
 
                 //完成
                 if (Convert.ToInt32(lb_createNum.Text) == sum)
                 {
+                    
                     //MessageBox.Show("" + Convert.ToInt32(lb_createNum.Text).ToString());
                     if (MessageBox.Show("全部生成完成！\n" + "共生成" + Convert.ToInt32(lb_createNum.Text).ToString() + "个文件！", "TheCode", MessageBoxButtons.OK) == DialogResult.OK)
                     {
-                        this.Close();
+                        //this.Close();
                     }
                     else
                     {
-                        this.Close();
+                        //this.Close();
                     }
                    
                 }
             }
+        }
+
+        public void sss()
+        { 
+            
         }
 
         public void Create(int createType, string connStr, string createPath, string nameSpace, string databaseName, List<TheCode.Model.Table> tableList,string modelNameSpace,string dalNameSpace, string bllNameSpace, int sum)
