@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>标准</title>
+<link rel="stylesheet" href="/Styles/layout.css" type="text/css" media="screen" />
+<style>
+	body{ font-size:12px; font-family:Arial;background-color:#edf2f6;}
+	h1{font-family:microsoft yehei,Tahoma; font-size:16px; }
+	h2{font-size:14px;}
+	h3{font-size:14px;}
+	strong{}
+	
+	
+	
+</style>
+</head>
+<body>
+JS框架采用<a href="http://www.jquery.com/">jQuery</a> (jQuery引用Google压缩后的代码 -  http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js)
+
+24KB
+<br/>
+插件采用 <a href="http://flowplayer.org/tools/download/index.html">jQuery Tools</a> (本地文件) UI tools和Form tools部分/ 共计37KB<br/>
+&lt;link href=&quot;soim.ico&quot; rel=&quot;Shortcut Icon&quot;/&gt; -- 地址栏小图标
+<hr/>
+head标签中的规范<br/>
+<h3>新闻,文章类,对搜索引擎公开的页面</h3>
+<div style="color:Green">
+  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;<br />
+  &lt;meta name=&quot;<strong>Keywords</strong>&quot; content=&quot;<strong>关键字</strong>&quot; /&gt;<br />
+  &lt;meta name=&quot;<strong>Description</strong>&quot; content=&quot;<strong>介绍</strong>&quot; /&gt;<br />
+  &lt;title&gt;<strong>标题</strong>&lt;/title&gt;<br />
+  &lt;script type=&quot;text/javascript&quot; src=&quot;....js&quot;&gt;&lt;/script&gt;<br />
+  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;....css&quot;/&gt;<br />
+</div>
+ <h3>需要登录才能查看的内页</h3>
+<div style="color:Green">
+  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;<br />
+  &lt;title&gt;<strong>标题</strong>&lt;/title&gt;<br />
+  &lt;script type=&quot;text/javascript&quot; src=&quot;....js&quot;&gt;&lt;/script&gt;<br />
+  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;....css&quot;/&gt;<br />
+</div>
+ <h3>命名规则</h3>
+<div style="color:Green">
+  文件夹和网页文件,js文件,CSS文件命名: 全小写,如果有第二个单词,用下划线隔开,英文或者英文缩写, 如:person, person_doc.aspx,person_style_main.js<br />
+  图片命名规则: 全小写,如果有第二个单词,用下划线隔开,英文或者英文缩写,允许英文开头,以数字区分结尾,如:nav_bg.gif, uc1.gif,uc2.gif<br />
+  CSS命名规则: 全小写,如果有第二个单词,用下划线隔开,英文或者英文缩写,允许英文开头,以数字区分结尾,如:class=&quot;button_login&quot;,id=&quot;button_reg&quot;<br />
+  对象id命名规则: 全小写,如果有第二个单词,用下划线隔开,英文或者英文缩写,如:btn_search<br />
+  <br />
+  自定义变量命名规则:骆驼命名法,如 int i = 0; string strSql = &quot;&quot;;<br />
+  方法命名规则:首字母大写,如果有第二个单词,不用隔开,第二个首字母也大写,以此类推, 不允许出现数字,如: GviewBind()<br />
+  <br />
+  <br />
+  数据库表,字段命名法:首字母大写,如果有第二个单词,不用隔开,第二个首字母也大写,以此类推, 不允许出现数字,如: PersonInfo表, NickName字段<br />
+  模型层类文件命名法:首字母大写,如果有第二个单词,不用隔开,第二个首字母也大写,以此类推, 不允许出现数字,如: PersonInfo.cs (和数据库对应)<br />
+  <br />
+  数据称命名:<br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</div>
+<hr/>
+<h1>主要标题:h1 只有一个和title一致, 比如一篇文章的标题  突出当前最核心的内容到 ，。</h1> 
+<h2>当前列表h2 当前类别名称.  突出层次感 ，。</h2> 
+<h3>小标题h3 用于其他的分类. </h3>
+<strong>关键字提示:strong 作用于单个突出的关键字 或者 关键句提示 加粗</strong> <br/>
+<em>关键字提示补充:em 少用.</em> <br/>
+<b>只用来显示加粗 不涉及优化</b><br/>
+<hr></hr>
+<strong>
+默认字体:Tahoma  默认大小:12px  默认颜色: #000 <br/>
+h1默认字体:微软雅黑(microsoft yehei),Tahoma 默认大小:16px <br/>
+h2默认大小:14px <br/>
+h3默认大小:14px <br/>
+strong:默认 <br/>
+</strong>
+<hr></hr>
+<table>
+	<tr>
+		<td><p><input name="" type="text"  class="textLogin180"/></p></td>
+		<td><select class="selectLoginBig">
+            <option>天蝎座</option>
+            <option>共产党员</option>
+            <option>中国</option>
+            <option>新疆维吾尔族</option>
+        </select></td>
+	</tr>
+</table>
+	
+<p><input name="" type="password"  class="textLogin180"/></p>
+<p><input name="" type="text"  class="text t180"/></p>
+<p><input name="" type="text"  class="text t140"/></p>
+<p><input name="" type="password"  class="text t140"/></p>
+<p><input name="" type="text"  class="text t280"/></p>
+<p><input name="" type="text"  class="text t380"/></p>
+<p><input name="" type="text"  class="text t480"/></p>
+<p><input name="" type="text"  class="text t80"/></p>
+<p><input name="" type="text"  class="text t40"/>&nbsp;&nbsp;<input name="" type="text"  class="text t40"/>&nbsp;&nbsp;<input name="" type="text"  class="text t80"/></p>
+<p><input name="" type="text"  class="text t40"/>&nbsp;&nbsp;<input name="" type="text"  class="text t140"/>&nbsp;&nbsp;<input name="" type="text"  class="text t20"/></p>
+<p><textarea name="textBox" cols="" rows="" class="textarea textBoxSmall"></textarea></p>
+<p><textarea name="textBox" cols="" rows="" class="textarea textBoxBig"></textarea></p>
+<hr></hr>
+
+<button class="button">标准按钮</button>
+<button class="buttonReg"></button>
+<button class="buttonLogin">登录按钮</button>
+<button class="buttonBig">大按钮</button>
+<button class="buttonLong">长按钮</button>
+<button class="buttonSmall">小按钮</button>
+<button class="buttonImgSmall">图</button>
+<table width="61" border="0" cellspacing="0">
+  <tr>
+    <td width="42"><input name="" type="text"  class="text t40"/></td>
+    <td width="154"><button class="buttonOfText">检测是否可用</button></td>
+  </tr>
+</table>
+<hr></hr>
+<table  border="0" cellspacing="0">
+  <tr>
+    <td width="42"><input name="" type="text"  class="text t40"/></td>
+    <td width="654">
+        <select class="select">
+            <option>天蝎座</option>
+            <option>共产党员</option>
+            <option>中国</option>
+            <option>新疆维吾尔族</option>
+        </select>
+        <select class="selectBig">
+            <option>China</option>
+            <option>England</option>
+            <option>USA</option>
+            <option>Japan</option>
+        </select>
+        <select class="selectSmall">
+            <option>天蝎座</option>
+            <option>共产党员</option>
+            <option>中国</option>
+            <option>新疆维吾尔族</option>
+        </select>
+		
+</td>
+  </tr>
+</table>
+<hr></hr>
+<table width="140" border="0" cellspacing="0">
+  <tr>
+    <td width="20"><input name="isLove" type="radio" value="" id="s" /></td>
+    <td width="50"><label for="s">未婚</label></td>
+     <td width="20"><input name="isLove" type="radio" value="" id="s2" /></td>
+    <td width="50"><label for="s2">已婚</label></td>
+  </tr>
+</table>
+
+<input name="isLove2" type="radio" class="text radio" value="" id="s" />未婚
+<input name="isLove2" type="radio" class="text radio"value="" id="s" />已婚
+<input name="isColor" type="checkbox" class="text checkbox" value="" />绿色
+<input name="isColor" type="checkbox" class="text checkbox"value="" />黄色
+
+<hr></hr>
+<input name="" type="file" class="text file" id="up"/>
+<hr></hr>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</body>
+</html>

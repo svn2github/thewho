@@ -136,24 +136,36 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="code.htm" />
     <Content Include="demo.htm" />
+    <Content Include="editor.htm" />
     <Content Include="Htmls\default.htm" />
     <Content Include="Htmls\1.htm" />
     <Content Include="Htmls\2.htm" />
     <Content Include="Htmls\3.htm" />
+    <Content Include="Images\textbox_bg.gif" />
     <Content Include="Main\Site.Master" />
     <Content Include="Main\Test\t1.aspx" />
     <Content Include="Main\Test\2.aspx" />
     <Content Include="Main\Test\s.aspx" />
+    <Content Include="one.htm" />
+    <Content Include="Scripts\box.js" />
+    <Content Include="Scripts\dialog.js" />
+    <Content Include="Scripts\editor.js" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\myjs.js" />
     <Content Include="Styles\layout.css" />
+    <Content Include="Styles\mycss.css" />
+    <Content Include="Styles\public.css" />
     <Content Include="Styles\reset-grids.css" />
     <Content Include="Styles\reset-grids2.css" />
     <Content Include="test.htm" />
+    <Content Include="标准.htm" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Configs\" />
-    <Folder Include="Images\" />
     <Folder Include="Main\Function\" />
     <Folder Include="Main\Permission\" />
     <Folder Include="Main\System\" />

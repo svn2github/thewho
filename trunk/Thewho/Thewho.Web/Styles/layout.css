@@ -3,7 +3,6 @@ http://lifesinger.googlecode.com/svn/trunk/lab/2008/grids_test2.html
 http://iyunlu.com/demo/margin/
  */ 
 
-
 html{color:#000;background:#FFF;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
 
@@ -41,93 +40,93 @@ legend{color:#000;}del,ins{text-decoration:none;}
 /* 主要的div 设置定位需要这个 main里面如果要放内容请一定要包 */
 .main-wrap{min-height:1px;}
 /*间距div*/
-.test-box { padding: 10px; height: 90px; border: 1px dashed #aaa; }
+.test-grid { padding: 10px; height: 90px; border: 1px dashed #aaa; }
 /*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
 /* 一栏 */
-.box-1{}
+.grid-1{}
 /*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
 /* 两栏 间隙应该是10像素 平均减去这5像素 main-wrap要加5 sub要减5*/
 /* 490(485) + 490(485) ≈ 1:1 */
-.box-1-1 .main-wrap {margin-left:495px;}/* 495 = 485 + 10的间隙 */
-.box-1-1 .sub{width:485px;margin-left:-100%;}
+.grid-1-1 .main-wrap {margin-left:495px;}/* 495 = 485 + 10的间隙 */
+.grid-1-1 .sub{width:485px;margin-left:-100%;}
 /* 490(485) + 490(485) ≈ 1:1 (反)*/
-.box-1-1f .main-wrap {margin-right:495px;}/* 495 = 485 + 10的间隙 */
-.box-1-1f .sub{width:485px;margin-left:-485px;}
+.grid-1-1f .main-wrap {margin-right:495px;}/* 495 = 485 + 10的间隙 */
+.grid-1-1f .sub{width:485px;margin-left:-485px;}
 
 /* 240(240) + 740(730) ≈ 1:2 */
-.box-1-2 .main-wrap {margin-left:250px;}/* 250 = 240 + 10的间隙*/
-.box-1-2 .sub{width:240px;margin-left:-100%;}
+.grid-1-2 .main-wrap {margin-left:250px;}/* 250 = 240 + 10的间隙*/
+.grid-1-2 .sub{width:240px;margin-left:-100%;}
 
 /* 740(730) + 240(240) ≈ 2:1 */
-.box-2-1 .main-wrap {margin-right:250px;}/* 250 = 240 + 10的间隙*/
-.box-2-1 .sub{width:240px;margin-left:-240px;}
+.grid-2-1 .main-wrap {margin-right:250px;}/* 250 = 240 + 10的间隙*/
+.grid-2-1 .sub{width:240px;margin-left:-240px;}
 
 /* 160(160) + 820(810) ≈ 1:3 */
-.box-1-3 .main-wrap {margin-left:170px;}/* 170 = 160 + 10的间隙*/
-.box-1-3 .sub{width:160px;margin-left:-100%;}
+.grid-1-3 .main-wrap {margin-left:170px;}/* 170 = 160 + 10的间隙*/
+.grid-1-3 .sub{width:160px;margin-left:-100%;}
 
 /* 820(810) + 160(160) ≈ 3:1 */
-.box-3-1 .main-wrap {margin-right:170px;}/* 170 = 160 + 10的间隙*/
-.box-3-1 .sub{width:160px;margin-left:-160px;}
+.grid-3-1 .main-wrap {margin-right:170px;}/* 170 = 160 + 10的间隙*/
+.grid-3-1 .sub{width:160px;margin-left:-160px;}
 /*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
 /* 三栏 间隙应该是20像素 */
 /* 320(320) + 340(320) + 320(310) ≈ 1:1:1 */
-.box-1-1-1 .main-wrap{margin:0 330px 0 330px;} /* 330 = 320 + 10的间隙 */
-.box-1-1-1 .sub{width:320px;margin-left:-100%;}
-.box-1-1-1 .extra{width:320px;margin-left:-320px;}
+.grid-1-1-1 .main-wrap{margin:0 330px 0 330px;} /* 330 = 320 + 10的间隙 */
+.grid-1-1-1 .sub{width:320px;margin-left:-100%;}
+.grid-1-1-1 .extra{width:320px;margin-left:-320px;}
 
 /* 240(240) + 500(480) + 240(240) ≈ 1:2:1 */
-.box-1-2-1 .main-wrap{margin:0 250px 0 250px;} /* 250 = 240 + 10的间隙 */
-.box-1-2-1 .sub{width:240px;margin-left:-100%;}
-.box-1-2-1 .extra{width:240px;margin-left:-240px;}
+.grid-1-2-1 .main-wrap{margin:0 250px 0 250px;} /* 250 = 240 + 10的间隙 */
+.grid-1-2-1 .sub{width:240px;margin-left:-100%;}
+.grid-1-2-1 .extra{width:240px;margin-left:-240px;}
 
 /* 240(240) +  240(240) +  500(480) ≈ 1:1:2 */
-.box-1-1-2 .main-wrap{margin-left:500px;} /* 500 = 240 + 240 + 20的间隙*/
-.box-1-1-2 .sub{width:240px;margin-left:-100%;}
-.box-1-1-2 .extra{width:240px;margin-left:-100%; left:250px;}/* 250 = 240 + 10的间隙*/
+.grid-1-1-2 .main-wrap{margin-left:500px;} /* 500 = 240 + 240 + 20的间隙*/
+.grid-1-1-2 .sub{width:240px;margin-left:-100%;}
+.grid-1-1-2 .extra{width:240px;margin-left:-100%; left:250px;}/* 250 = 240 + 10的间隙*/
 
 /* 500(480) + 240(240) +  240(240) ≈ 2:1:1 */
-.box-2-1-1 .main-wrap{margin-right:500px;} /* 500 = 240 + 240 + 20的间隙*/
-.box-2-1-1 .sub{width:240px;margin-left:-240px;}
-.box-2-1-1 .extra{width:240px;margin-left:-490px;}/* 490 = 240 + 240 + 10的间隙*/
+.grid-2-1-1 .main-wrap{margin-right:500px;} /* 500 = 240 + 240 + 20的间隙*/
+.grid-2-1-1 .sub{width:240px;margin-left:-240px;}
+.grid-2-1-1 .extra{width:240px;margin-left:-490px;}/* 490 = 240 + 240 + 10的间隙*/
 
 /* 160(160) + 660(640) + 160(160) ≈ 1:3:1 */
-.box-1-3-1 .main-wrap{margin:0 170px 0 170px;}/* 170 = 160 + 10的间隙*/
-.box-1-3-1 .sub{width:160px;margin-left:-100%;}
-.box-1-3-1 .extra{width:160px;margin-left:-160px;}
+.grid-1-3-1 .main-wrap{margin:0 170px 0 170px;}/* 170 = 160 + 10的间隙*/
+.grid-1-3-1 .sub{width:160px;margin-left:-100%;}
+.grid-1-3-1 .extra{width:160px;margin-left:-160px;}
 
 /* 160(160) +  160(160) +  660(640) ≈ 1:1:3 */
-.box-1-1-3 .main-wrap{margin-left:340px;} /* 340 = 160 + 160 + 20的间隙*/
-.box-1-1-3 .sub{width:160px;margin-left:-100%;}
-.box-1-1-3 .extra{width:160px;margin-left:-100%;left:170px;}/* 170 = 160 + 10的间隙*/
+.grid-1-1-3 .main-wrap{margin-left:340px;} /* 340 = 160 + 160 + 20的间隙*/
+.grid-1-1-3 .sub{width:160px;margin-left:-100%;}
+.grid-1-1-3 .extra{width:160px;margin-left:-100%;left:170px;}/* 170 = 160 + 10的间隙*/
 
 /* 640(634) + 160(153) +  160(153)  ≈ 3:1:1 */
-.box-3-1-1 .main-wrap{margin-right:340px;}/* 340 = 160 + 160 + 20的间隙*/
-.box-3-1-1 .sub{width:160px;margin-left:-160px;}
-.box-3-1-1 .extra{width:160px;margin-left:-330px;}/* 330 = 160 + 160 + 10的间隙*/
+.grid-3-1-1 .main-wrap{margin-right:340px;}/* 340 = 160 + 160 + 20的间隙*/
+.grid-3-1-1 .sub{width:160px;margin-left:-160px;}
+.grid-3-1-1 .extra{width:160px;margin-left:-330px;}/* 330 = 160 + 160 + 10的间隙*/
 /*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
-.box-1:after,.box-1-1:after,.box-1-1f:after,.box-1-2:after,.box-1-3:after,.box-2-1:after,.box-3-1:after,.box-1-1-1:after,.box-1-2-1:after,.box-1-1-2:after,.box-2-1-1:after,.box-1-3-1:after,.box-1-1-3:after,.box-3-1-1:after{content:'\0020';display:block;height:0;clear:both;}
-.box-1,.box-1-1,.box-1-1f,.box-1-2,.box-1-3,.box-2-1,.box-3-1,.box-1-1-1,.box-1-2-1,.box-1-1-2,.box-2-1-1,.box-1-3-1,.box-1-1-3,.box-3-1-1{zoom:1;margin-bottom:10px;background: #f3f3f3;}
+.grid-1:after,.grid-1-1:after,.grid-1-1f:after,.grid-1-2:after,.grid-1-3:after,.grid-2-1:after,.grid-3-1:after,.grid-1-1-1:after,.grid-1-2-1:after,.grid-1-1-2:after,.grid-2-1-1:after,.grid-1-3-1:after,.grid-1-1-3:after,.grid-3-1-1:after{content:'\0020';display:block;height:0;clear:both;}
+.grid-1,.grid-1-1,.grid-1-1f,.grid-1-2,.grid-1-3,.grid-2-1,.grid-3-1,.grid-1-1-1,.grid-1-2-1,.grid-1-1-2,.grid-2-1-1,.grid-1-3-1,.grid-1-1-3,.grid-3-1-1{zoom:1;margin-bottom:10px;background: #f3f3f3;}
 
 /*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
 
-.grid_1 { width:60px; }
-.grid_2 { width:140px; }
-.grid_3 { width:220px; }
-.grid_4 { width:300px; }
-.grid_5 { width:380px; }
-.grid_6 { width:460px; }
-.grid_7 { width:540px; }
-.grid_8 { width:620px; }
-.grid_9 { width:700px; }
-.grid_10 { width:780px; }
-.grid_11 { width:860px; }
-.grid_12 { width:940px; }
+.box_1 { width:60px; }
+.box_2 { width:140px; }
+.box_3 { width:220px; }
+.box_4 { width:300px; }
+.box_5 { width:380px; }
+.box_6 { width:460px; }
+.box_7 { width:540px; }
+.box_8 { width:620px; }
+.box_9 { width:700px; }
+.box_10 { width:780px; }
+.box_11 { width:860px; }
+.box_12 { width:940px; }
 
 .column {
 	margin: 0 10px;
@@ -145,3 +144,50 @@ legend{color:#000;}del,ins{text-decoration:none;}
 	width: auto;
 	display: inline-block;
 }
+
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+
+p{ margin:10px;}
+
+.text{padding:2px 3px 0px 3px;height:18px;line-height:16px;background-image:url(../Images/textbox_bg.gif);border-left:1px solid #999;border-top:1px solid #999;color:#333;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;font-family:Arial;}
+.textarea{font-family:Tahoma;padding:3px 3px 3px 3px;border:1px solid #999;background-image:url(../Images/textbox_bg.gif);background-repeat:repeat-x;overflow-y:auto;line-height:16px;}
+
+.textLogin180{padding:4px 4px 4px 4px;height:18px;line-height:18px;font-size:14px;font-weight:bold;background-image:url(../Images/textbox_bg.gif);border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;font-family:Arial;width:186px;}
+
+
+.selectLoginBig{font-family:Tahoma;height:28px;border-top:1px solid #999;color:#333;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;padding:0px 0px 0px 0px;background-image:url(textbox_bg.gif);outline:none;font-size:20px;font-weight:bold;}
+
+
+.t20{width:20px;}
+.t40{width:40px;}
+.t80{width:80px;}
+.t140{width:140px;}
+.t180{width:180px;}
+.t280{width:280px;}
+.t380{width:380px;}
+.t480{width:480px;}
+
+.textG{width:180px;background-image:none; background-color:#9F9;}
+/*input[type="radio"]{border:0px;}
+input[type="checkbox"]{border:0px;vertical-align:middle;margin-top:-2px;margin-bottom:1px;}*/
+.radio,.checkbox{border:0px;vertical-align:middle;margin-top:-2px;margin-bottom:1px;background-image:none; width:auto; height:auto}
+.file{height:24px;line-height:20px;width:280px;}
+
+
+.textBoxSmall{width:480px; height:100px;}
+.textBoxBig{width:600px; height:200px;}
+
+button{font-family:Tahoma;border:1px solid #999;width:106px;height:26px;outline:none;}
+.buttonReg{background-image:url(demo/10.png);border:0px;}
+.buttonLogin{}
+.buttonBig{width:186px;height:46px;}
+.buttonLong{width:186px;}
+.buttonSmall{width:60px;height:20px; padding:0px;}
+.buttonImgSmall{width:20px;height:20px; padding:0px;}
+.buttonOfText{height:22px;line-height:20px;}
+
+select{font-family:Arial;height:22px;border:1px solid #999; padding:1px 1px 1px 1px;background-image:url(../Images/textbox_bg.gif);outline:none;}
+.selectBig{width:280px;}
+.selectSmall{width:80px;}
+.select{width:140px;}
