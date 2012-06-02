@@ -1,0 +1,147 @@
+﻿/* AKQJ layout v1.0
+http://lifesinger.googlecode.com/svn/trunk/lab/2008/grids_test2.html
+http://iyunlu.com/demo/margin/
+ */ 
+
+
+html{color:#000;background:#FFF;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{*font-size:100%;}
+legend{color:#000;}del,ins{text-decoration:none;}
+
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+/* 最大的div */
+.page {width:980px;margin:0 auto;}
+.page2 {width:100%;}
+.page3 {width:780px;margin:0 auto;}
+
+.page, .page2 { *position: relative; } /* 否则ie下切换宽度自适应时布局会乱掉 */
+.page2 .col-main .width { display: none } /* 自适应百分比 */
+
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+/* 主要的 一般指大的,采用自适应的话,会自适应的div */
+.main {float:left;width:100%;}
+
+/* sub是小的,extra是第三个小的, 都是固定宽度不动的 */
+.sub,.extra {float:left;position:relative;}
+/* 主要的div 设置定位需要这个 main里面如果要放内容请一定要包 */
+.main-wrap{min-height:1px;}
+/*间距div*/
+.test-box { padding: 10px; height: 90px; border: 1px dashed #aaa; }
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+/* 一栏 */
+.box-1{}
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+/* 两栏 间隙应该是10像素 平均减去这5像素 main-wrap要加5 sub要减5*/
+/* 490(485) + 490(485) ≈ 1:1 */
+.box-1-1 .main-wrap {margin-left:495px;}/* 495 = 485 + 10的间隙 */
+.box-1-1 .sub{width:485px;margin-left:-100%;}
+/* 490(485) + 490(485) ≈ 1:1 (反)*/
+.box-1-1f .main-wrap {margin-right:495px;}/* 495 = 485 + 10的间隙 */
+.box-1-1f .sub{width:485px;margin-left:-485px;}
+
+/* 240(240) + 740(730) ≈ 1:2 */
+.box-1-2 .main-wrap {margin-left:250px;}/* 250 = 240 + 10的间隙*/
+.box-1-2 .sub{width:240px;margin-left:-100%;}
+
+/* 740(730) + 240(240) ≈ 2:1 */
+.box-2-1 .main-wrap {margin-right:250px;}/* 250 = 240 + 10的间隙*/
+.box-2-1 .sub{width:240px;margin-left:-240px;}
+
+/* 160(160) + 820(810) ≈ 1:3 */
+.box-1-3 .main-wrap {margin-left:170px;}/* 170 = 160 + 10的间隙*/
+.box-1-3 .sub{width:160px;margin-left:-100%;}
+
+/* 820(810) + 160(160) ≈ 3:1 */
+.box-3-1 .main-wrap {margin-right:170px;}/* 170 = 160 + 10的间隙*/
+.box-3-1 .sub{width:160px;margin-left:-160px;}
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+/* 三栏 间隙应该是20像素 */
+/* 320(320) + 340(320) + 320(310) ≈ 1:1:1 */
+.box-1-1-1 .main-wrap{margin:0 330px 0 330px;} /* 330 = 320 + 10的间隙 */
+.box-1-1-1 .sub{width:320px;margin-left:-100%;}
+.box-1-1-1 .extra{width:320px;margin-left:-320px;}
+
+/* 240(240) + 500(480) + 240(240) ≈ 1:2:1 */
+.box-1-2-1 .main-wrap{margin:0 250px 0 250px;} /* 250 = 240 + 10的间隙 */
+.box-1-2-1 .sub{width:240px;margin-left:-100%;}
+.box-1-2-1 .extra{width:240px;margin-left:-240px;}
+
+/* 240(240) +  240(240) +  500(480) ≈ 1:1:2 */
+.box-1-1-2 .main-wrap{margin-left:500px;} /* 500 = 240 + 240 + 20的间隙*/
+.box-1-1-2 .sub{width:240px;margin-left:-100%;}
+.box-1-1-2 .extra{width:240px;margin-left:-100%; left:250px;}/* 250 = 240 + 10的间隙*/
+
+/* 500(480) + 240(240) +  240(240) ≈ 2:1:1 */
+.box-2-1-1 .main-wrap{margin-right:500px;} /* 500 = 240 + 240 + 20的间隙*/
+.box-2-1-1 .sub{width:240px;margin-left:-240px;}
+.box-2-1-1 .extra{width:240px;margin-left:-490px;}/* 490 = 240 + 240 + 10的间隙*/
+
+/* 160(160) + 660(640) + 160(160) ≈ 1:3:1 */
+.box-1-3-1 .main-wrap{margin:0 170px 0 170px;}/* 170 = 160 + 10的间隙*/
+.box-1-3-1 .sub{width:160px;margin-left:-100%;}
+.box-1-3-1 .extra{width:160px;margin-left:-160px;}
+
+/* 160(160) +  160(160) +  660(640) ≈ 1:1:3 */
+.box-1-1-3 .main-wrap{margin-left:340px;} /* 340 = 160 + 160 + 20的间隙*/
+.box-1-1-3 .sub{width:160px;margin-left:-100%;}
+.box-1-1-3 .extra{width:160px;margin-left:-100%;left:170px;}/* 170 = 160 + 10的间隙*/
+
+/* 640(634) + 160(153) +  160(153)  ≈ 3:1:1 */
+.box-3-1-1 .main-wrap{margin-right:340px;}/* 340 = 160 + 160 + 20的间隙*/
+.box-3-1-1 .sub{width:160px;margin-left:-160px;}
+.box-3-1-1 .extra{width:160px;margin-left:-330px;}/* 330 = 160 + 160 + 10的间隙*/
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+.box-1:after,.box-1-1:after,.box-1-1f:after,.box-1-2:after,.box-1-3:after,.box-2-1:after,.box-3-1:after,.box-1-1-1:after,.box-1-2-1:after,.box-1-1-2:after,.box-2-1-1:after,.box-1-3-1:after,.box-1-1-3:after,.box-3-1-1:after{content:'\0020';display:block;height:0;clear:both;}
+.box-1,.box-1-1,.box-1-1f,.box-1-2,.box-1-3,.box-2-1,.box-3-1,.box-1-1-1,.box-1-2-1,.box-1-1-2,.box-2-1-1,.box-1-3-1,.box-1-1-3,.box-3-1-1{zoom:1;margin-bottom:10px;background: #f3f3f3;}
+
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+
+.grid_1 { width:60px; }
+.grid_2 { width:140px; }
+.grid_3 { width:220px; }
+.grid_4 { width:300px; }
+.grid_5 { width:380px; }
+.grid_6 { width:460px; }
+.grid_7 { width:540px; }
+.grid_8 { width:620px; }
+.grid_9 { width:700px; }
+.grid_10 { width:780px; }
+.grid_11 { width:860px; }
+.grid_12 { width:940px; }
+
+.column {
+	margin: 0 10px;
+	overflow: hidden;
+	float: left;
+	display: inline;
+}
+.row {
+	width: 980px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.row .row {
+	margin: 0 -10px;
+	width: auto;
+	display: inline-block;
+}
