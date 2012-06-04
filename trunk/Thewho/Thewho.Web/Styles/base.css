@@ -1,0 +1,61 @@
+﻿html{color:#000;background:#FFF;font-size:12px;font-family:Tahoma;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+p{line-height:24px; margin:10px;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{*font-size:100%;}
+legend{color:#000;}del,ins{text-decoration:none;}
+img{border:0;}
+
+
+.text{padding:2px 3px 0px 3px;height:18px;line-height:16px;background-image:url(../Images/textbox_bg.gif);color:#333;border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;}
+.textbig{padding:4px 4px 4px 4px;height:18px;line-height:18px;font-size:14px;font-weight:bold;background-image:url(../Images/textbox_bg.gif);border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;}
+.textarea{font-family:Tahoma;padding:3px 3px 3px 3px;border:1px solid #999;background-image:url(../Images/textbox_bg.gif);background-repeat:repeat-x;overflow-y:auto;line-height:16px;}
+.radio,.checkbox{border:0px;vertical-align:middle; margin:-2px 1px 1px 1px;background-image:none; width:auto; height:auto;}
+.file{height:24px;line-height:20px;width:280px;}
+.select{height:22px;border:1px solid #999; padding:1px 1px 1px 1px;background-image:url(../Images/textbox_bg.gif);outline:none;}
+.button{border:1px solid #999;width:106px;height:26px;outline:none;}
+
+/*
+所有主流浏览器都支持 <button> 标签。
+重要事项：如果在 HTML 表单中使用 button 元素，不同的浏览器会提交不同的值。Internet Explorer 将提交 <button> 与 <button/> 之间的文本，
+而其他浏览器将提交 value 属性的内容。请在 HTML 表单中使用 input 元素来创建按钮。
+*/
+
+
+.t20{width:20px;}
+.t40{width:40px;}
+.t60{width:60px;}
+.t80{width:80px;}
+.t100{width:100px;}
+.t120{width:120px;}
+.t140{width:140px;}
+.t180{width:180px;}
+.t200{width:200px;}
+.t300{width:300px;}
+.t400{width:400px;}
+.t500{width:500px;}
+.t600{width:600px;}
+
+
+
+.textBoxSmall{width:480px; height:100px;}
+.textBoxBig{width:600px; height:200px;}
+
+
+.reg{background-image:url(demo/10.png);border:0px;}
+.login{}
+.big{width:186px;height:46px;}
+.long{width:186px;}
+.small{width:60px;height:20px; padding:0px;}
+.imgsmall{width:20px;height:20px; padding:0px;}
+.oftext{height:22px;line-height:20px;}

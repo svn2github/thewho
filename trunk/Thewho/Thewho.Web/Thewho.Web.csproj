@@ -155,6 +155,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\myjs.js" />
+    <Content Include="Styles\base.css" />
     <Content Include="Styles\layout.css" />
     <Content Include="Styles\mycss.css" />
     <Content Include="Styles\public.css" />

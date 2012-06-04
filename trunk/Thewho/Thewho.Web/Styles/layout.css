@@ -3,22 +3,6 @@ http://lifesinger.googlecode.com/svn/trunk/lab/2008/grids_test2.html
 http://iyunlu.com/demo/margin/
  */ 
 
-html{color:#000;background:#FFF;}
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
-
-table{border-collapse:collapse;border-spacing:0;}
-fieldset,img{border:0;}
-address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
-li{list-style:none;}
-caption,th{text-align:left;}
-h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
-q:before,q:after{content:'';}
-abbr,acronym{border:0;font-variant:normal;}
-sup{vertical-align:text-top;}
-sub{vertical-align:text-bottom;}
-input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
-input,textarea,select{*font-size:100%;}
-legend{color:#000;}del,ins{text-decoration:none;}
 
 /*----------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------------*/
@@ -144,50 +128,3 @@ legend{color:#000;}del,ins{text-decoration:none;}
 	width: auto;
 	display: inline-block;
 }
-
-/*----------------------------------------------------------------------------*/
-/*----------------------------------------------------------------------------*/
-
-p{ margin:10px;}
-
-.text{padding:2px 3px 0px 3px;height:18px;line-height:16px;background-image:url(../Images/textbox_bg.gif);border-left:1px solid #999;border-top:1px solid #999;color:#333;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;font-family:Arial;}
-.textarea{font-family:Tahoma;padding:3px 3px 3px 3px;border:1px solid #999;background-image:url(../Images/textbox_bg.gif);background-repeat:repeat-x;overflow-y:auto;line-height:16px;}
-
-.textLogin180{padding:4px 4px 4px 4px;height:18px;line-height:18px;font-size:14px;font-weight:bold;background-image:url(../Images/textbox_bg.gif);border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;font-family:Arial;width:186px;}
-
-
-.selectLoginBig{font-family:Tahoma;height:28px;border-top:1px solid #999;color:#333;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;padding:0px 0px 0px 0px;background-image:url(textbox_bg.gif);outline:none;font-size:20px;font-weight:bold;}
-
-
-.t20{width:20px;}
-.t40{width:40px;}
-.t80{width:80px;}
-.t140{width:140px;}
-.t180{width:180px;}
-.t280{width:280px;}
-.t380{width:380px;}
-.t480{width:480px;}
-
-.textG{width:180px;background-image:none; background-color:#9F9;}
-/*input[type="radio"]{border:0px;}
-input[type="checkbox"]{border:0px;vertical-align:middle;margin-top:-2px;margin-bottom:1px;}*/
-.radio,.checkbox{border:0px;vertical-align:middle;margin-top:-2px;margin-bottom:1px;background-image:none; width:auto; height:auto}
-.file{height:24px;line-height:20px;width:280px;}
-
-
-.textBoxSmall{width:480px; height:100px;}
-.textBoxBig{width:600px; height:200px;}
-
-button{font-family:Tahoma;border:1px solid #999;width:106px;height:26px;outline:none;}
-.buttonReg{background-image:url(demo/10.png);border:0px;}
-.buttonLogin{}
-.buttonBig{width:186px;height:46px;}
-.buttonLong{width:186px;}
-.buttonSmall{width:60px;height:20px; padding:0px;}
-.buttonImgSmall{width:20px;height:20px; padding:0px;}
-.buttonOfText{height:22px;line-height:20px;}
-
-select{font-family:Arial;height:22px;border:1px solid #999; padding:1px 1px 1px 1px;background-image:url(../Images/textbox_bg.gif);outline:none;}
-.selectBig{width:280px;}
-.selectSmall{width:80px;}
-.select{width:140px;}

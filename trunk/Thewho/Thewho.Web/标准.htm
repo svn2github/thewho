@@ -4,23 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>标准</title>
 <link rel="stylesheet" href="/Styles/layout.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/Styles/base.css" type="text/css" media="screen" />
 <style>
-	body{ font-size:12px; font-family:Arial;background-color:#edf2f6;}
+	body{ font-size:12px; font-family:Arial;background-color:#edf2f6; padding:10px;}
 	h1{font-family:microsoft yehei,Tahoma; font-size:16px; }
 	h2{font-size:14px;}
 	h3{font-size:14px;}
 	strong{}
 	
-	
-	
 </style>
 </head>
 <body>
-JS框架采用<a href="http://www.jquery.com/">jQuery</a> (jQuery引用Google压缩后的代码 -  http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js)
-
-24KB
-<br/>
-插件采用 <a href="http://flowplayer.org/tools/download/index.html">jQuery Tools</a> (本地文件) UI tools和Form tools部分/ 共计37KB<br/>
 &lt;link href=&quot;soim.ico&quot; rel=&quot;Shortcut Icon&quot;/&gt; -- 地址栏小图标
 <hr/>
 head标签中的规范<br/>
@@ -54,13 +48,6 @@ head标签中的规范<br/>
   数据库表,字段命名法:首字母大写,如果有第二个单词,不用隔开,第二个首字母也大写,以此类推, 不允许出现数字,如: PersonInfo表, NickName字段<br />
   模型层类文件命名法:首字母大写,如果有第二个单词,不用隔开,第二个首字母也大写,以此类推, 不允许出现数字,如: PersonInfo.cs (和数据库对应)<br />
   <br />
-  数据称命名:<br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
 </div>
 <hr/>
 <h1>主要标题:h1 只有一个和title一致, 比如一篇文章的标题  突出当前最核心的内容到 ，。</h1> 
@@ -80,8 +67,8 @@ strong:默认 <br/>
 <hr></hr>
 <table>
 	<tr>
-		<td><p><input name="" type="text"  class="textLogin180"/></p></td>
-		<td><select class="selectLoginBig">
+		<td><p><input name="" type="text"  class="textbig t180"/></p></td>
+		<td><select class="select">
             <option>天蝎座</option>
             <option>共产党员</option>
             <option>中国</option>
@@ -90,13 +77,15 @@ strong:默认 <br/>
 	</tr>
 </table>
 	
-<p><input name="" type="password"  class="textLogin180"/></p>
+<p><input name="" type="password"  class="textbig t180"/></p>
 <p><input name="" type="text"  class="text t180"/></p>
 <p><input name="" type="text"  class="text t140"/></p>
 <p><input name="" type="password"  class="text t140"/></p>
 <p><input name="" type="text"  class="text t280"/></p>
 <p><input name="" type="text"  class="text t380"/></p>
-<p><input name="" type="text"  class="text t480"/></p>
+<p><input name="" type="text"  class="text t400"/></p>
+<p><input name="" type="text"  class="text t500"/></p>
+<p><input name="" type="text"  class="text t600"/></p>
 <p><input name="" type="text"  class="text t80"/></p>
 <p><input name="" type="text"  class="text t40"/>&nbsp;&nbsp;<input name="" type="text"  class="text t40"/>&nbsp;&nbsp;<input name="" type="text"  class="text t80"/></p>
 <p><input name="" type="text"  class="text t40"/>&nbsp;&nbsp;<input name="" type="text"  class="text t140"/>&nbsp;&nbsp;<input name="" type="text"  class="text t20"/></p>
@@ -105,16 +94,16 @@ strong:默认 <br/>
 <hr></hr>
 
 <button class="button">标准按钮</button>
-<button class="buttonReg"></button>
-<button class="buttonLogin">登录按钮</button>
-<button class="buttonBig">大按钮</button>
-<button class="buttonLong">长按钮</button>
-<button class="buttonSmall">小按钮</button>
-<button class="buttonImgSmall">图</button>
+<button class="button reg">登录</button>
+<button class="button login">登录按钮</button>
+<button class="button big">大按钮</button>
+<button class="button long">长按钮</button>
+<button class="button small">小按钮</button>
+<button class="button imgsmall">图</button>
 <table width="61" border="0" cellspacing="0">
   <tr>
     <td width="42"><input name="" type="text"  class="text t40"/></td>
-    <td width="154"><button class="buttonOfText">检测是否可用</button></td>
+    <td width="154"><button class="button oftext">检测是否可用</button></td>
   </tr>
 </table>
 <hr></hr>
@@ -124,19 +113,17 @@ strong:默认 <br/>
     <td width="654">
         <select class="select">
             <option>天蝎座</option>
-            <option>共产党员</option>
             <option>中国</option>
             <option>新疆维吾尔族</option>
         </select>
-        <select class="selectBig">
+        <select class="select">
             <option>China</option>
             <option>England</option>
             <option>USA</option>
             <option>Japan</option>
         </select>
-        <select class="selectSmall">
+        <select class="select">
             <option>天蝎座</option>
-            <option>共产党员</option>
             <option>中国</option>
             <option>新疆维吾尔族</option>
         </select>
@@ -145,19 +132,12 @@ strong:默认 <br/>
   </tr>
 </table>
 <hr></hr>
-<table width="140" border="0" cellspacing="0">
-  <tr>
-    <td width="20"><input name="isLove" type="radio" value="" id="s" /></td>
-    <td width="50"><label for="s">未婚</label></td>
-     <td width="20"><input name="isLove" type="radio" value="" id="s2" /></td>
-    <td width="50"><label for="s2">已婚</label></td>
-  </tr>
-</table>
 
-<input name="isLove2" type="radio" class="text radio" value="" id="s" />未婚
-<input name="isLove2" type="radio" class="text radio"value="" id="s" />已婚
-<input name="isColor" type="checkbox" class="text checkbox" value="" />绿色
-<input name="isColor" type="checkbox" class="text checkbox"value="" />黄色
+
+<label for="isLove"><input name="isLove2" id="isLove" type="radio" class="text radio" value=""/>未婚</label>
+<label for="isLove2"><input name="isLove2" id="isLove2" type="radio" class="text radio"value="" />已婚</label>
+<label for="isColor"><input name="isColor" id="isColor" type="checkbox" class="text checkbox" value="" />绿色</label>
+<label for="isColor2"><input name="isColor" id="isColor2" type="checkbox" class="text checkbox"value="" />黄色</label>
 
 <hr></hr>
 <input name="" type="file" class="text file" id="up"/>
