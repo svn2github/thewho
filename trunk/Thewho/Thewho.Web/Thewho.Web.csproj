@@ -136,6 +136,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1.htm" />
     <Content Include="code.htm" />
     <Content Include="demo.htm" />
     <Content Include="editor.htm" />
@@ -149,18 +150,21 @@
     <Content Include="Main\Test\2.aspx" />
     <Content Include="Main\Test\s.aspx" />
     <Content Include="one.htm" />
+    <Content Include="Scripts\1.js" />
     <Content Include="Scripts\box.js" />
     <Content Include="Scripts\dialog.js" />
+    <Content Include="Scripts\dialogConfigs.js" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\myjs.js" />
     <Content Include="Styles\base.css" />
     <Content Include="Styles\layout.css" />
-    <Content Include="Styles\mycss.css" />
+    <Content Include="Styles\mycss2.css" />
     <Content Include="Styles\public.css" />
     <Content Include="Styles\reset-grids.css" />
     <Content Include="Styles\reset-grids2.css" />
+    <Content Include="Styles\mycss.css" />
     <Content Include="test.htm" />
     <Content Include="标准.htm" />
   </ItemGroup>

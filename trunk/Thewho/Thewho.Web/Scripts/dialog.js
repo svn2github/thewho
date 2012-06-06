@@ -28,8 +28,8 @@ function ddd() {
 function cover(params) {
 
     //默认参数初始化
-    var default_params = { "id": "cover", "type": "full", "color": "#000", "filter": "3", "islock": false };
-    var options = jQuery.extend(default_params, params);
+    //var default_params = { "id": "cover", "type": "full", "color": "#000", "filter": "3", "islock": false };
+    var options = jQuery.extend(defaults.cover, params);
     
     //对象属性初始化
     this.id = options.id;           //遮盖层的ID
