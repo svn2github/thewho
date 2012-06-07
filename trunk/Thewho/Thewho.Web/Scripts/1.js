@@ -58,21 +58,21 @@
 //var tboxConfig = {};
 //tboxConfig.defaults = { "id": "cover", "type": "full", "color": "#000", "filter": "3", "islock": false };
 // tip:弹出小提示 自动消失;  alert:弹出提示; open:打开iframe页面;
-jQuery.tbox = {
-    tip: function() {
-        //$.cover.show({ "id": "c_tip", "color": "red" });
-        $.cover.show({ "color": "red" });
-        setTimeout(" $.cover.hide()", 3000);
-    },
-    alert: function() {
-        //$.cover.show({ "id": "c_alert", "color": "#000", "lock": false});
-        
-        $.dialog.tip(" 恭喜你  弹出成功 ");
-    },
-    open: function() {
-        //$.cover.show({ "id": "c_open", "color": "#000", "lock": false});
-    }
-};
+//jQuery.tbox = {
+//    tip: function() {
+//        //$.cover.show({ "id": "c_tip", "color": "red" });
+//        $.cover.show({ "color": "red" });
+//        setTimeout(" $.cover.hide()", 3000);
+//    },
+//    alert: function() {
+//        //$.cover.show({ "id": "c_alert", "color": "#000", "lock": false});
+
+//        $.dialog.tip("日志删除成功！");
+//    },
+//    open: function() {
+//        //$.cover.show({ "id": "c_open", "color": "#000", "lock": false});
+//    }
+//};
 
 
 /*   插件名：cover  版本1: 这个版本会创建多个遮盖层(根据ID)  */
@@ -149,19 +149,15 @@ jQuery.tbox = {
 
 
 /*   插件名：cover  版本2: 这个版本会只会创建一个遮盖层 需要打开时可以传入参数来达到不同的显示效果  */
-(function($) {
-
-    //默认参数
-    //var defaultConfig = {};
-
-    //层创建初始化
+; (function($) {
+    //层创建初始化 遮盖层永远只存在一个的特性  所以层就在此处new出
     var div_cover = jQuery("<div/>").addClass("div_cover").appendTo(jQuery("body"));
     var iframe_cover = jQuery("<iframe/>").addClass("iframe_cover").appendTo(jQuery("body"));
 
     //适应窗口大小改变方法
     var resize = function() {
-        div_cover.width(jQuery(window).width()).height(jQuery("body").height());
-        iframe_cover.width(jQuery(window).width()).height(jQuery("body").height());
+        div_cover.width(jQuery(window).width()).height(jQuery(document).height());
+        iframe_cover.width(jQuery(window).width()).height(jQuery(document).height());
     }
 
     //绑定改变窗口大小改变事件
@@ -175,7 +171,7 @@ jQuery.tbox = {
             defaults.cover = { "id": "cover", "color": "#000", "filter": "3" };
             //真正使用的参数
             var options = jQuery.extend(defaults.cover, params);
-            
+
             //对象属性初始化
             this.id = options.id;           //遮盖层的ID
             this.color = options.color;     //背景颜色
@@ -193,11 +189,18 @@ jQuery.tbox = {
             resize();
             //div和iframe显示
             iframe_cover.show();
+            //iframe_cover.fadeIn(1000);
+            //div_cover.fadeIn(1000);
             div_cover.show();
         },
-        hide: function() {
-            iframe_cover.hide();
-            div_cover.hide();
+        hide: function(timeout) {
+            if (timeout > 0) {
+                setTimeout("$('#" + div_cover.attr("id") + "').hide();$('#" + iframe_cover.attr("id") + "').hide();", timeout);
+            }
+            else {
+                iframe_cover.hide();
+                div_cover.hide();
+            }
         },
         resize: function() {
             resize();
@@ -206,27 +209,48 @@ jQuery.tbox = {
 })(jQuery);
 
 /*   插件名：dialog */
-(function($) {
+; (function($) {
 
-    //默认参数
-    //var defaultConfig = {};
+    // var div_dialog = jQuery("<div/>").appendTo(jQuery("body"));
 
-    var div_dialog = jQuery("<div/>").appendTo(jQuery("body"));
+    var newdiv = function() {
+        return jQuery("<div/>").appendTo(jQuery("body"));
+    }
+
 
     //适应窗口大小改变方法
-    var resize = function() {
+    var resize = function(e) {
+        e.css({ "top": ((jQuery(window).height() - e.height()) / 2) + "px", "left": ((jQuery(window).width() - e.width()) / 2) + "px" });
     }
 
     //绑定改变窗口大小改变事件
-    jQuery(window).bind("resize", function() {
-        resize();
-    });
-
-    //如果是IE6的话 窗体跟随滚动的就需要写事件了
-    if ($.browser.msie && $.browser.version == "6.0") {
-        $(window).scroll(function() {
-
+    var bindresize = function(e) {
+        jQuery(window).bind("resize", function() {
+            resize(e);
         });
+    }
+
+    //dialog跟随滚动条滚动的方法
+    var bindscroll = function(e) {
+        //如果是IE6的话 窗体跟随滚动的就需要写事件了
+        if ($.browser.msie && $.browser.version == "6.0") {
+            $(window).scroll(function() {
+                var bodyTop = 0;
+                if (typeof window.pageYOffset != 'undefined') {
+                    bodyTop = window.pageYOffset;
+                } else if (typeof document.compatMode != 'undefined' && document.compatMode != 'BackCompat') {
+                    bodyTop = document.documentElement.scrollTop;
+                } else if (typeof document.body != 'undefined') {
+                    bodyTop = document.body.scrollTop;
+                }
+                e.css("top", 250 + bodyTop);
+            });
+        }
+    }
+
+    var close = function(e, timeout) {
+        //setTimeout("$('#" + e.attr("id") + "').hide();", timeout);//隐藏
+        setTimeout("$('#" + e.attr("id") + "').remove();", timeout); //销毁
     }
 
 
@@ -239,50 +263,42 @@ jQuery.tbox = {
     //icon 默认的图标 info error success warning loading
     //width　宽度
     //height 高度
+
     jQuery.dialog = {
         tip: function(content, params) {
 
-            $.cover.show();
-
-            defaults.tips = { "id": "tip", "timeout": "3000", "position": "middle" };
-
+            //$.cover.show();
+            defaults.tips = { "id": "tip", "timeout": "3000", "cover": false };
             //真正使用的参数
             var options = jQuery.extend(defaults.tips, params);
 
-            div_dialog.addClass("div_box");
+            this.div = newdiv();
+            this.id = options.id;
+            this.timeout = options.timeout;
+            this.cover = options.cover;
 
-            div_dialog.html(content);
-            div_dialog.offset({"top" : $(window).height() - 200});
+            this.div.attr("id", this.id).addClass("div_box");
 
-            //div_dialog.html(content).css({ top: ((jQuery("body").height() - div_dialog.height()) / 2) + "px", left: ((jQuery(window).width() - div_dialog.width()) / 2) + "px" });
+            this.div.html(content);
 
-            div_dialog.show();
+            resize(this.div);
+            bindresize(this.div);
 
-            setTimeout("$.cover.hide();", 3000);
+            this.div.show();
 
-            //alert(((jQuery("body").height() - div_dialog.height()) / 2));
-
-
-
-
-            //            var t = (jQuery("body").height() - 50) / 2;
-            //            var l = (jQuery(window).width() - 200) / 2;
-            //            alert(~ ~t + ~ ~l);
-            //            div_dialog.html(content).css({ "width": "200px", "height": "50px", "z-index": "200" });
-            //            //div_dialog.offset({ top: t + "px", left: l + "px" });
-            //            div_dialog.show();
+            if (this.timeout > 0) {
+                close(this.div, this.timeout);
+            }
         },
         alert: function(title, content, params) {
 
         },
         open: function() {
 
+        },
+        close: function(e, timeout) {
+            close(e, timeout);
         }
     }
 
 })(jQuery);
-
-
-
-//页面窗口滚动事件
-$(window).scroll(function() { });
