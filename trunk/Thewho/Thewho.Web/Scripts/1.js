@@ -208,30 +208,28 @@
     }
 })(jQuery);
 
-/*   插件名：dialog */
+/*   插件名：dialog   function中的$符号 其实只是在对象级别插件有用处?  毕竟$代表当调用的对象*/ 
 ; (function($) {
 
     // var div_dialog = jQuery("<div/>").appendTo(jQuery("body"));
 
-    var newdiv = function() {
+    /* 私有参数 */
+    //创建div
+    function newdiv() {
         return jQuery("<div/>").appendTo(jQuery("body"));
     }
-
-
     //适应窗口大小改变方法
-    var resize = function(e) {
+    function resize(e) {
         e.css({ "top": ((jQuery(window).height() - e.height()) / 2) + "px", "left": ((jQuery(window).width() - e.width()) / 2) + "px" });
     }
-
     //绑定改变窗口大小改变事件
-    var bindresize = function(e) {
+    function bindresize(e) {
         jQuery(window).bind("resize", function() {
             resize(e);
         });
     }
-
     //dialog跟随滚动条滚动的方法
-    var bindscroll = function(e) {
+    function bindscroll(e) {
         //如果是IE6的话 窗体跟随滚动的就需要写事件了
         if ($.browser.msie && $.browser.version == "6.0") {
             $(window).scroll(function() {
@@ -247,11 +245,39 @@
             });
         }
     }
+    var posX;
+    var posY;
+    function mousedown(e) {
 
-    var close = function(e, timeout) {
+        e.mousedown(function() {
+            posX = e.css("left");
+            posY = e.css("top");
+            alert(posX + "," + posY);
+        });
+    }
+
+//    function mouseup(
+//        $(document).mouseup(function() {
+//            $(document).unbind("mousemove");
+//        });
+//    }
+
+
+//    function mousemove(e) {
+//        //e.scrollLeft = ($(document) - posX) + "px";
+//        //e.scrollTop = (e.clientY - posY) + "px";
+//    }
+
+
+
+
+    //关闭div
+    function close(e, timeout) {
         //setTimeout("$('#" + e.attr("id") + "').hide();", timeout);//隐藏
         setTimeout("$('#" + e.attr("id") + "').remove();", timeout); //销毁
     }
+
+
 
 
     //参数 title:弹出层标题(tip可以没有)  content:内容(text或者html) params:参数集合
@@ -266,7 +292,6 @@
 
     jQuery.dialog = {
         tip: function(content, params) {
-
             //$.cover.show();
             defaults.tips = { "id": "tip", "timeout": "3000", "cover": false };
             //真正使用的参数
@@ -280,9 +305,9 @@
             this.div.attr("id", this.id).addClass("div_box");
 
             this.div.html(content);
-
             resize(this.div);
             bindresize(this.div);
+            mousedown(this.div);
 
             this.div.show();
 
@@ -300,5 +325,4 @@
             close(e, timeout);
         }
     }
-
 })(jQuery);
