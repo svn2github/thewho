@@ -220,6 +220,7 @@
     }
     //适应窗口大小改变方法
     function resize(e) {
+        //e.css({ "top": ((jQuery(window).height()  - (e.height()*2))/ 2) + "px", "left": ((jQuery(window).width() - e.width()) / 2) + "px" });
         e.css({ "top": ((jQuery(window).height() - e.height()) / 2) + "px", "left": ((jQuery(window).width() - e.width()) / 2) + "px" });
     }
     //绑定改变窗口大小改变事件
@@ -245,31 +246,39 @@
             });
         }
     }
-    var posX;
-    var posY;
+
+    //dialog拖动方法
     function mousedown(e) {
 
+        var isdown = false;
+        var offsetX = 0;
+        var offsetY = 0;
+
         e.mousedown(function() {
-            posX = e.css("left");
-            posY = e.css("top");
-            alert(posX + "," + posY);
+            offsetX = event.offsetX;
+            offsetY = event.offsetY;
+            isdown = true;
+
+            $(document).mousemove(function() {
+                if (isdown) {
+
+                    var x = event.clientX - offsetX;
+
+                    var y = event.clientY - offsetY;
+
+                    e.css("left", x);
+
+                    e.css("top", y);
+                } else {
+                    return;
+                }
+            });
+        });
+
+        e.mouseup(function() {
+            isdown = false;
         });
     }
-
-//    function mouseup(
-//        $(document).mouseup(function() {
-//            $(document).unbind("mousemove");
-//        });
-//    }
-
-
-//    function mousemove(e) {
-//        //e.scrollLeft = ($(document) - posX) + "px";
-//        //e.scrollTop = (e.clientY - posY) + "px";
-//    }
-
-
-
 
     //关闭div
     function close(e, timeout) {
@@ -289,11 +298,13 @@
     //icon 默认的图标 info error success warning loading
     //width　宽度
     //height 高度
+    //buttons 按钮  buttons:{"确定":"yes","下一步":"next","取消":"no"}
 
     jQuery.dialog = {
+        //tip原型 用来弹出提示信息 轻便的弹出层  一般情况下会自动隐藏
         tip: function(content, params) {
             //$.cover.show();
-            defaults.tips = { "id": "tip", "timeout": "3000", "cover": false };
+            defaults.tips = { "id": "tip", "timeout": "3000", "cover": false, "buttons": { "yes": "111", "no": "222"} };
             //真正使用的参数
             var options = jQuery.extend(defaults.tips, params);
 
@@ -302,7 +313,7 @@
             this.timeout = options.timeout;
             this.cover = options.cover;
 
-            this.div.attr("id", this.id).addClass("div_box");
+            this.div.attr("id", this.id).addClass("div_box").css({ "height": "400px" });
 
             this.div.html(content);
             resize(this.div);
@@ -311,13 +322,19 @@
 
             this.div.show();
 
+            options.buttons.yes = options.buttons.yes;
+            options.buttons.yes();
+            //写到了这里！！！
+
             if (this.timeout > 0) {
                 close(this.div, this.timeout);
             }
         },
+        //alert原型 用来弹出对话框 普通弹出层 默认带样式  默认带关闭按钮等 
         alert: function(title, content, params) {
 
         },
+        //open原型 用来弹出iframe 默认带样式  默认带关闭按钮等 
         open: function() {
 
         },
