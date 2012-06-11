@@ -218,6 +218,15 @@
     function newdiv() {
         return jQuery("<div/>").appendTo(jQuery("body"));
     }
+    //创建按钮
+    function newbutton(buttons) {
+        var sss = jQuery.parseJSON(buttons);
+
+    }
+
+
+
+
     //适应窗口大小改变方法
     function resize(e) {
         //e.css({ "top": ((jQuery(window).height()  - (e.height()*2))/ 2) + "px", "left": ((jQuery(window).width() - e.width()) / 2) + "px" });
@@ -286,6 +295,9 @@
         setTimeout("$('#" + e.attr("id") + "').remove();", timeout); //销毁
     }
 
+    function buttons(buttons) {
+
+    }
 
 
 
@@ -304,7 +316,7 @@
         //tip原型 用来弹出提示信息 轻便的弹出层  一般情况下会自动隐藏
         tip: function(content, params) {
             //$.cover.show();
-            defaults.tips = { "id": "tip", "timeout": "3000", "cover": false, "buttons": { "yes": "111", "no": "222"} };
+            defaults.tips = { "id": "tip", "timeout": "3000", "cover": false, "buttons": {} };
             //真正使用的参数
             var options = jQuery.extend(defaults.tips, params);
 
@@ -322,8 +334,8 @@
 
             this.div.show();
 
-            options.buttons.yes = options.buttons.yes;
-            options.buttons.yes();
+            var s = options.buttons;
+            newbutton(s);
             //写到了这里！！！
 
             if (this.timeout > 0) {
