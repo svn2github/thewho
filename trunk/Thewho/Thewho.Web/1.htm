@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>dialog</title>
-    <link href="Styles/mycss.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/dialog.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         body
         {
@@ -30,8 +30,26 @@
     <input id="btn4" type="button" value="弹出Tip" />
     <hr />
     <input id="btn5" type="button" value="弹出Alert" />
+    <input id="btn6" type="button" value="弹出Alert" />
     <hr />
-    <input id="btn6" type="button" value="弹出Open" />
+    <input id="btn7" type="button" value="弹出Open" />
+    <hr />
+    
+    
+    <div class="div_alert" style=" display:block;">
+        <div class="title">
+            <div class="left">请选择你的职业</div>
+            <div class="right">关闭</div>
+        </div>
+        <div class="content">
+        这里是内容
+        </div>
+        <div class="bottom">
+        这里放按钮
+        </div>
+    </div>
+    
+    
 </body>
 
 <script src="Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
@@ -50,8 +68,26 @@
     $("#btn3").click(function() { $.cover.show({ "color": "blue" }); });
 
     $("#btn4").click(function() { $.dialog.tip("测试一下~弹出tip<br/>sd<br/>sd<br/>sd", { "timeout": "10000" }); });
-    $("#btn5").click(function() { $.dialog.alert("弹出alert"); });
-    $("#btn6").click(function() { $.dialog.open("弹出open"); });
-</script>
+    $("#btn5").click(function() { $.dialog.alert("标题", "弹出alert"); });
+    $("#btn6").click(function() { $.dialog.alert("标题", "弹出alert2"); });
+    $("#btn7").click(function() { $.dialog.open("弹出open"); });
 
+    //创建按钮
+//    var b = {
+//        qd: function() { alert(0); },
+//        qx: function() { alert(1); },
+//        bg: function() { alert(2); }
+//    };
+
+    function qd() {
+        alert("确定");
+    }
+    function qx() {
+        alert("取消");
+    }
+    function bg() {
+        alert("不管");
+    }
+    
+</script>
 </html>

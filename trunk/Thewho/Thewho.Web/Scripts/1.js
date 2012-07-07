@@ -193,7 +193,7 @@
             //div_cover.fadeIn(1000);
             div_cover.show();
         },
-        hide: function(timeout) {
+        close: function(timeout) {
             if (timeout > 0) {
                 setTimeout("$('#" + div_cover.attr("id") + "').hide();$('#" + iframe_cover.attr("id") + "').hide();", timeout);
             }
@@ -218,14 +218,19 @@
     function newdiv() {
         return jQuery("<div/>").appendTo(jQuery("body"));
     }
+
     //创建按钮
-    function newbutton(buttons) {
-        var sss = jQuery.parseJSON(buttons);
-
+    function newbutton(thisdiv, buttons) {
+        jQuery.each(buttons, function(index, item) {
+            //jQuery("<input/>").attr({ "type": "button", "value": item.text }).click(function() { eval(item.fun + "();"); }).appendTo(jQuery("#tip"));
+            jQuery("<input/>").attr({ "type": "button", "value": item.text }).click(function() {
+                item.click(thisdiv);
+                if (item.close) {
+                    jQuery.dialog.close(thisdiv, 0);
+                }
+            }).appendTo(thisdiv);
+        });
     }
-
-
-
 
     //适应窗口大小改变方法
     function resize(e) {
@@ -258,45 +263,34 @@
 
     //dialog拖动方法
     function mousedown(e) {
-
         var isdown = false;
         var offsetX = 0;
         var offsetY = 0;
-
         e.mousedown(function() {
             offsetX = event.offsetX;
             offsetY = event.offsetY;
             isdown = true;
-
             $(document).mousemove(function() {
                 if (isdown) {
-
                     var x = event.clientX - offsetX;
-
                     var y = event.clientY - offsetY;
-
                     e.css("left", x);
-
                     e.css("top", y);
                 } else {
                     return;
                 }
             });
         });
-
         e.mouseup(function() {
             isdown = false;
         });
     }
 
     //关闭div
-    function close(e, timeout) {
+    //e 是需要关闭的div    cover 是否有需要关闭的遮盖   timeout 自动延迟关闭 0是立刻关闭
+    function close(e, cover, timeout) {
         //setTimeout("$('#" + e.attr("id") + "').hide();", timeout);//隐藏
         setTimeout("$('#" + e.attr("id") + "').remove();", timeout); //销毁
-    }
-
-    function buttons(buttons) {
-
     }
 
 
@@ -316,7 +310,7 @@
         //tip原型 用来弹出提示信息 轻便的弹出层  一般情况下会自动隐藏
         tip: function(content, params) {
             //$.cover.show();
-            defaults.tips = { "id": "tip", "timeout": "3000", "cover": false, "buttons": {} };
+            defaults.tips = { "id": "tip", "timeout": "3000" };
             //真正使用的参数
             var options = jQuery.extend(defaults.tips, params);
 
@@ -325,26 +319,42 @@
             this.timeout = options.timeout;
             this.cover = options.cover;
 
-            this.div.attr("id", this.id).addClass("div_box").css({ "height": "400px" });
+            this.div.attr("id", this.id).addClass("div_tip").css({ "height": "400px" });
 
             this.div.html(content);
+            resize(this.div);
+            bindresize(this.div);
+            //mousedown(this.div);
+
+            this.div.show();
+            //newbutton(this.div, options.buttons);
+
+            if (this.timeout > 0) {
+                close(this.div, false, this.timeout);
+            }
+        },
+        //alert原型 用来弹出对话框 普通弹出层 默认带样式  默认带关闭按钮等 
+        alert: function(title, content, params) {
+            defaults.alerts = { "id": "alert", "timeout": "0", "buttons": [{ "text": "确定", "click": qd, "close": true }, { "text": "取消", "click": qx, "close": true}] };
+            //真正使用的参数
+            var options = jQuery.extend(defaults.alerts, params);
+            this.div = newdiv();
+            this.id = options.id;
+            this.timeout = options.timeout;
+            this.cover = options.cover;
+
+            this.div.attr("id", this.id).addClass("div_alert").css({ "height": "400px" });
+            this.div.html(title + content);
             resize(this.div);
             bindresize(this.div);
             mousedown(this.div);
 
             this.div.show();
-
-            var s = options.buttons;
-            newbutton(s);
-            //写到了这里！！！
+            newbutton(this.div, options.buttons);
 
             if (this.timeout > 0) {
-                close(this.div, this.timeout);
+                close(this.div,this.timeout);
             }
-        },
-        //alert原型 用来弹出对话框 普通弹出层 默认带样式  默认带关闭按钮等 
-        alert: function(title, content, params) {
-
         },
         //open原型 用来弹出iframe 默认带样式  默认带关闭按钮等 
         open: function() {

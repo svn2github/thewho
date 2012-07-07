@@ -1,0 +1,111 @@
+﻿body
+{
+	background-color:#ccc;
+	border:0px;
+	margin:0px;
+	width:100%;
+	height:1999px;
+	line-height:22px;
+}
+
+/*遮盖层*/
+.div_cover
+{
+   display:none;
+   height:0px;
+   width:0px;
+   top:0px;
+   left:0px;
+   margin:0px;
+   padding :0px;
+   border:0px;
+   z-index:100;
+   position:fixed;
+   _position:absolute;
+   filter:alpha(opacity=50); /*IE*/
+   -moz-opacity:0.5; /*MOZ , FF*/
+   opacity:0.5; /*CSS3, FF1.5*/
+
+
+}
+.iframe_cover
+{
+   height:0px;
+   width:0px;
+   top:0px;
+   left:0px;
+   margin:0px;
+   padding :0px;
+   border:0px;
+   filter:alpha(opacity=00);/*IE*/
+   opacity:0.0;/*FF*/
+   z-index:99;
+   position:fixed;
+   _position:absolute;
+   word-break:break-all;
+}
+
+
+.div_tip
+ {
+    position:fixed;
+    _position:absolute;
+    word-break:break-all;
+    font-size:12px;
+    display:none;
+	padding: 4px;
+	background: #2C6FCE;
+	color: white;
+	z-index:101;
+	text-align: center;
+	vertical-align: middle;
+	box-shadow: 0 0 4px #2c6fce;
+}
+
+.div_alert
+ {
+    position:fixed;
+    _position:absolute;
+    word-break:break-all;
+    font-size:12px;
+    display:none;
+	padding: 4px;
+	background: #2C6FCE;
+	color: white;
+	z-index:101;
+	text-align: center;
+	vertical-align: middle;
+	box-shadow: 0 0 4px #2c6fce;
+}
+
+.div_alert .title
+{
+	width:500px;
+	height:24px;
+	background-color:#333;
+	
+	}
+.div_alert .title .left
+{
+	height:22px;
+	background-color:#666;
+	float:left;
+	}
+.div_alert .title .right
+{
+	height:22px;
+	background-color:#999;
+	float:right;
+	}
+
+.div_alert .content
+{
+	height:100px;
+	background-color:#666;
+	}
+	
+.div_alert .bottom
+{
+	height:24px;
+	background-color:#999;
+	}
