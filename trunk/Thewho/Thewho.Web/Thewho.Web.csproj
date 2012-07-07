@@ -138,6 +138,8 @@
   <ItemGroup>
     <Content Include="1.htm" />
     <Content Include="code.htm" />
+    <Content Include="Images\button_bg.png" />
+    <Content Include="Images\button_bg2.png" />
     <Content Include="Styles\dialog.css" />
     <Content Include="Xmls\Sex.xml" />
     <Content Include="demo.htm" />

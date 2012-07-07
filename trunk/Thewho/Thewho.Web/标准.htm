@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/Styles/layout.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/Styles/base.css" type="text/css" media="screen" />
 <style>
-	body{ font-size:12px; font-family:Arial;background-color:#edf2f6; padding:10px;}
+	body{ font-size:12px; font-family:Arial;background-color:#fff; padding:10px;}
 	h1{font-family:microsoft yehei,Tahoma; font-size:16px; }
 	h2{font-size:14px;}
 	h3{font-size:14px;}
@@ -17,54 +17,16 @@
 <body>
 &lt;link href=&quot;soim.ico&quot; rel=&quot;Shortcut Icon&quot;/&gt; -- 地址栏小图标
 <hr/>
-head标签中的规范<br/>
-<h3>新闻,文章类,对搜索引擎公开的页面</h3>
-<div style="color:Green">
-  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;<br />
-  &lt;meta name=&quot;<strong>Keywords</strong>&quot; content=&quot;<strong>关键字</strong>&quot; /&gt;<br />
-  &lt;meta name=&quot;<strong>Description</strong>&quot; content=&quot;<strong>介绍</strong>&quot; /&gt;<br />
-  &lt;title&gt;<strong>标题</strong>&lt;/title&gt;<br />
-  &lt;script type=&quot;text/javascript&quot; src=&quot;....js&quot;&gt;&lt;/script&gt;<br />
-  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;....css&quot;/&gt;<br />
-</div>
- <h3>需要登录才能查看的内页</h3>
-<div style="color:Green">
-  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;<br />
-  &lt;title&gt;<strong>标题</strong>&lt;/title&gt;<br />
-  &lt;script type=&quot;text/javascript&quot; src=&quot;....js&quot;&gt;&lt;/script&gt;<br />
-  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;....css&quot;/&gt;<br />
-</div>
- <h3>命名规则</h3>
-<div style="color:Green">
-  文件夹和网页文件,js文件,CSS文件命名: 全小写,如果有第二个单词,用下划线隔开,英文或者英文缩写, 如:person, person_doc.aspx,person_style_main.js<br />
-  图片命名规则: 全小写,如果有第二个单词,用下划线隔开,英文或者英文缩写,允许英文开头,以数字区分结尾,如:nav_bg.gif, uc1.gif,uc2.gif<br />
-  CSS命名规则: 全小写,如果有第二个单词,用下划线隔开,英文或者英文缩写,允许英文开头,以数字区分结尾,如:class=&quot;button_login&quot;,id=&quot;button_reg&quot;<br />
-  对象id命名规则: 全小写,如果有第二个单词,用下划线隔开,英文或者英文缩写,如:btn_search<br />
-  <br />
-  自定义变量命名规则:骆驼命名法,如 int i = 0; string strSql = &quot;&quot;;<br />
-  方法命名规则:首字母大写,如果有第二个单词,不用隔开,第二个首字母也大写,以此类推, 不允许出现数字,如: GviewBind()<br />
-  <br />
-  <br />
-  数据库表,字段命名法:首字母大写,如果有第二个单词,不用隔开,第二个首字母也大写,以此类推, 不允许出现数字,如: PersonInfo表, NickName字段<br />
-  模型层类文件命名法:首字母大写,如果有第二个单词,不用隔开,第二个首字母也大写,以此类推, 不允许出现数字,如: PersonInfo.cs (和数据库对应)<br />
-  <br />
-</div>
+
+<button class="button blue">按钮</button>
+<button class="button green">确定注册</button>
+<button class="button orange">移除该项</button><button class="button gray">锁定</button>
+<a href="javascript:alert('a标签按钮!');" class="button blue">超链接</a>
+<br/><br/>
+<button class="button orange big t180">同意以上条款</button>
+<button class="button green">确定注册</button>
+<button class="button blue">保存并继续添加</button>
 <hr/>
-<h1>主要标题:h1 只有一个和title一致, 比如一篇文章的标题  突出当前最核心的内容到 ，。</h1> 
-<h2>当前列表h2 当前类别名称.  突出层次感 ，。</h2> 
-<h3>小标题h3 用于其他的分类. </h3>
-<strong>关键字提示:strong 作用于单个突出的关键字 或者 关键句提示 加粗</strong> <br/>
-<em>关键字提示补充:em 少用.</em> <br/>
-<b>只用来显示加粗 不涉及优化</b><br/>
-<hr></hr>
-<strong>
-默认字体:Tahoma  默认大小:12px  默认颜色: #000 <br/>
-h1默认字体:微软雅黑(microsoft yehei),Tahoma 默认大小:16px <br/>
-h2默认大小:14px <br/>
-h3默认大小:14px <br/>
-strong:默认 <br/>
-</strong>
-<hr></hr>
 <table>
 	<tr>
 		<td><p><input name="" type="text"  class="textbig t180"/></p></td>
@@ -81,8 +43,6 @@ strong:默认 <br/>
 <p><input name="" type="text"  class="text t180"/></p>
 <p><input name="" type="text"  class="text t140"/></p>
 <p><input name="" type="password"  class="text t140"/></p>
-<p><input name="" type="text"  class="text t280"/></p>
-<p><input name="" type="text"  class="text t380"/></p>
 <p><input name="" type="text"  class="text t400"/></p>
 <p><input name="" type="text"  class="text t500"/></p>
 <p><input name="" type="text"  class="text t600"/></p>
@@ -93,13 +53,9 @@ strong:默认 <br/>
 <p><textarea name="textBox" cols="" rows="" class="textarea textBoxBig"></textarea></p>
 <hr></hr>
 
-<button class="button">标准按钮</button>
-<button class="button reg">登录</button>
-<button class="button login">登录按钮</button>
-<button class="button big">大按钮</button>
-<button class="button long">长按钮</button>
-<button class="button small">小按钮</button>
-<button class="button imgsmall">图</button>
+
+
+
 <table width="61" border="0" cellspacing="0">
   <tr>
     <td width="42"><input name="" type="text"  class="text t40"/></td>

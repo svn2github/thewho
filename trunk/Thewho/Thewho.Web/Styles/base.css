@@ -16,14 +16,42 @@ input,textarea,select{*font-size:100%;}
 legend{color:#000;}del,ins{text-decoration:none;}
 img{border:0;}
 
-
+/*上右下左*/
 .text{padding:2px 3px 0px 3px;height:18px;line-height:16px;background-image:url(../Images/textbox_bg.gif);color:#333;border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;}
 .textbig{padding:4px 4px 4px 4px;height:18px;line-height:18px;font-size:14px;font-weight:bold;background-image:url(../Images/textbox_bg.gif);border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;}
 .textarea{font-family:Tahoma;padding:3px 3px 3px 3px;border:1px solid #999;background-image:url(../Images/textbox_bg.gif);background-repeat:repeat-x;overflow-y:auto;line-height:16px;}
 .radio,.checkbox{border:0px;vertical-align:middle; margin:-2px 1px 1px 1px;background-image:none; width:auto; height:auto;}
 .file{height:24px;line-height:20px;width:280px;}
 .select{height:22px;border:1px solid #999; padding:1px 1px 1px 1px;background-image:url(../Images/textbox_bg.gif);outline:none;}
-.button{border:1px solid #999;width:106px;height:26px;outline:none;}
+/*.button{border:1px solid #999;width:80px;height:30px;outline:none;font-size:12px; 
+         color:#333; cursor:pointer; background-image:url(../Images/button_bg2.png);}
+.button:hover{background-color:#63c7fe;}*/
+
+.button
+{
+	display: inline-block; 
+    outline: none; 
+    cursor: pointer; 
+    text-align: center; 
+    text-decoration: none; 
+    font: 12px/100% Arial, Helvetica, sans-serif; 
+    /*padding: .5em 2em .55em; */
+    padding:10px;
+    /*text-shadow: 0 1px 1px rgba(0,0,0,.3); 
+    -webkit-border-radius: .5em; 
+    -moz-border-radius: .5em; 
+    border-radius: .5em; 
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2); 
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2); 
+    box-shadow: 0 1px 2px rgba(0,0,0,.2); */
+    
+    background-image:url(../Images/button_bg2.png);
+}
+.button:active { 
+    position: relative; 
+    top: 1px; 
+} 
+
 
 /*
 所有主流浏览器都支持 <button> 标签。
@@ -52,10 +80,16 @@ img{border:0;}
 .textBoxBig{width:600px; height:200px;}
 
 
-.reg{background-image:url(demo/10.png);border:0px;}
-.login{}
-.big{width:186px;height:46px;}
-.long{width:186px;}
-.small{width:60px;height:20px; padding:0px;}
-.imgsmall{width:20px;height:20px; padding:0px;}
-.oftext{height:22px;line-height:20px;}
+.blue{background-color:#48b5f2; color:#0f4b6d; border:1px solid #84acc3;}
+.blue:hover{background-color:#63c7fe; color:#0f4b6d; border:1px solid #84acc3;}
+
+.green{background-color:#79be1e; color:#345903; border:1px solid #96a37b;}
+.green:hover{background-color:#89d228; color:#345903; border:1px solid #96a37b;}
+
+.orange{background-color:#e38d27; color:#693e0a; border:1px solid #bea280;}
+.orange:hover{background-color:#ec9732; color:#693e0a; border:1px solid #bea280;}
+
+.gray{background-color:#a9adb1;  color:#525252; border:1px solid #a5a5a5;}
+.gray:hover{background-color:#b6bbc0; color:#525252; border:1px solid #a5a5a5;}
+
+.big{ padding:12px; font-size:16px; font-weight:bold;font-family:微软雅黑;}
