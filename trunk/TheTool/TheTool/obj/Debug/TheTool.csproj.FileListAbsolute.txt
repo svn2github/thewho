@@ -1,0 +1,8 @@
+F:\Project\trunk\TheTool\TheTool\bin\Debug\TheTool.exe
+F:\Project\trunk\TheTool\TheTool\bin\Debug\TheTool.pdb
+F:\Project\trunk\TheTool\TheTool\obj\Debug\ResolveAssemblyReference.cache
+F:\Project\trunk\TheTool\TheTool\obj\Debug\TheTool.MainForm.resources
+F:\Project\trunk\TheTool\TheTool\obj\Debug\TheTool.Properties.Resources.resources
+F:\Project\trunk\TheTool\TheTool\obj\Debug\TheTool.csproj.GenerateResource.Cache
+F:\Project\trunk\TheTool\TheTool\obj\Debug\TheTool.exe
+F:\Project\trunk\TheTool\TheTool\obj\Debug\TheTool.pdb
