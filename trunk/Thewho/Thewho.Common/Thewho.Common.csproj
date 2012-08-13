@@ -54,11 +54,12 @@
     <Compile Include="Md5.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SHA1.cs" />
-    <Compile Include="SQLHelper.cs" />
+    <Compile Include="SqlHelper.cs" />
+    <Compile Include="SQLHelper2.cs" />
     <Compile Include="Text.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="Url.cs" />
-    <Compile Include="Xml.cs" />
+    <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Office\" />

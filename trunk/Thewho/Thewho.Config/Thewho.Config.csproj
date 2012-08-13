@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -46,6 +47,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLConfig.cs" />
+    <Compile Include="WebConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Thewho.Cache\Thewho.Cache.csproj">
+      <Project>{C2CCD94D-A485-4021-9E98-AF8F6B3909EA}</Project>
+      <Name>Thewho.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thewho.Common\Thewho.Common.csproj">
+      <Project>{34BE316C-08EA-44DF-9406-6BDE2B8A2140}</Project>
+      <Name>Thewho.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thewho.Const\Thewho.Const.csproj">
+      <Project>{3F446802-16D8-4382-9C52-36492C40C87F}</Project>
+      <Name>Thewho.Const</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

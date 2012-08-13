@@ -7,12 +7,10 @@
     <title>无标题页</title>
 </head>
 <body>
-    <form action="Login.aspx" method="post">
-        帐号：<input type="text" id="txtUserName" name="txtUserName" />
-        密码：<input type="password" id="txtPassword" name="txtPassword" />
-        <input type="submit" value="提交" />
+    <form action="" method="post">
+        <input type="text" name="txt_email" id="txt_email" /><br/>
+        <input type="password" name="txt_password" id="txt_password" /><br/>
+        <input type="button" name="btn_login" id="btn_login" value="登录" />
     </form>
-    <br />
-    
 </body>
 </html>

@@ -45,7 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Function_DAL.cs" />
+    <Compile Include="Permission_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserCookie_DAL.cs" />
+    <Compile Include="UserGroup_DAL.cs" />
+    <Compile Include="UserLogin_DAL.cs" />
+    <Compile Include="UserReg_DAL.cs" />
+    <Compile Include="User_DAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Thewho.Common\Thewho.Common.csproj">

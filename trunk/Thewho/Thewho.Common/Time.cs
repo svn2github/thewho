@@ -76,5 +76,16 @@ namespace Thewho.Common
             }
             return s + "前";
         }
+
+
+        public Int32 MinToSeconds(Int32 minute)
+        {
+            return minute * 60;
+        }
+
+        public Int32 HourToMinutes(Int32 hour)
+        {
+            return hour * 60;
+        }
     }
 }

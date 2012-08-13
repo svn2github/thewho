@@ -34,7 +34,7 @@ img{border:0;}
     cursor: pointer; 
     text-align: center; 
     text-decoration: none; 
-    font: 12px/100% Arial, Helvetica, sans-serif; 
+    font: 12px/100% Arial, Helvetica, sans-serif;
     /*padding: .5em 2em .55em; */
     padding:10px;
     /*text-shadow: 0 1px 1px rgba(0,0,0,.3); 
@@ -45,11 +45,11 @@ img{border:0;}
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2); 
     box-shadow: 0 1px 2px rgba(0,0,0,.2); */
     
-    background-image:url(../Images/button_bg2.png);
+    /*background-image:url(../Images/button_bg2.png);*/
 }
 .button:active { 
     position: relative; 
-    top: 1px; 
+   /* top: 1px; */
 } 
 
 

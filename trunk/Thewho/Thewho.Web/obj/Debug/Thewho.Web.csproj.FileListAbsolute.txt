@@ -28,3 +28,9 @@ F:\Project\trunk\Thewho\Thewho.Web\bin\Thewho.Cache.pdb
 F:\Project\trunk\Thewho\Thewho.Web\obj\Debug\ResolveAssemblyReference.cache
 F:\Project\trunk\Thewho\Thewho.Web\obj\Debug\Thewho.Web.dll
 F:\Project\trunk\Thewho\Thewho.Web\obj\Debug\Thewho.Web.pdb
+F:\Project\trunk\Thewho\Thewho.Web\bin\Thewho.DAL.dll
+F:\Project\trunk\Thewho\Thewho.Web\bin\Thewho.DAL.pdb
+F:\Project\trunk\Thewho\Thewho.Web\bin\Thewho.Config.dll
+F:\Project\trunk\Thewho\Thewho.Web\bin\Thewho.Const.dll
+F:\Project\trunk\Thewho\Thewho.Web\bin\Thewho.Config.pdb
+F:\Project\trunk\Thewho\Thewho.Web\bin\Thewho.Const.pdb

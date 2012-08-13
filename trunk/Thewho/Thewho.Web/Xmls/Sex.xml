@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Sex>
-  <Item Vlaue="0" Text="">未知</Item>
-  <Item Vlaue="1" Text="Man">男性</Item>
-  <Item Vlaue="2" Text="Woman">女性</Item>
-</Sex>

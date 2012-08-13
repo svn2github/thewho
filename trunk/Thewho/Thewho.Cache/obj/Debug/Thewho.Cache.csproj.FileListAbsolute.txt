@@ -16,3 +16,5 @@ F:\Project\trunk\Thewho\Thewho.Cache\bin\Debug\Thewho.Common.pdb
 F:\Project\trunk\Thewho\Thewho.Cache\obj\Debug\ResolveAssemblyReference.cache
 F:\Project\trunk\Thewho\Thewho.Cache\obj\Debug\Thewho.Cache.dll
 F:\Project\trunk\Thewho\Thewho.Cache\obj\Debug\Thewho.Cache.pdb
+F:\Project\trunk\Thewho\Thewho.Cache\bin\Debug\Thewho.Const.dll
+F:\Project\trunk\Thewho\Thewho.Cache\bin\Debug\Thewho.Const.pdb

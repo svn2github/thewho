@@ -46,13 +46,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CurrentUser.cs" />
+    <Compile Include="Function_BLL.cs" />
+    <Compile Include="Permission_BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserCookie_BLL.cs" />
+    <Compile Include="UserGroup_BLL.cs" />
+    <Compile Include="UserLogin_BLL.cs" />
+    <Compile Include="UserReg_BLL.cs" />
+    <Compile Include="User_BLL.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Thewho.Cache\Thewho.Cache.csproj">
+      <Project>{C2CCD94D-A485-4021-9E98-AF8F6B3909EA}</Project>
+      <Name>Thewho.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thewho.Common\Thewho.Common.csproj">
+      <Project>{34BE316C-08EA-44DF-9406-6BDE2B8A2140}</Project>
+      <Name>Thewho.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thewho.Const\Thewho.Const.csproj">
+      <Project>{3F446802-16D8-4382-9C52-36492C40C87F}</Project>
+      <Name>Thewho.Const</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thewho.DAL\Thewho.DAL.csproj">
+      <Project>{10050DCF-9708-462F-A01E-3715F3098D0D}</Project>
+      <Name>Thewho.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Thewho.LogicModel\Thewho.LogicModel.csproj">
       <Project>{DF819DFC-A4B6-4900-B295-BE85BAA218F8}</Project>
       <Name>Thewho.LogicModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thewho.Model\Thewho.Model.csproj">
+      <Project>{41619569-8355-4ECC-AFBA-46D12243C4C9}</Project>
+      <Name>Thewho.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

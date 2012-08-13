@@ -11,59 +11,35 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using System.Web.Caching;
 
 namespace Thewho.Web
 {
     public partial class _Default : System.Web.UI.Page
     {
-        public string url = "";
+        private static CacheDependency mydepen;
+        public DataSet myds = new DataSet();//创建XML数据源
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Thewho.Cache.Base<string>.Insert(DateTime.Now.Minute.ToString(), DateTime.Now.Minute.ToString(), 1, "1");
-            //Thewho.Cache.Base<string>.GetList();
-            //if (Request.QueryString.Count > 0)
-            //{
-                Response.Write(Session["UserID"]);
-                //HttpCookie hc = Request.Cookies["LoginCookie"];
-                //if (hc != null)
-                //{
-                //    Response.Write(hc.Values["UserName"]);
-                //}
-                //DateTime dt = new DateTime(2007, 01, 31, 10, 36, 07);
-                //Response.Write(new Thewho.Common.Time().ToTimeStr(dt));
+            if (!Page.IsPostBack)
+            {
 
-                //foreach (System.Collections.Specialized.NameValueCollection item in Request.QueryString)
+                //if (Cache["Players"] != null)//判断缓存是否存在
                 //{
-                //    if (Request.QueryString.c)
+                //    myds = (DataSet)Cache["Players"];
+                //}
+                //else
+                //{
+                //    myds.ReadXml(this.MapPath(Request.ApplicationPath + @"/Configs/players.xml"));//数据源来自文件players.xml
+                //    if (Cache["Players"] == null)//判断缓存是否存在
                 //    {
-                        
+                //        mydepen = new CacheDependency(this.MapPath(Request.ApplicationPath + @"/Configs/players.xml"));//创建缓存依赖
+                //        //添加缓存项
+                //        Cache.Add("Players", myds, mydepen, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(10), CacheItemPriority.Normal, null);
                 //    }
                 //}
-                //Response.Pics("哈哈");
-                //Response.Redirect("Login.aspx");
-                //for (int i = 0; i < Request.QueryString.Count; i++)
-                //{
-                //    if (i != 0)
-                //    {
-                //        url += "&" + Request.QueryString.AllKeys[i] + "=" + Request.QueryString[i].ToString();
-                //    }
-                //    else
-                //    {
-                //        url += "?" + Request.QueryString.AllKeys[i] + "=" + Request.QueryString[i].ToString();
-                //    }
-                    
-                //}
-            //}
-            
+            }
         }
-        //protected void Page_PreRender(object sender, EventArgs e)
-        //{
-        //    Response.Write("<script>setTimeout('alert(123);location.href = \"http://www.baidu.com/\";',2000);</script>");
-        //}
-        //protected void Page_Disposed(object sender, EventArgs e)
-        //{
-        //    Response.Write("<script>alert('2');</script>");
-        //}
         
         
     }

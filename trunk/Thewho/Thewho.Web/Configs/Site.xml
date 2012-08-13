@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--根节点-->
+<Site>
+  <!--登录状态配置-->
+  <CurrentUser>
+    <!--登录状态验证和保存类型-->
+    <Status>1</Status>
+    <!--登录状态超时时间（秒）-->
+    <OutTime>6001</OutTime>
+  </CurrentUser>
+</Site>

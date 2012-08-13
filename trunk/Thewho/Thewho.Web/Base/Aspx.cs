@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Data;
-using System.Configuration;
+using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
+using System.Text;
+using System.Web;//Session Cookie
+using Thewho.Common;
+using Thewho.Model;
+using Thewho.BLL;
 
 namespace Thewho.Web.Base
 {
@@ -17,8 +14,20 @@ namespace Thewho.Web.Base
     /// </summary>
     public class Aspx : System.Web.UI.Page
     {
-        public Thewho.BLL.CurrentUser _currentUser = new Thewho.BLL.CurrentUser();
-        public Thewho.LogicModel.User thisUser = null;
+        private CurrentUser _currentUser = null;
+        private Function_BLL _function_bll = null;
+        private Permission_BLL _permission_bll = null;
+        
+
+        public User currentUser = null;
+        public string urlReferrer = "";
+
+        public Aspx()
+        {
+            _currentUser = new CurrentUser();
+            _function_bll = new Function_BLL();
+            _permission_bll = new Permission_BLL();
+        }
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -35,6 +44,13 @@ namespace Thewho.Web.Base
                 //{
                 //    Response.Redirect("/Default.aspx");
                 //}
+
+                currentUser = _currentUser.GetCurrentUser();
+                if (currentUser == null) //没有登录
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+
             }
 
             #region 记录
@@ -70,6 +86,39 @@ namespace Thewho.Web.Base
         protected void Page_Load(object sender, EventArgs e)
         {
             //此处处理具体页面加载后的逻辑
+            
+        }
+
+        /// <summary>
+        /// 验证当前用户是否拥有这个页面的权限
+        /// </summary>
+        private void CheckPermission()
+        {
+            string thisurl = Request.Url.ToString();
+            //查询这个页面所对应的功能 如果这个页面是一个没设置过功能的页面 那就不需要再验证了
+
+            //判断当前用户的权限中是否拥有这个功能
+
+            if (true) //有? 没问题
+            {
+
+            }
+            else //没有 跳转并提示没权限
+            { 
+            
+            }
+        }
+
+        /// <summary>
+        /// 返回到上一个页面
+        /// </summary>
+        public void BackUrl()
+        {
+            if (Request.UrlReferrer != null)
+            {
+                urlReferrer = Request.UrlReferrer.ToString();
+            }
+            Response.Redirect(urlReferrer);
         }
     }
 }

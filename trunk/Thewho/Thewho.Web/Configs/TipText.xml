@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--根节点-->
+<TipText>
+  <!--全局-->
+  <Public>
+    <Welcome>欢迎！</Welcome>
+    <Loading>加载中……</Loading>
+  </Public>
+  <!--登录模块-->
+  <Login>
+    <Loading>登录中……</Loading>
+  </Login>
+  <!--User模块-->
+  <User>
+    <!--新增-->
+    <Add>
+      <!--新增成功-->
+      <Success>新增用户成功！</Success>
+      <!--新增提示-->
+      <Info></Info>
+      <!--新增警告-->
+      <Warning></Warning>
+      <!--新增失败-->
+      <Error>新增用户失败！</Error>
+    </Add>
+    <Delete>
+      <Success>删除用户成功！</Success>
+      <Info></Info>
+      <Warning></Warning>
+      <Error>删除用户失败！</Error>
+    </Delete>
+    <Set>
+      <Success>修改用户成功！</Success>
+      <Info></Info>
+      <Warning></Warning>
+      <Error>修改用户失败！</Error>
+    </Set>
+    <Get>
+      <Success>获取用户信息中……</Success>
+      <Info></Info>
+      <Warning></Warning>
+      <Error></Error>
+    </Get>
+    <GetList>
+      <Success>获取用户列表中……</Success>
+      <Info></Info>
+      <Warning></Warning>
+      <Error></Error>
+    </GetList>
+  </User>
+</TipText>

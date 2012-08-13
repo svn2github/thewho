@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Collections;
+using System.Web.Caching;
 
 namespace Thewho.Common
 {
@@ -23,26 +24,92 @@ namespace Thewho.Common
         }
 
         /// <summary>
-        /// 创建/修改Cache (当指定键的Cache已经存在时, 将覆盖/修改)
+        /// 创建/修改Cache - 永不过期 同时优先级设置为最高,但缓存依赖发生改变的时候,会自动移除
         /// </summary>
         /// <param name="key">Cache键</param>
         /// <param name="value">Cacha值</param>
-        /// <param name="expires">有效期/秒数</param>
-        /// <param name="priority">优先级</param>
-        public static void Insert(String key, Object value, Int32 expires, String priority)
+        /// <param name="dependencies">缓存依赖/依赖发生改变的时候,会自动移除</param>
+        public static void Insert(string key, object value, CacheDependency dependencies)
         {
-            TimeSpan ts = TimeSpan.FromSeconds(expires);
-            DateTime absoluteExpiration = DateTime.MaxValue;
-
-            _cache.Insert(key, value, null, absoluteExpiration, ts);
+            DateTime dt = DateTime.MaxValue;//永不过期的时间
+            _cache.Insert(key, value, dependencies, dt, Cache.NoSlidingExpiration, CacheItemPriority.NotRemovable, null);
         }
 
-        public static void Add(String key, Object value, Int32 expires, String priority)
-        { 
-            
+        /// <summary>
+        /// 创建/修改Cache - 永不过期 同时优先级设置为最高,但缓存依赖发生改变的时候,会自动移除
+        /// </summary>
+        /// <param name="key">Cache键</param>
+        /// <param name="value">Cacha值</param>
+        /// <param name="dependencies">缓存依赖/依赖发生改变的时候,会自动移除</param>
+        /// <param name="removeCallback">缓存删除前的回调方法,可用作通知</param>
+        public static void Insert(string key, object value, CacheDependency dependencies, CacheItemRemovedCallback removeCallback)
+        {
+            DateTime dt = DateTime.MaxValue;//永不过期的时间
+            _cache.Insert(key, value, dependencies, dt, Cache.NoSlidingExpiration, CacheItemPriority.NotRemovable, removeCallback);
         }
 
-        public static bool Remove(String key)
+        /// <summary>
+        /// 创建/修改Cache -  绝对过期
+        /// </summary>
+        /// <param name="key">Cache键</param>
+        /// <param name="value">Cacha值</param>
+        /// <param name="dependencies">缓存依赖/依赖发生改变的时候,会自动移除</param>
+        /// <param name="expiresTime">过期时间</param>
+        /// <param name="priority">优先级</param>
+        public static void Insert(string key, object value, CacheDependency dependencies, DateTime expiresTime, CacheItemPriority priority)
+        {
+            _cache.Insert(key, value, dependencies, expiresTime, Cache.NoSlidingExpiration, priority, null);
+        }
+
+        /// <summary>
+        /// 创建/修改Cache -  绝对过期
+        /// </summary>
+        /// <param name="key">Cache键</param>
+        /// <param name="value">Cacha值</param>
+        /// <param name="dependencies">缓存依赖/依赖发生改变的时候,会自动移除</param>
+        /// <param name="expiresTime">过期时间</param>
+        /// <param name="priority">优先级</param>
+        /// <param name="removeCallback">缓存删除前的回调方法,可用作通知</param>
+        public static void Insert(string key, object value, CacheDependency dependencies, DateTime expiresTime, CacheItemPriority priority, CacheItemRemovedCallback removeCallback)
+        {
+            _cache.Insert(key, value, dependencies, expiresTime, Cache.NoSlidingExpiration, priority, removeCallback);
+        }
+
+        /// <summary>
+        /// 创建/修改Cache - 滑动过期
+        /// </summary>
+        /// <param name="key">Cache键</param>
+        /// <param name="value">Cacha值</param>
+        /// <param name="dependencies">缓存依赖/依赖发生改变的时候,会自动移除</param>
+        /// <param name="expiresSeconds">过期秒数</param>
+        /// <param name="priority">优先级</param>
+        public static void Insert(string key, object value, CacheDependency dependencies, int expiresSeconds, CacheItemPriority priority)
+        {
+            TimeSpan ts = TimeSpan.FromSeconds(expiresSeconds);
+            _cache.Insert(key, value, dependencies, Cache.NoAbsoluteExpiration, ts, priority, null);
+        }
+
+        /// <summary>
+        /// 创建/修改Cache - 滑动过期
+        /// </summary>
+        /// <param name="key">Cache键</param>
+        /// <param name="value">Cacha值</param>
+        /// <param name="dependencies">缓存依赖/依赖发生改变的时候,会自动移除</param>
+        /// <param name="expiresSeconds">过期秒数</param>
+        /// <param name="priority">优先级</param>
+        /// <param name="removeCallback">缓存删除前的回调方法,可用作通知</param>
+        public static void Insert(string key, object value, CacheDependency dependencies, int expiresSeconds, CacheItemPriority priority, CacheItemRemovedCallback removeCallback)
+        {
+            TimeSpan ts = TimeSpan.FromSeconds(expiresSeconds);
+            _cache.Insert(key, value, dependencies, Cache.NoAbsoluteExpiration, ts, priority, removeCallback);
+        }
+
+        /// <summary>
+        /// 根据Cache键移除缓存对象
+        /// </summary>
+        /// <param name="key">Cache键</param>
+        /// <returns></returns>
+        public static bool Remove(string key)
         {
             if (IsExist(key))
             {
@@ -57,9 +124,9 @@ namespace Thewho.Common
         /// </summary>
         /// <param name="key">Cache键</param>
         /// <returns></returns>
-        public static T Get(String key)
+        public static T Get(string key)
         {
-            if (_cache[key] != null)
+            if (IsExist(key))
             {
                 return (T)_cache[key];
             }
@@ -71,7 +138,7 @@ namespace Thewho.Common
         /// </summary>
         /// <param name="key">Cache键</param>
         /// <returns>是否存在</returns>
-        public static bool IsExist(String key)
+        public static bool IsExist(string key)
         {
             if (_cache[key] != null)
 	        {
@@ -80,20 +147,19 @@ namespace Thewho.Common
             return false;
         }
 
-
-        ///// <summary>
-        ///// 获得所有的缓存对象集合
-        ///// </summary>
-        ///// <returns></returns>
-        //public static IDictionaryEnumerator GetList()
-        //{
-        //    IDictionaryEnumerator enumerator = null;
-        //    if (_cache.Count > 0)
-        //    {
-        //        enumerator = _cache.GetEnumerator();
-        //    }
-        //    return enumerator;
-        //}
+        /// <summary>
+        /// 获取当前缓存的类型
+        /// </summary>
+        /// <param name="key">Cache键</param>
+        /// <returns></returns>
+        public static Type GetType(string key)
+        {
+            if (IsExist(key))
+            {
+                return _cache[key].GetType();
+            }
+            return default(Type);
+        }
 
         /// <summary>
         /// 获得所有的缓存对象集合
@@ -116,5 +182,19 @@ namespace Thewho.Common
             }
             return list;
         }
+
+        ///// <summary>
+        ///// 获得所有的缓存对象集合
+        ///// </summary>
+        ///// <returns></returns>
+        //public static IDictionaryEnumerator GetList()
+        //{
+        //    IDictionaryEnumerator enumerator = null;
+        //    if (_cache.Count > 0)
+        //    {
+        //        enumerator = _cache.GetEnumerator();
+        //    }
+        //    return enumerator;
+        //}
     }
 }
