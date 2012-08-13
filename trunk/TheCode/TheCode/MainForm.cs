@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using System.Threading;
+using System.Configuration;
 
 
 namespace TheCode
@@ -21,6 +22,15 @@ namespace TheCode
         public TheCode.DAL.Database _database = new TheCode.DAL.Database();
         public TheCode.DAL.Table _table = new TheCode.DAL.Table();
         public TheCode.DAL.Column _column = new TheCode.DAL.Column();
+
+        private static string Model_Namespace = ConfigurationSettings.AppSettings["Model_Namespace"].ToString();
+        private static string DAL_Namespace = ConfigurationSettings.AppSettings["DAL_Namespace"].ToString();
+        private static string BLL_Namespace = ConfigurationSettings.AppSettings["BLL_Namespace"].ToString();
+
+        private static string Model_Path = ConfigurationSettings.AppSettings["Model_Path"].ToString();
+        private static string DAL_Path = ConfigurationSettings.AppSettings["DAL_Path"].ToString();
+        private static string BLL_Path = ConfigurationSettings.AppSettings["BLL_Path"].ToString();
+
         public MainForm()
         {
             InitializeComponent();
@@ -33,8 +43,16 @@ namespace TheCode
         //窗体初始化方法
         public void Form_Init()
         {
-            this.Text = "代码生成器 - TheCode";
+            this.Text = "代码生成器 - TheCode v1.1";
             com_Type.SelectedItem = "Windows 身份验证";
+
+            txt_Model_Namespace.Text = Model_Namespace;
+            txt_DAL_Namespace.Text = DAL_Namespace;
+            txt_BLL_Namespace.Text = BLL_Namespace;
+
+            txt_Model_Path.Text = Model_Path;
+            txt_DAL_Path.Text = DAL_Path;
+            txt_BLL_Path.Text = BLL_Path;
 
             //窗口居中
             this.SetBounds((Screen.GetBounds(this).Width / 2) - (this.Width / 2),
@@ -428,11 +446,11 @@ namespace TheCode
                     //MessageBox.Show("" + Convert.ToInt32(lb_createNum.Text).ToString());
                     if (MessageBox.Show("全部生成完成！\n" + "共生成" + Convert.ToInt32(lb_createNum.Text).ToString() + "个文件！", "TheCode", MessageBoxButtons.OK) == DialogResult.OK)
                     {
-                        //this.Close();
+                        this.Close();
                     }
                     else
                     {
-                        //this.Close();
+                        this.Close();
                     }
                    
                 }

@@ -55,8 +55,10 @@
     <Compile Include="Common\Conn.cs" />
     <Compile Include="Common\IO.cs" />
     <Compile Include="Common\SqlHelper.cs" />
-    <Compile Include="Common\Tempate3.cs" />
     <Compile Include="Common\Tempate.cs" />
+    <Compile Include="Common\Tempate3.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DAL\Column.cs" />
     <Compile Include="DAL\Database.cs" />
     <Compile Include="DAL\Table.cs" />

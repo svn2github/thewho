@@ -15,7 +15,7 @@ namespace TheCode
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ToolForm());
+            Application.Run(new MainForm());
         }
     }
 }

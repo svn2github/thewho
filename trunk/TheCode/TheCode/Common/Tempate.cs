@@ -37,7 +37,6 @@ namespace TheCode.Common
 
         #endregion
 
-
         #region 字段标签
 
         private static string ColumnName_Template = "${ColumnName}$"; //字段名
@@ -200,8 +199,6 @@ namespace TheCode.Common
                 }
             }
 
-            
-
             //第五步 创建文件
             TheCode.Common.IO.WriteFile(@createPath, tableName + tempsuffix, tempateStr);
 
@@ -262,21 +259,21 @@ namespace TheCode.Common
                 {
                     list = columnList;
                 }
-                else if (forParmData == "ALL_NOT_PK")
+                else if (forParmData == "ALL_NOT_PK")//除主键
                 {
-                    columnList.Remove(GetPKColumn());
-                    list = columnList;
+                    list = GetNotPkColumnList();
+                    //list.Remove(GetPKColumn());
                 }
-                else if (forParmData == "ALL_NOT_ID")
+                else if (forParmData == "ALL_NOT_ID")//除自增长ID 一般用这个
                 {
-                    columnList.Remove(GetIDColumn());
-                    list = columnList;
+                    list = GetNotIDColumnList();
+                    //list.Remove(GetIDColumn());
                 }
-                else if (forParmData == "ALL_NOT_PK_ID")
+                else if (forParmData == "ALL_NOT_PK_ID")//除主键 除自增长ID
                 {
-                    columnList.Remove(GetPKColumn());
-                    columnList.Remove(GetIDColumn());
-                    list = columnList;
+                    list = GetNotPKIDColumnList();
+                   // list.Remove(GetPKColumn());
+                    //list.Remove(GetIDColumn());
                 }
 
                 //最后一个字段
@@ -377,17 +374,34 @@ namespace TheCode.Common
                 if (item.IsPk == "1")
                 {
                     return item;
-                }//如果没有 就用自增长
-                else if (item.IsIdentity == "1")
-                {
-                    cl = new TheCode.Model.Column();
-                    if (cl == null) //如果有多个自增长 就用第一个
-                    {
-                        cl = item;
-                    }
                 }
+                //else if (item.IsIdentity == "1")//如果没有 就用自增长
+                //{
+                //    cl = new TheCode.Model.Column();
+                //    if (cl == null) //如果有多个自增长 就用第一个
+                //    {
+                //        cl = item;
+                //    }
+                //}
             }
             return cl;
+        }
+
+        /// <summary>
+        /// 获取 排除这个表的主键后的集合
+        /// </summary>
+        /// <returns></returns>
+        private List<TheCode.Model.Column> GetNotPkColumnList()
+        {
+            List<TheCode.Model.Column> list = new List<TheCode.Model.Column>();
+            foreach (TheCode.Model.Column item in columnList)
+            {
+                if (item.IsPk != "1")
+                {
+                    list.Add(item);
+                }
+            }
+            return list;
         }
 
         /// <summary>
@@ -402,14 +416,67 @@ namespace TheCode.Common
             {
                 if (item.IsIdentity == "1")
                 {
-                    cl = new TheCode.Model.Column();
-                    if (cl == null) //如果有多个自增长 就用第一个
-                    {
-                        cl = item;
-                    }
+                    return item;
+                    //cl = new TheCode.Model.Column();
+                    //if (cl == null) //如果有多个自增长 就用第一个
+                    //{
+                    //    cl = item;
+                    //}
                 }
             }
             return cl;
+        }
+
+        /// <summary>
+        /// 获取 排除这个表的自增长ID后的集合
+        /// </summary>
+        /// <returns></returns>
+        private List<TheCode.Model.Column> GetNotIDColumnList()
+        {
+            List<TheCode.Model.Column> list = new List<TheCode.Model.Column>();
+            foreach (TheCode.Model.Column item in columnList)
+            {
+                if (item.IsIdentity != "1")
+                {
+                    list.Add(item);
+                }
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 获取 排除这个表的主键,自增长ID后的集合
+        /// </summary>
+        /// <returns></returns>
+        private List<TheCode.Model.Column> GetNotPKIDColumnList()
+        {
+            List<TheCode.Model.Column> list = new List<TheCode.Model.Column>();
+            foreach (TheCode.Model.Column item in columnList)
+            {
+                if (item.IsIdentity != "1" && item.IsPk != "1")
+                {
+                    list.Add(item);
+                }
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 驼峰命名法
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private string CamelCase(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                if (str.Length > 1)
+                {
+                    str = str.Substring(0, 1).ToLower() + str.Substring(1, str.Length);
+                }
+                str = str.ToLower();
+            }
+            return str;
         }
     }
 }

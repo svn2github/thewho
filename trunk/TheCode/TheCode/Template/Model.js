@@ -6,9 +6,9 @@ using System.Text;
 namespace ${NameSpace}$
 {
     /// <summary>
-    /// ${TableName}$（模型层）
+    /// ${Model_ClassName}$（模型层）
     /// </summary>
-    public class ${TableName}$
+    public class ${Model_ClassName}$
     {	
         ${ForStar:[ALL]}$
         private ${ColumnType}$ _${ColumnName}$;
