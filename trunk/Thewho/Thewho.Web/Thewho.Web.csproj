@@ -78,13 +78,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Main\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Main\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Main\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -138,7 +131,6 @@
     <Content Include="Configs\TipText.xml" />
     <Content Include="Images\button_bg.png" />
     <Content Include="Images\button_bg2.png" />
-    <Content Include="Main\Default.aspx" />
     <Content Include="Styles\dialog.css" />
     <Content Include="WebForm1.aspx" />
     <Content Include="demo.htm" />
@@ -170,10 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Main\Function\" />
-    <Folder Include="Main\Permission\" />
-    <Folder Include="Main\System\" />
-    <Folder Include="Main\User\" />
     <Folder Include="Scripts\Editor\" />
     <Folder Include="Xmls\" />
   </ItemGroup>
