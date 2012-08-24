@@ -12,15 +12,22 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using Thewho.Config;
 using System.Xml;
+using Thewho.BLL;
+using System.Collections.Generic;
 
 namespace Thewho.Web
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        public Function_BLL _fun = new Function_BLL();
+        public List<Thewho.Model.Function> list = new List<Thewho.Model.Function>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(Thewho.Config.XMLConfig.GetItem("Site","/Site/CurrentUser/Status"));
+            //Response.Write(Thewho.Config.XMLConfig.GetItem("Site","/Site/CurrentUser/Status"));
+            int i = 0;
+            list = _fun.GetList(1,2, out i);
             
+
         }
     }
 }

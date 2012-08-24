@@ -43,7 +43,7 @@ namespace TheCode
         //窗体初始化方法
         public void Form_Init()
         {
-            this.Text = "代码生成器 - TheCode v1.1";
+            this.Text = "代码生成器 - TheCode v1.2";
             com_Type.SelectedItem = "Windows 身份验证";
 
             txt_Model_Namespace.Text = Model_Namespace;
@@ -478,38 +478,38 @@ namespace TheCode
         }
 
         
-        public class ThreadedExecute
-        {
-            public int  createType;
-            public string connStr,createPath, nameSpace, databaseName;
-            public string modelNameSpace, dalNameSpace, bllNameSpace;
-            public List<TheCode.Model.Table> tableList;
-            public TheCode.DAL.Column _column = new TheCode.DAL.Column();
+        //public class ThreadedExecute
+        //{
+        //    public int  createType;
+        //    public string connStr,createPath, nameSpace, databaseName;
+        //    public string modelNameSpace, dalNameSpace, bllNameSpace;
+        //    public List<TheCode.Model.Table> tableList;
+        //    public TheCode.DAL.Column _column = new TheCode.DAL.Column();
 
-            public ThreadedExecute(int createType,string connStr, string createPath, string nameSpace, string databaseName, List<TheCode.Model.Table> tableList,string modelNameSpace,string dalNameSpace, string bllNameSpace)
-            {
-                this.createType = createType;
-                this.connStr = connStr;
-                this.createPath = createPath;
-                this.nameSpace = nameSpace;
-                this.databaseName = databaseName;
-                this.tableList = tableList;
+        //    public ThreadedExecute(int createType,string connStr, string createPath, string nameSpace, string databaseName, List<TheCode.Model.Table> tableList,string modelNameSpace,string dalNameSpace, string bllNameSpace)
+        //    {
+        //        this.createType = createType;
+        //        this.connStr = connStr;
+        //        this.createPath = createPath;
+        //        this.nameSpace = nameSpace;
+        //        this.databaseName = databaseName;
+        //        this.tableList = tableList;
 
-                this.modelNameSpace = modelNameSpace;
-                this.dalNameSpace = dalNameSpace;
-                this.bllNameSpace = bllNameSpace;
-            }
+        //        this.modelNameSpace = modelNameSpace;
+        //        this.dalNameSpace = dalNameSpace;
+        //        this.bllNameSpace = bllNameSpace;
+        //    }
 
-            public void create()
-            {
-                foreach (TheCode.Model.Table item in tableList)
-                {
-                    List<TheCode.Model.Column> columnList = _column.GetList(connStr, databaseName, item.TableName);
-                    new TheCode.Common.Tempate3(createType, createPath, nameSpace, databaseName, item.TableName, columnList,
-                    modelNameSpace, dalNameSpace, bllNameSpace).create();
-                }
-            }
-        }
+        //    public void create()
+        //    {
+        //        foreach (TheCode.Model.Table item in tableList)
+        //        {
+        //            List<TheCode.Model.Column> columnList = _column.GetList(connStr, databaseName, item.TableName);
+        //            new TheCode.Common.Tempate3(createType, createPath, nameSpace, databaseName, item.TableName, columnList,
+        //            modelNameSpace, dalNameSpace, bllNameSpace).create();
+        //        }
+        //    }
+        //}
 
         private void lk_Model_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

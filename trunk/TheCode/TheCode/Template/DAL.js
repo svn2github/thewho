@@ -23,21 +23,9 @@ namespace ${DAL_NameSpace}$
         private const string _SQL_SELECT = "SELECT ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM [${TableName}$] {0}";
         private const string _SQL_SELECT_LIST = "SELECT ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM [${TableName}$] {0}";
         //SQL语句 - 分页
-        private const string _SQL_SELECT_PAGING = "SELECT ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM (SELECT ROW_NUMBER() OVER(ORDER BY @OrderID @OrderType) AS ROWNUM,${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM ${TableName}$ {0}) AS T WHERE ROWNUM BETWEEN (@PageIndex-1) * @PageSize + 1 AND (@PageIndex * @PageSize)"; 
-        private const string _SQL_SELECT_COUNT = "SELECT COUNT([${PK_Name}$]) FROM ${TableName}$ {0}"; 
+        private const string _SQL_SELECT_PAGING = "SELECT ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM (SELECT ROW_NUMBER() OVER(ORDER BY {0}) AS ROWNUM,${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM [${TableName}$] {1}) AS T WHERE ROWNUM BETWEEN (@PageIndex-1) * @PageSize + 1 AND (@PageIndex * @PageSize)"; 
+        private const string _SQL_SELECT_COUNT = "SELECT COUNT([${PK_Name}$]) FROM [${TableName}$] {0}"; 
         #endregion
-        
-        #region 变量
-        //最终SQL语句
-        private string str; 
-        #endregion
-        
-        /// <summary>
-        /// 构造方法
-        /// </summary>
-        public ${DAL_ClassName}$()
-        { 
-        }
         
         #region 插入数据
         /// <summary>
@@ -48,8 +36,7 @@ namespace ${DAL_NameSpace}$
  	    public Int32 Insert(${Model_ClassName}$ obj)
 	    {			
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        ${ForStar[ALL_NOT_ID][,]}$new SqlParameter("@${ColumnName}$",obj.${ColumnName}$),
 		        ${ForEnd}$
 		    };			
@@ -65,8 +52,7 @@ namespace ${DAL_NameSpace}$
  	    public Object InsertReturnID(${Model_ClassName}$ obj)
 	    {			
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        ${ForStar[ALL_NOT_ID][,]}$new SqlParameter("@${ColumnName}$",obj.${ColumnName}$),
 		        ${ForEnd}$
 		    };			
@@ -84,15 +70,14 @@ namespace ${DAL_NameSpace}$
  	    public Int32 Update(${Model_ClassName}$ obj)
 	    {			
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_UPDATE, "WHERE [${PK_Name}$] = @${PK_Name}$");
+            String sqlStr = String.Format(_SQL_UPDATE, "WHERE [${PK_Name}$] = @${PK_Name}$");
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        ${ForStar[ALL][,]}$new SqlParameter("@${ColumnName}$",obj.${ColumnName}$),
 		        ${ForEnd}$
 		    };			
     		
-		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, str, CommandType.Text, param);	
+		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, sqlStr, CommandType.Text, param);	
 	    }
 	    #endregion
 	    
@@ -105,14 +90,13 @@ namespace ${DAL_NameSpace}$
  	    public Int32 Delete(${PK_Type}$ ${PK_Name}$)
 	    {			
 	        //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_UPDATE, "WHERE [${PK_Name}$] = @${PK_Name}$");
+            String sqlStr = String.Format(_SQL_UPDATE, "WHERE [${PK_Name}$] = @${PK_Name}$");
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@${PK_Name}$",${PK_Name}$)
 		    };			
     		
-		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, str, CommandType.Text, param);	
+		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, sqlStr, CommandType.Text, param);	
 	    }
         #endregion
         
@@ -125,26 +109,45 @@ namespace ${DAL_NameSpace}$
         public ${Model_ClassName}$ SelectObj(${PK_Type}$ ${PK_Name}$)
         {
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT, "WHERE [${PK_Name}$] = @${PK_Name}$");
+            String sqlStr = String.Format(_SQL_SELECT, "WHERE [${PK_Name}$] = @${PK_Name}$");
             //SqlParameter参数数组
-            SqlParameter[] param={		
+            SqlParameter[] param = new SqlParameter[]{		
 			    new SqlParameter("@${PK_Name}$",${PK_Name}$)
-			};	
-            return ToObject(SqlHelper.ExecuteReader(SqlHelper.connectionString, str, CommandType.Text, param));
+			};
+			
+            return ToObject(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, param));
         }
         #endregion
 	    
 	    #region 查询数据集合
         /// <summary>
-        /// 获取${TableName}$表的所有数据
+        /// 获取${TableName}$表的数据（全部）
         /// </summary>
         /// <returns></returns>
         public List<${Model_ClassName}$> SelectList()
         {
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT_LIST, String.Empty);
+            String sqlStr = String.Format(_SQL_SELECT_LIST, String.Empty);
         
-            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, str, CommandType.Text, null));
+            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, null));
+        }
+        
+        /// <summary>
+        /// 获取${TableName}$表的数据（分页 按${PK_Name}$降序）
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页尺寸</param>
+        /// <param name="recordCount">数据总数/输出参数</param>
+        /// <returns></returns>
+        public List<${Model_ClassName}$> SelectList(Int32 pageIndex, Int32 pageSize, out Int32 recordCount)
+        {
+            String orderStr = "@${PK_Name}$ DESC";
+            //分页基本参数的参数数组
+            SqlParameter[] parms = new SqlParameter[]{
+                new SqlParameter("@${PK_Name}$","[${PK_Name}$]")
+            };
+
+            return Paging(pageIndex, pageSize, orderStr, null, parms, out recordCount);
         }
         #endregion
         
@@ -154,42 +157,39 @@ namespace ${DAL_NameSpace}$
         /// </summary>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页尺寸</param>
-        /// <param name="orderID">排序字段</param>
-        /// <param name="orderType">排序类型</param>
-        /// <param name="strWhere">WHERE条件字符串</param>
+        /// <param name="orderStr">ORDER排序字符串</param>
+        /// <param name="whereStr">WHERE条件字符串</param>
         /// <param name="whereParms">WHERE条件的参数数组</param>
         /// <param name="recordCount">数据总数/输出参数</param>
         /// <returns></returns>
-        private List<${Model_ClassName}$> Paging(int pageIndex, int pageSize, string orderID, string orderType, string whereStr, SqlParameter[] whereParms, out int recordCount)
+        private List<${Model_ClassName}$> Paging(Int32 pageIndex, Int32 pageSize, String orderStr, String whereStr, SqlParameter[] whereParms, out Int32 recordCount)
         {
-            //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT_PAGING, whereStr);
+            //将ORDER条件和WHERE条件组合进SQL语句
+            String sqlStr = String.Format(_SQL_SELECT_PAGING, orderStr, whereStr);
             //分页基本参数的参数数组
-            SqlParameter[] baseParms = new SqlParameter[]{
+            SqlParameter[] pagingParms = new SqlParameter[]{
                 new SqlParameter("@PageIndex",pageIndex),
-                new SqlParameter("@PageSize",pageSize),
-                new SqlParameter("@OrderID",orderID),
-                new SqlParameter("@OrderType",orderType)
+                new SqlParameter("@PageSize",pageSize)
             };
             
             //获取总数
             recordCount = Count(whereStr, whereParms);
             
-            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, str, CommandType.Text, baseParms, whereParms));
+            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, pagingParms, whereParms));
         }
         
         /// <summary>
         /// 根据WHERE条件 计算${TableName}$表的数据总数
         /// </summary>
-        /// <param name="strWhere">WHERE条件字符串</param>
+        /// <param name="whereStr">WHERE条件字符串</param>
         /// <param name="whereParms">WHERE条件的参数数组</param>
         /// <returns>数据总数</returns>
-        private Int32 Count(string whereStr, SqlParameter[] whereParms)
+        private Int32 Count(String whereStr, SqlParameter[] whereParms)
         {
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT_COUNT, whereStr);
+            String sqlStr = String.Format(_SQL_SELECT_COUNT, whereStr);
             
-            return Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.connectionString, str, CommandType.Text, whereParms));
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.connectionString, sqlStr, CommandType.Text, whereParms));
         }
         #endregion
         
@@ -205,7 +205,7 @@ namespace ${DAL_NameSpace}$
             {
                 if (dr.HasRows)
                 {
-                    if (dr.Read())
+                    while (dr.Read())
                     {
                         ${Model_ClassName}$ model = new ${Model_ClassName}$();
 		                ${ForStar[ALL]}$model.${ColumnName}$ = ${ConvertTo[dr["${ColumnName}$"]]}$;
@@ -230,7 +230,7 @@ namespace ${DAL_NameSpace}$
                 if (dr.HasRows)
                 {
                     list = new List<${Model_ClassName}$>();
-                    if (dr.Read())
+                    while (dr.Read())
                     {
                         ${Model_ClassName}$ model = new ${Model_ClassName}$();
 		                ${ForStar[ALL]}$model.${ColumnName}$ = ${ConvertTo[dr["${ColumnName}$"]]}$;

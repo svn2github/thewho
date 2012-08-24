@@ -23,21 +23,9 @@ namespace Thewho.DAL
         private const string _SQL_SELECT = "SELECT [ID],[UserID],[Email],[LoginTime],[HostName],[HostAddress],[Remark],[Result] FROM [UserLogin] {0}";
         private const string _SQL_SELECT_LIST = "SELECT [ID],[UserID],[Email],[LoginTime],[HostName],[HostAddress],[Remark],[Result] FROM [UserLogin] {0}";
         //SQL语句 - 分页
-        private const string _SQL_SELECT_PAGING = "SELECT [ID],[UserID],[Email],[LoginTime],[HostName],[HostAddress],[Remark],[Result] FROM (SELECT ROW_NUMBER() OVER(ORDER BY @OrderID @OrderType) AS ROWNUM,[ID],[UserID],[Email],[LoginTime],[HostName],[HostAddress],[Remark],[Result] FROM UserLogin {0}) AS T WHERE ROWNUM BETWEEN (@PageIndex-1) * @PageSize + 1 AND (@PageIndex * @PageSize)"; 
-        private const string _SQL_SELECT_COUNT = "SELECT COUNT([ID]) FROM UserLogin {0}"; 
+        private const string _SQL_SELECT_PAGING = "SELECT [ID],[UserID],[Email],[LoginTime],[HostName],[HostAddress],[Remark],[Result] FROM (SELECT ROW_NUMBER() OVER(ORDER BY {0}) AS ROWNUM,[ID],[UserID],[Email],[LoginTime],[HostName],[HostAddress],[Remark],[Result] FROM [UserLogin] {1}) AS T WHERE ROWNUM BETWEEN (@PageIndex-1) * @PageSize + 1 AND (@PageIndex * @PageSize)"; 
+        private const string _SQL_SELECT_COUNT = "SELECT COUNT([ID]) FROM [UserLogin] {0}"; 
         #endregion
-        
-        #region 变量
-        //最终SQL语句
-        private string str; 
-        #endregion
-        
-        /// <summary>
-        /// 构造方法
-        /// </summary>
-        public UserLogin_DAL()
-        { 
-        }
         
         #region 插入数据
         /// <summary>
@@ -48,8 +36,7 @@ namespace Thewho.DAL
  	    public Int32 Insert(UserLogin obj)
 	    {			
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@UserID",obj.UserID),
 		        new SqlParameter("@Email",obj.Email),
 		        new SqlParameter("@LoginTime",obj.LoginTime),
@@ -70,8 +57,7 @@ namespace Thewho.DAL
  	    public Object InsertReturnID(UserLogin obj)
 	    {			
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@UserID",obj.UserID),
 		        new SqlParameter("@Email",obj.Email),
 		        new SqlParameter("@LoginTime",obj.LoginTime),
@@ -94,10 +80,9 @@ namespace Thewho.DAL
  	    public Int32 Update(UserLogin obj)
 	    {			
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_UPDATE, "WHERE [ID] = @ID");
+            String sqlStr = String.Format(_SQL_UPDATE, "WHERE [ID] = @ID");
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@ID",obj.ID),
 		        new SqlParameter("@UserID",obj.UserID),
 		        new SqlParameter("@Email",obj.Email),
@@ -108,7 +93,7 @@ namespace Thewho.DAL
 		        new SqlParameter("@Result",obj.Result)
 		    };			
     		
-		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, str, CommandType.Text, param);	
+		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, sqlStr, CommandType.Text, param);	
 	    }
 	    #endregion
 	    
@@ -121,14 +106,13 @@ namespace Thewho.DAL
  	    public Int32 Delete(Int64 ID)
 	    {			
 	        //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_UPDATE, "WHERE [ID] = @ID");
+            String sqlStr = String.Format(_SQL_UPDATE, "WHERE [ID] = @ID");
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@ID",ID)
 		    };			
     		
-		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, str, CommandType.Text, param);	
+		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, sqlStr, CommandType.Text, param);	
 	    }
         #endregion
         
@@ -141,26 +125,45 @@ namespace Thewho.DAL
         public UserLogin SelectObj(Int64 ID)
         {
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT, "WHERE [ID] = @ID");
+            String sqlStr = String.Format(_SQL_SELECT, "WHERE [ID] = @ID");
             //SqlParameter参数数组
-            SqlParameter[] param={		
+            SqlParameter[] param = new SqlParameter[]{		
 			    new SqlParameter("@ID",ID)
-			};	
-            return ToObject(SqlHelper.ExecuteReader(SqlHelper.connectionString, str, CommandType.Text, param));
+			};
+			
+            return ToObject(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, param));
         }
         #endregion
 	    
 	    #region 查询数据集合
         /// <summary>
-        /// 获取UserLogin表的所有数据
+        /// 获取UserLogin表的数据（全部）
         /// </summary>
         /// <returns></returns>
         public List<UserLogin> SelectList()
         {
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT_LIST, String.Empty);
+            String sqlStr = String.Format(_SQL_SELECT_LIST, String.Empty);
         
-            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, str, CommandType.Text, null));
+            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, null));
+        }
+        
+        /// <summary>
+        /// 获取UserLogin表的数据（分页 按ID降序）
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页尺寸</param>
+        /// <param name="recordCount">数据总数/输出参数</param>
+        /// <returns></returns>
+        public List<UserLogin> SelectList(Int32 pageIndex, Int32 pageSize, out Int32 recordCount)
+        {
+            String orderStr = "@ID DESC";
+            //分页基本参数的参数数组
+            SqlParameter[] parms = new SqlParameter[]{
+                new SqlParameter("@ID","[ID]")
+            };
+
+            return Paging(pageIndex, pageSize, orderStr, null, parms, out recordCount);
         }
         #endregion
         
@@ -170,42 +173,39 @@ namespace Thewho.DAL
         /// </summary>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页尺寸</param>
-        /// <param name="orderID">排序字段</param>
-        /// <param name="orderType">排序类型</param>
-        /// <param name="strWhere">WHERE条件字符串</param>
+        /// <param name="orderStr">ORDER排序字符串</param>
+        /// <param name="whereStr">WHERE条件字符串</param>
         /// <param name="whereParms">WHERE条件的参数数组</param>
         /// <param name="recordCount">数据总数/输出参数</param>
         /// <returns></returns>
-        private List<UserLogin> Paging(int pageIndex, int pageSize, string orderID, string orderType, string whereStr, SqlParameter[] whereParms, out int recordCount)
+        private List<UserLogin> Paging(Int32 pageIndex, Int32 pageSize, String orderStr, String whereStr, SqlParameter[] whereParms, out Int32 recordCount)
         {
-            //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT_PAGING, whereStr);
+            //将ORDER条件和WHERE条件组合进SQL语句
+            String sqlStr = String.Format(_SQL_SELECT_PAGING, orderStr, whereStr);
             //分页基本参数的参数数组
-            SqlParameter[] baseParms = new SqlParameter[]{
+            SqlParameter[] pagingParms = new SqlParameter[]{
                 new SqlParameter("@PageIndex",pageIndex),
-                new SqlParameter("@PageSize",pageSize),
-                new SqlParameter("@OrderID",orderID),
-                new SqlParameter("@OrderType",orderType)
+                new SqlParameter("@PageSize",pageSize)
             };
             
             //获取总数
             recordCount = Count(whereStr, whereParms);
             
-            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, str, CommandType.Text, baseParms, whereParms));
+            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, pagingParms, whereParms));
         }
         
         /// <summary>
         /// 根据WHERE条件 计算UserLogin表的数据总数
         /// </summary>
-        /// <param name="strWhere">WHERE条件字符串</param>
+        /// <param name="whereStr">WHERE条件字符串</param>
         /// <param name="whereParms">WHERE条件的参数数组</param>
         /// <returns>数据总数</returns>
-        private Int32 Count(string whereStr, SqlParameter[] whereParms)
+        private Int32 Count(String whereStr, SqlParameter[] whereParms)
         {
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT_COUNT, whereStr);
+            String sqlStr = String.Format(_SQL_SELECT_COUNT, whereStr);
             
-            return Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.connectionString, str, CommandType.Text, whereParms));
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.connectionString, sqlStr, CommandType.Text, whereParms));
         }
         #endregion
         
@@ -221,7 +221,7 @@ namespace Thewho.DAL
             {
                 if (dr.HasRows)
                 {
-                    if (dr.Read())
+                    while (dr.Read())
                     {
                         UserLogin model = new UserLogin();
 		                model.ID = Convert.ToInt64(dr["ID"]);
@@ -253,7 +253,7 @@ namespace Thewho.DAL
                 if (dr.HasRows)
                 {
                     list = new List<UserLogin>();
-                    if (dr.Read())
+                    while (dr.Read())
                     {
                         UserLogin model = new UserLogin();
 		                model.ID = Convert.ToInt64(dr["ID"]);

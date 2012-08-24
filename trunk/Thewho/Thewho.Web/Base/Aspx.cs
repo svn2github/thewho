@@ -110,15 +110,36 @@ namespace Thewho.Web.Base
         }
 
         /// <summary>
-        /// 返回到上一个页面
+        /// 重定向到上一个页面
         /// </summary>
-        public void BackUrl()
+        /// <param name="lastUrl">
+        /// 手动地址/为保险起见 如果Request.UrlReferrer为空 则会启用这个手动地址
+        /// </param>
+        public void LastPage(string url)
         {
             if (Request.UrlReferrer != null)
             {
-                urlReferrer = Request.UrlReferrer.ToString();
+                url = Request.UrlReferrer.AbsoluteUri;
             }
-            Response.Redirect(urlReferrer);
+            Response.Redirect(url);
+
+            //Request.QueryString.AllKeys.ToString();
+
+            //上一个页面
+            //Request.UrlReferrer.AbsolutePath 绝对页面地址 
+            //Request.UrlReferrer.AbsoluteUri 绝对页面地址 + 参数
+
+            //Request.UrlReferrer.PathAndQuery 相对页面地址 + 参数
+            //OriginalString 原始地址 等同于绝对页面地址+参数
+            //Query 参数
+
+
+            //当前页面
+            //Request.Url.PathAndQuery 相对地址
+            //Request.Url.OriginalString 全地址
+            //Request.Url.Query 参数 
+
+            //Request.QueryString.AllKeys 参数数组
         }
     }
 }

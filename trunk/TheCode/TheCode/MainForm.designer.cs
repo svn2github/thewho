@@ -441,6 +441,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.Model.ResumeLayout(false);

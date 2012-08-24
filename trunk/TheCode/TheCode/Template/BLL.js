@@ -23,7 +23,7 @@ namespace ${BLL_NameSpace}$
         }
         
         /// <summary>
-	    /// 新增${Model_ClassName}$
+	    /// 新增${Model_ClassName}$对象
 	    /// </summary>
 	    /// <param name="${Model_ClassName}$">需要新增的对象</param>
 	    /// <returns>新插入数据的${PK_Name}$</returns>
@@ -37,7 +37,7 @@ namespace ${BLL_NameSpace}$
 	    }
 	    
 	    /// <summary>
-	    /// 修改${Model_ClassName}$
+	    /// 修改${Model_ClassName}$对象
 	    /// </summary>
 	    /// <param name="${Model_ClassName}$">需要修改的对象</param>
 	    /// <returns>影响行数</returns>
@@ -51,7 +51,7 @@ namespace ${BLL_NameSpace}$
 	    }
 
 	    /// <summary>
-	    /// 删除${Model_ClassName}$
+	    /// 删除${Model_ClassName}$对象
 	    /// </summary>
 	    /// <param name="${PK_Name}$">对象ID</param>
 	    /// <returns>影响行数</returns>
@@ -65,7 +65,7 @@ namespace ${BLL_NameSpace}$
 	    }
 
         /// <summary>
-        /// 获取${Model_ClassName}$
+        /// 获取${Model_ClassName}$对象
         /// </summary>
         /// <param name="${PK_Name}$"></param>
         /// <returns></returns>
@@ -79,12 +79,29 @@ namespace ${BLL_NameSpace}$
         }
         
         /// <summary>
-        /// 获取${Model_ClassName}$集合
+        /// 获取${Model_ClassName}$对象集合（全部）
         /// </summary>
         /// <returns></returns>
         public List<${Model_ClassName}$> GetList()
         {
             return _dal.SelectList();
+        }
+        
+        /// <summary>
+        /// 获取${Model_ClassName}$对象集合（分页 按${PK_Name}$降序）
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页尺寸</param>
+        /// <param name="recordCount">数据总数/输出参数</param>
+        /// <returns></returns>
+        public List<${Model_ClassName}$> GetList(Int32 pageIndex, Int32 pageSize, out Int32 recordCount)
+        {
+            if(pageIndex > 0 && pageSize > 0)
+		    {
+                return _dal.SelectList(pageIndex, pageSize, out recordCount);
+            }
+            recordCount = 0;
+            return null;
         }
     }
 }

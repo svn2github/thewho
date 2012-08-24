@@ -23,7 +23,7 @@ namespace Thewho.BLL
         }
         
         /// <summary>
-	    /// 新增UserReg
+	    /// 新增UserReg对象
 	    /// </summary>
 	    /// <param name="UserReg">需要新增的对象</param>
 	    /// <returns>新插入数据的ID</returns>
@@ -37,7 +37,7 @@ namespace Thewho.BLL
 	    }
 	    
 	    /// <summary>
-	    /// 修改UserReg
+	    /// 修改UserReg对象
 	    /// </summary>
 	    /// <param name="UserReg">需要修改的对象</param>
 	    /// <returns>影响行数</returns>
@@ -51,7 +51,7 @@ namespace Thewho.BLL
 	    }
 
 	    /// <summary>
-	    /// 删除UserReg
+	    /// 删除UserReg对象
 	    /// </summary>
 	    /// <param name="ID">对象ID</param>
 	    /// <returns>影响行数</returns>
@@ -65,7 +65,7 @@ namespace Thewho.BLL
 	    }
 
         /// <summary>
-        /// 获取UserReg
+        /// 获取UserReg对象
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
@@ -79,12 +79,29 @@ namespace Thewho.BLL
         }
         
         /// <summary>
-        /// 获取UserReg集合
+        /// 获取UserReg对象集合（全部）
         /// </summary>
         /// <returns></returns>
         public List<UserReg> GetList()
         {
             return _dal.SelectList();
+        }
+        
+        /// <summary>
+        /// 获取UserReg对象集合（分页 按ID降序）
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页尺寸</param>
+        /// <param name="recordCount">数据总数/输出参数</param>
+        /// <returns></returns>
+        public List<UserReg> GetList(Int32 pageIndex, Int32 pageSize, out Int32 recordCount)
+        {
+            if(pageIndex > 0 && pageSize > 0)
+		    {
+                return _dal.SelectList(pageIndex, pageSize, out recordCount);
+            }
+            recordCount = 0;
+            return null;
         }
     }
 }

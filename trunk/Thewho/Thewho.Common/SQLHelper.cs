@@ -21,13 +21,13 @@ namespace Thewho.Common
         /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
         /// <param name="commandParameters">SqlParameters参数数组/可为null</param>
         /// <returns>影响行数</returns>
-        public static int ExecuteNonQuery(string connectionString, string commandText, CommandType commandType, SqlParameter[] commandParameters)
+        public static Int32 ExecuteNonQuery(String connectionString, String commandText, CommandType commandType, SqlParameter[] commandParameters)
         {
             using (SqlConnection sqlConn = new SqlConnection(connectionString))
             {
                 sqlConn.Open();
                 SqlCommand cmd = CreateCommand(sqlConn, commandText, commandType, null, commandParameters);
-                int r = cmd.ExecuteNonQuery();
+                Int32 r = cmd.ExecuteNonQuery();
                 cmd.Parameters.Clear();
                 return r;
             }
@@ -36,27 +36,28 @@ namespace Thewho.Common
 
         #region ExecuteReader
         /// <summary>
-        /// 执行指定的SQL语句/存储过程 返回SqlDataReader读取器
+        /// 执行指定的SQL语句/存储过程 返回SqlDataReader读取器（读取完成后，请记得对SqlDataReader读取器进行关闭）
         /// </summary>
         /// <param name="connectionString">数据库连接字符串</param>
         /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param>
         /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
         /// <param name="commandParameters">SqlParameters参数数组/可为null</param>
         /// <returns>SqlDataReader读取器</returns>
-        public static SqlDataReader ExecuteReader(string connectionString, string commandText, CommandType commandType, SqlParameter[] commandParameters)
+        public static SqlDataReader ExecuteReader(String connectionString, String commandText, CommandType commandType, SqlParameter[] commandParameters)
         {
-            using (SqlConnection sqlConn = new SqlConnection(connectionString))
-            {
+            //using (SqlConnection sqlConn = new SqlConnection(connectionString))
+            //{
+                SqlConnection sqlConn = new SqlConnection(connectionString);
                 sqlConn.Open();
                 SqlCommand cmd = CreateCommand(sqlConn, commandText, commandType, null, commandParameters);
-                SqlDataReader dr = cmd.ExecuteReader();
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 cmd.Parameters.Clear();
                 return dr;
-            }
+            //}
         }
 
         /// <summary>
-        /// 执行指定的SQL语句/存储过程 返回SqlDataReader读取器
+        /// 执行指定的SQL语句/存储过程 返回SqlDataReader读取器（读取完成后，请记得对SqlDataReader读取器进行关闭）
         /// </summary>
         /// <param name="connectionString">数据库连接字符串</param>
         /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param>
@@ -64,15 +65,41 @@ namespace Thewho.Common
         /// <param name="commandParameters1">第一组SqlParameters参数数组/可为null</param>
         /// <param name="commandParameters2">第二组SqlParameters参数数组/可为null</param>
         /// <returns>SqlDataReader读取器</returns>
-        public static SqlDataReader ExecuteReader(string connectionString, string commandText, CommandType commandType, SqlParameter[] commandParameters1, SqlParameter[] commandParameters2)
+        public static SqlDataReader ExecuteReader(String connectionString, String commandText, CommandType commandType, SqlParameter[] commandParameters1, SqlParameter[] commandParameters2)
         {
-            using (SqlConnection sqlConn = new SqlConnection(connectionString))
-            {
+            //using (SqlConnection sqlConn = new SqlConnection(connectionString))
+            //{
+            SqlConnection sqlConn = new SqlConnection(connectionString);
                 sqlConn.Open();
                 SqlCommand cmd = CreateCommand(sqlConn, commandText, commandType, null, commandParameters1, commandParameters2);
                 SqlDataReader dr = cmd.ExecuteReader();
                 cmd.Parameters.Clear();
                 return dr;
+            //}
+        }
+        #endregion
+
+        #region ExecuteDataSet
+        /// <summary>
+        /// 执行指定的SQL语句/存储过程 返回一个包含结果集的DataSet
+        /// </summary>
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param>
+        /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
+        /// <param name="commandParameters">SqlParameters参数数组/可为null</param>
+        /// <returns>包含结果集的DataSet</returns>
+        public static DataSet ExecuteDataSet(String connectionString, String commandText, CommandType commandType, SqlParameter[] commandParameters)
+        {
+            using (SqlConnection sqlConn = new SqlConnection(connectionString))
+            {
+                sqlConn.Open();
+                SqlCommand cmd = CreateCommand(sqlConn, commandText, commandType, null, commandParameters);
+
+                DataSet ds = null;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                sda.Fill(ds);
+                cmd.Parameters.Clear();
+                return ds;
             }
         }
         #endregion
@@ -86,7 +113,7 @@ namespace Thewho.Common
         /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
         /// <param name="commandParameters">SqlParameters参数数组/可为null</param>
         /// <returns>结果集中的第一行第一列</returns>
-        public static object ExecuteScalar(string connectionString, string commandText, CommandType commandType, SqlParameter[] commandParameters)
+        public static Object ExecuteScalar(String connectionString, String commandText, CommandType commandType, SqlParameter[] commandParameters)
         {
             using (SqlConnection sqlConn = new SqlConnection(connectionString))
             {
@@ -147,7 +174,7 @@ namespace Thewho.Common
         /// <param name="commandParameters1">第一组SqlParameters参数数组/可为null</param>
         /// <param name="commandParameters2">第二组SqlParameters参数数组/可为null</param>
         /// <returns>SqlCommand对象</returns>
-        public static SqlCommand CreateCommand(SqlConnection sqlConn, string commandText, CommandType commandType, SqlTransaction transaction, SqlParameter[] commandParameters1, SqlParameter[] commandParameters2)
+        public static SqlCommand CreateCommand(SqlConnection sqlConn, String commandText, CommandType commandType, SqlTransaction transaction, SqlParameter[] commandParameters1, SqlParameter[] commandParameters2)
         {
             if (sqlConn.State != ConnectionState.Open)
             {

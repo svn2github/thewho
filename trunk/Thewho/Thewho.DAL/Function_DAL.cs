@@ -16,28 +16,16 @@ namespace Thewho.DAL
     {
         #region 常量
         //SQL语句
-        private const string _SQL_INSERT = "INSERT INTO [Function] ([FunctionName],[FunctionUrl],[FunctionType],[ParentID],[AddTime],[Status]) VALUES(@FunctionName,@FunctionUrl,@FunctionType,@ParentID,@AddTime,@Status)";
-        private const string _SQL_INSERT_RETURNID = "INSERT INTO [Function] [FunctionName],[FunctionUrl],[FunctionType],[ParentID],[AddTime],[Status] VALUES(@FunctionName,@FunctionUrl,@FunctionType,@ParentID,@AddTime,@Status); SELECT SCOPE_IDENTITY()";
+        private const string _SQL_INSERT = "INSERT INTO [Function] ([FunctionName],[FunctionUrl],[FunctionType],[ParentID],[Sort],[AddTime],[Status]) VALUES(@FunctionName,@FunctionUrl,@FunctionType,@ParentID,@Sort,@AddTime,@Status)";
+        private const string _SQL_INSERT_RETURNID = "INSERT INTO [Function] [FunctionName],[FunctionUrl],[FunctionType],[ParentID],[Sort],[AddTime],[Status] VALUES(@FunctionName,@FunctionUrl,@FunctionType,@ParentID,@Sort,@AddTime,@Status); SELECT SCOPE_IDENTITY()";
         private const string _SQL_DELETE = "DELETE FROM [Function] {0}";
-        private const string _SQL_UPDATE = "UPDATE [Function] SET [FunctionName] = @FunctionName,[FunctionUrl] = @FunctionUrl,[FunctionType] = @FunctionType,[ParentID] = @ParentID,[AddTime] = @AddTime,[Status] = @Status {0}";
-        private const string _SQL_SELECT = "SELECT [FunctionID],[FunctionName],[FunctionUrl],[FunctionType],[ParentID],[AddTime],[Status] FROM [Function] {0}";
-        private const string _SQL_SELECT_LIST = "SELECT [FunctionID],[FunctionName],[FunctionUrl],[FunctionType],[ParentID],[AddTime],[Status] FROM [Function] {0}";
+        private const string _SQL_UPDATE = "UPDATE [Function] SET [FunctionName] = @FunctionName,[FunctionUrl] = @FunctionUrl,[FunctionType] = @FunctionType,[ParentID] = @ParentID,[Sort] = @Sort,[AddTime] = @AddTime,[Status] = @Status {0}";
+        private const string _SQL_SELECT = "SELECT [FunctionID],[FunctionName],[FunctionUrl],[FunctionType],[ParentID],[Sort],[AddTime],[Status] FROM [Function] {0}";
+        private const string _SQL_SELECT_LIST = "SELECT [FunctionID],[FunctionName],[FunctionUrl],[FunctionType],[ParentID],[Sort],[AddTime],[Status] FROM [Function] {0}";
         //SQL语句 - 分页
-        private const string _SQL_SELECT_PAGING = "SELECT [FunctionID],[FunctionName],[FunctionUrl],[FunctionType],[ParentID],[AddTime],[Status] FROM (SELECT ROW_NUMBER() OVER(ORDER BY @OrderID @OrderType) AS ROWNUM,[FunctionID],[FunctionName],[FunctionUrl],[FunctionType],[ParentID],[AddTime],[Status] FROM Function {0}) AS T WHERE ROWNUM BETWEEN (@PageIndex-1) * @PageSize + 1 AND (@PageIndex * @PageSize)"; 
-        private const string _SQL_SELECT_COUNT = "SELECT COUNT([FunctionID]) FROM Function {0}"; 
+        private const string _SQL_SELECT_PAGING = "SELECT [FunctionID],[FunctionName],[FunctionUrl],[FunctionType],[ParentID],[Sort],[AddTime],[Status] FROM (SELECT ROW_NUMBER() OVER(ORDER BY {0}) AS ROWNUM,[FunctionID],[FunctionName],[FunctionUrl],[FunctionType],[ParentID],[Sort],[AddTime],[Status] FROM [Function] {1}) AS T WHERE ROWNUM BETWEEN (@PageIndex-1) * @PageSize + 1 AND (@PageIndex * @PageSize)"; 
+        private const string _SQL_SELECT_COUNT = "SELECT COUNT([FunctionID]) FROM [Function] {0}"; 
         #endregion
-        
-        #region 变量
-        //最终SQL语句
-        private string str; 
-        #endregion
-        
-        /// <summary>
-        /// 构造方法
-        /// </summary>
-        public Function_DAL()
-        { 
-        }
         
         #region 插入数据
         /// <summary>
@@ -48,12 +36,12 @@ namespace Thewho.DAL
  	    public Int32 Insert(Function obj)
 	    {			
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@FunctionName",obj.FunctionName),
 		        new SqlParameter("@FunctionUrl",obj.FunctionUrl),
 		        new SqlParameter("@FunctionType",obj.FunctionType),
 		        new SqlParameter("@ParentID",obj.ParentID),
+		        new SqlParameter("@Sort",obj.Sort),
 		        new SqlParameter("@AddTime",obj.AddTime),
 		        new SqlParameter("@Status",obj.Status)
 		    };			
@@ -69,12 +57,12 @@ namespace Thewho.DAL
  	    public Object InsertReturnID(Function obj)
 	    {			
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@FunctionName",obj.FunctionName),
 		        new SqlParameter("@FunctionUrl",obj.FunctionUrl),
 		        new SqlParameter("@FunctionType",obj.FunctionType),
 		        new SqlParameter("@ParentID",obj.ParentID),
+		        new SqlParameter("@Sort",obj.Sort),
 		        new SqlParameter("@AddTime",obj.AddTime),
 		        new SqlParameter("@Status",obj.Status)
 		    };			
@@ -92,20 +80,20 @@ namespace Thewho.DAL
  	    public Int32 Update(Function obj)
 	    {			
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_UPDATE, "WHERE [FunctionID] = @FunctionID");
+            String sqlStr = String.Format(_SQL_UPDATE, "WHERE [FunctionID] = @FunctionID");
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@FunctionID",obj.FunctionID),
 		        new SqlParameter("@FunctionName",obj.FunctionName),
 		        new SqlParameter("@FunctionUrl",obj.FunctionUrl),
 		        new SqlParameter("@FunctionType",obj.FunctionType),
 		        new SqlParameter("@ParentID",obj.ParentID),
+		        new SqlParameter("@Sort",obj.Sort),
 		        new SqlParameter("@AddTime",obj.AddTime),
 		        new SqlParameter("@Status",obj.Status)
 		    };			
     		
-		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, str, CommandType.Text, param);	
+		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, sqlStr, CommandType.Text, param);	
 	    }
 	    #endregion
 	    
@@ -118,14 +106,13 @@ namespace Thewho.DAL
  	    public Int32 Delete(Int32 FunctionID)
 	    {			
 	        //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_UPDATE, "WHERE [FunctionID] = @FunctionID");
+            String sqlStr = String.Format(_SQL_UPDATE, "WHERE [FunctionID] = @FunctionID");
 		    //声明参数数组并赋值
-		    SqlParameter[] param=
-		    {
+		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@FunctionID",FunctionID)
 		    };			
     		
-		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, str, CommandType.Text, param);	
+		    return SqlHelper.ExecuteNonQuery(SqlHelper.connectionString, sqlStr, CommandType.Text, param);	
 	    }
         #endregion
         
@@ -138,26 +125,45 @@ namespace Thewho.DAL
         public Function SelectObj(Int32 FunctionID)
         {
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT, "WHERE [FunctionID] = @FunctionID");
+            String sqlStr = String.Format(_SQL_SELECT, "WHERE [FunctionID] = @FunctionID");
             //SqlParameter参数数组
-            SqlParameter[] param={		
+            SqlParameter[] param = new SqlParameter[]{		
 			    new SqlParameter("@FunctionID",FunctionID)
-			};	
-            return ToObject(SqlHelper.ExecuteReader(SqlHelper.connectionString, str, CommandType.Text, param));
+			};
+			
+            return ToObject(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, param));
         }
         #endregion
 	    
 	    #region 查询数据集合
         /// <summary>
-        /// 获取Function表的所有数据
+        /// 获取Function表的数据（全部）
         /// </summary>
         /// <returns></returns>
         public List<Function> SelectList()
         {
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT_LIST, String.Empty);
+            String sqlStr = String.Format(_SQL_SELECT_LIST, String.Empty);
         
-            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, str, CommandType.Text, null));
+            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, null));
+        }
+        
+        /// <summary>
+        /// 获取Function表的数据（分页 按FunctionID降序）
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页尺寸</param>
+        /// <param name="recordCount">数据总数/输出参数</param>
+        /// <returns></returns>
+        public List<Function> SelectList(Int32 pageIndex, Int32 pageSize, out Int32 recordCount)
+        {
+            String orderStr = "@FunctionID DESC";
+            //分页基本参数的参数数组
+            SqlParameter[] parms = new SqlParameter[]{
+                new SqlParameter("@FunctionID","[FunctionID]")
+            };
+
+            return Paging(pageIndex, pageSize, orderStr, null, parms, out recordCount);
         }
         #endregion
         
@@ -167,42 +173,39 @@ namespace Thewho.DAL
         /// </summary>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页尺寸</param>
-        /// <param name="orderID">排序字段</param>
-        /// <param name="orderType">排序类型</param>
-        /// <param name="strWhere">WHERE条件字符串</param>
+        /// <param name="orderStr">ORDER排序字符串</param>
+        /// <param name="whereStr">WHERE条件字符串</param>
         /// <param name="whereParms">WHERE条件的参数数组</param>
         /// <param name="recordCount">数据总数/输出参数</param>
         /// <returns></returns>
-        private List<Function> Paging(int pageIndex, int pageSize, string orderID, string orderType, string whereStr, SqlParameter[] whereParms, out int recordCount)
+        private List<Function> Paging(Int32 pageIndex, Int32 pageSize, String orderStr, String whereStr, SqlParameter[] whereParms, out Int32 recordCount)
         {
-            //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT_PAGING, whereStr);
+            //将ORDER条件和WHERE条件组合进SQL语句
+            String sqlStr = String.Format(_SQL_SELECT_PAGING, orderStr, whereStr);
             //分页基本参数的参数数组
-            SqlParameter[] baseParms = new SqlParameter[]{
+            SqlParameter[] pagingParms = new SqlParameter[]{
                 new SqlParameter("@PageIndex",pageIndex),
-                new SqlParameter("@PageSize",pageSize),
-                new SqlParameter("@OrderID",orderID),
-                new SqlParameter("@OrderType",orderType)
+                new SqlParameter("@PageSize",pageSize)
             };
             
             //获取总数
             recordCount = Count(whereStr, whereParms);
             
-            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, str, CommandType.Text, baseParms, whereParms));
+            return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, pagingParms, whereParms));
         }
         
         /// <summary>
         /// 根据WHERE条件 计算Function表的数据总数
         /// </summary>
-        /// <param name="strWhere">WHERE条件字符串</param>
+        /// <param name="whereStr">WHERE条件字符串</param>
         /// <param name="whereParms">WHERE条件的参数数组</param>
         /// <returns>数据总数</returns>
-        private Int32 Count(string whereStr, SqlParameter[] whereParms)
+        private Int32 Count(String whereStr, SqlParameter[] whereParms)
         {
             //将WHERE条件组合进SQL语句
-            str = String.Format(_SQL_SELECT_COUNT, whereStr);
+            String sqlStr = String.Format(_SQL_SELECT_COUNT, whereStr);
             
-            return Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.connectionString, str, CommandType.Text, whereParms));
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(SqlHelper.connectionString, sqlStr, CommandType.Text, whereParms));
         }
         #endregion
         
@@ -218,7 +221,7 @@ namespace Thewho.DAL
             {
                 if (dr.HasRows)
                 {
-                    if (dr.Read())
+                    while (dr.Read())
                     {
                         Function model = new Function();
 		                model.FunctionID = Convert.ToInt32(dr["FunctionID"]);
@@ -226,6 +229,7 @@ namespace Thewho.DAL
 		                model.FunctionUrl = dr["FunctionUrl"].ToString();
 		                model.FunctionType = Convert.ToByte(dr["FunctionType"]);
 		                model.ParentID = Convert.ToInt32(dr["ParentID"]);
+		                model.Sort = Convert.ToByte(dr["Sort"]);
 		                model.AddTime = Convert.ToDateTime(dr["AddTime"]);
 		                model.Status = Convert.ToByte(dr["Status"]);
 		                
@@ -249,7 +253,7 @@ namespace Thewho.DAL
                 if (dr.HasRows)
                 {
                     list = new List<Function>();
-                    if (dr.Read())
+                    while (dr.Read())
                     {
                         Function model = new Function();
 		                model.FunctionID = Convert.ToInt32(dr["FunctionID"]);
@@ -257,6 +261,7 @@ namespace Thewho.DAL
 		                model.FunctionUrl = dr["FunctionUrl"].ToString();
 		                model.FunctionType = Convert.ToByte(dr["FunctionType"]);
 		                model.ParentID = Convert.ToInt32(dr["ParentID"]);
+		                model.Sort = Convert.ToByte(dr["Sort"]);
 		                model.AddTime = Convert.ToDateTime(dr["AddTime"]);
 		                model.Status = Convert.ToByte(dr["Status"]);
 		                

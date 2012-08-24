@@ -21,6 +21,7 @@ namespace Thewho.Web
         public DataSet myds = new DataSet();//创建XML数据源
         protected void Page_Load(object sender, EventArgs e)
         {
+            string iy = Request.QueryString["iy"];
             if (!Page.IsPostBack)
             {
 
@@ -38,6 +39,12 @@ namespace Thewho.Web
                 //        Cache.Add("Players", myds, mydepen, System.Web.Caching.Cache.NoAbsoluteExpiration, TimeSpan.FromMinutes(10), CacheItemPriority.Normal, null);
                 //    }
                 //}
+            }
+
+            string Request_QueryString = Request.QueryString.ToString();
+            if (Request.QueryString["page"] != null)
+            {
+                Request_QueryString = Request_QueryString.Replace("page=" + Request.QueryString["page"] + "&", "");
             }
         }
         

@@ -41,6 +41,16 @@ namespace Thewho.Model
             set { _ParentID = value; }
         }
         
+        private System.Byte _Sort;
+        /// <summary>
+        /// [默认值：0] [备注：用户组排序/0~255 升序排列] 
+        /// </summary>
+        public System.Byte Sort
+        {
+            get { return _Sort; }
+            set { _Sort = value; }
+        }
+        
         private System.DateTime _AddTime;
         /// <summary>
         /// [默认值：getdate] [备注：创建时间] 
