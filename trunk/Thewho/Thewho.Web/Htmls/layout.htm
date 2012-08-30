@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />	
 <title>Layout</title>
-<link rel="stylesheet" href="/Styles/layout.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/Styles/base.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../Styles/layout.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../Styles/base.css" type="text/css" media="screen" />
 <style type="text/css">
 	body { font: 12px/1.5 Tahoma, sans-serif; color: #333; }
 	#header { text-align: center; margin: 20px 0 10px; }
@@ -131,7 +131,20 @@
 		<div class="grid-1-3">
 			<div class="main">
 				<div class="main-wrap">
-					<div class="test-grid">main<span class="width">810px 自适应</span></div>
+					<div class="test-grid">
+					    <!--内嵌-->
+		                <div class="grid-1-3">
+			                <div class="main">
+				                <div class="main-wrap">
+					                <div class="test-grid1">main<span class="width">810px 自适应</span></div>
+				                </div>
+			                </div>
+			                <div class="sub">
+				                <div class="test-grid-big1">sub<span class="width">160px</span></div>
+			                </div>
+		                </div>
+					
+					</div>
 				</div>
 			</div>
 			<div class="sub">

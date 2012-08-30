@@ -27,7 +27,7 @@ namespace Thewho.Web
             int i = 0;
             list = _fun.GetList(1,2, out i);
             
-
+            //权限? 查询时应该是 先查最高级别的用户组 一级一级查下来 最后到用户
         }
     }
 }

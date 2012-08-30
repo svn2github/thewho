@@ -125,23 +125,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1.htm" />
-    <Content Include="code.htm" />
+    <Content Include="Htmls\dialog.htm" />
+    <Content Include="Htmls\code.htm" />
     <Content Include="Configs\Site.xml" />
     <Content Include="Configs\TipText.xml" />
     <Content Include="Images\button_bg.png" />
     <Content Include="Images\button_bg2.png" />
     <Content Include="Styles\dialog.css" />
     <Content Include="WebForm1.aspx" />
-    <Content Include="demo.htm" />
-    <Content Include="editor.htm" />
-    <Content Include="Htmls\default.htm" />
-    <Content Include="Htmls\1.htm" />
-    <Content Include="Htmls\2.htm" />
-    <Content Include="Htmls\3.htm" />
     <Content Include="Images\textbox_bg.gif" />
     <Content Include="Main\Site.Master" />
-    <Content Include="one.htm" />
     <Content Include="Scripts\1.js" />
     <Content Include="Scripts\box.js" />
     <Content Include="Scripts\dialog.js" />
@@ -157,8 +150,8 @@
     <Content Include="Styles\reset-grids.css" />
     <Content Include="Styles\reset-grids2.css" />
     <Content Include="Styles\mycss.css" />
-    <Content Include="test.htm" />
-    <Content Include="标准.htm" />
+    <Content Include="Htmls\layout.htm" />
+    <Content Include="Htmls\标准.htm" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
