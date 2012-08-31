@@ -9,13 +9,13 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <a href="Default.aspx?fffff=1212&dfgfdg">12121212</a>
+    <%--<a href="Default.aspx?fffff=1212&dfgfdg">12121212</a>
     <%= list.Count %>
     <hr />
     <% foreach (Thewho.Model.Function item in list)
        {%>
            <div><%= item.FunctionName %></div>
-    <% } %>
+    <% } %>--%>
     </div>
     </form>
 </body>
