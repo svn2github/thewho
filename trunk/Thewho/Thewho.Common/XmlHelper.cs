@@ -51,12 +51,10 @@ namespace Thewho.Common
         /// </summary>
         /// <param name="doc">xml文档</param>
         /// <param name="node">节点</param>
-        /// <param name="attribute">属性名，非空时返回该属性值，否则返回串联值</param>
         /// <returns>string</returns>
         /**************************************************
          * 使用示列:
          * XmlHelper.Read(doc, "/Node")
-         * XmlHelper.Read(doc, "/Node/Element[@Attribute='Name']")
          ************************************************/
         public static string Read(XmlDocument doc, string node)
         {
@@ -67,6 +65,29 @@ namespace Thewho.Common
             }
             return null;
         }
+
+        /// <summary>
+        /// 读取数据
+        /// </summary>
+        /// <param name="doc">xml文档</param>
+        /// <param name="node">节点</param>
+        /// <param name="attribute">属性名，非空时返回该属性值，否则返回串联值</param>
+        /// <returns>string</returns>
+        /**************************************************
+         * 使用示列:
+         * XmlHelper.Read(doc, "/Node")
+         * XmlHelper.Read(doc, "/Node/Element[@Attribute='Name']")
+         ************************************************/
+        public static string Read(XmlDocument doc, string node, string attribute)
+        {
+            XmlNode xn = doc.SelectSingleNode(node);
+            if (xn != null)
+            {
+                return (attribute.Equals("") ? xn.InnerText : xn.Attributes[attribute].Value);
+            }
+            return null;
+        }
+
 
         /// <summary>
         /// 插入数据
