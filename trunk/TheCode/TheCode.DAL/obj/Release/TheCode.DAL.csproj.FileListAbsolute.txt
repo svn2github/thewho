@@ -1,0 +1,9 @@
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Release\TheCode.DAL.dll
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Release\TheCode.DAL.pdb
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Release\TheCode.Common.dll
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Release\TheCode.Model.dll
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Release\TheCode.Common.pdb
+F:\Project\trunk\TheCode\TheCode.DAL\bin\Release\TheCode.Model.pdb
+F:\Project\trunk\TheCode\TheCode.DAL\obj\Release\ResolveAssemblyReference.cache
+F:\Project\trunk\TheCode\TheCode.DAL\obj\Release\TheCode.DAL.dll
+F:\Project\trunk\TheCode\TheCode.DAL\obj\Release\TheCode.DAL.pdb

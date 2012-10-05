@@ -1,6 +1,4 @@
 F:\Project\trunk\TheCode\TheCode\bin\Release\TheCode.exe.config
-F:\Project\trunk\TheCode\TheCode\bin\Release\TheCode.exe.manifest
-F:\Project\trunk\TheCode\TheCode\bin\Release\TheCode.application
 F:\Project\trunk\TheCode\TheCode\bin\Release\TheCode.exe
 F:\Project\trunk\TheCode\TheCode\bin\Release\TheCode.pdb
 F:\Project\trunk\TheCode\TheCode\obj\Release\ResolveAssemblyReference.cache
@@ -8,7 +6,5 @@ F:\Project\trunk\TheCode\TheCode\obj\Release\TheCode.LookLinkForm.resources
 F:\Project\trunk\TheCode\TheCode\obj\Release\TheCode.MainForm.resources
 F:\Project\trunk\TheCode\TheCode\obj\Release\TheCode.Properties.Resources.resources
 F:\Project\trunk\TheCode\TheCode\obj\Release\TheCode.csproj.GenerateResource.Cache
-F:\Project\trunk\TheCode\TheCode\obj\Release\TheCode.exe.manifest
-F:\Project\trunk\TheCode\TheCode\obj\Release\TheCode.application
 F:\Project\trunk\TheCode\TheCode\obj\Release\TheCode.exe
 F:\Project\trunk\TheCode\TheCode\obj\Release\TheCode.pdb

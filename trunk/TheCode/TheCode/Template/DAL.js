@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
-using Thewho.Common;
+using Rcube.Common;
 using ${Model_NameSpace}$;
 
 namespace ${DAL_NameSpace}$
@@ -12,12 +12,12 @@ namespace ${DAL_NameSpace}$
     /// <summary>
     /// ${DAL_ClassName}$（数据层）
     /// </summary>
-    public class ${DAL_ClassName}$
+    public partial class ${DAL_ClassName}$
     {
         #region 常量
         //SQL语句
         private const string _SQL_INSERT = "INSERT INTO [${TableName}$] (${ForStar[ALL_NOT_ID][,]}$[${ColumnName}$],${ForEnd}$) VALUES(${ForStar[ALL_NOT_ID][,]}$@${ColumnName}$,${ForEnd}$)";
-        private const string _SQL_INSERT_RETURNID = "INSERT INTO [${TableName}$] ${ForStar[ALL_NOT_ID][,]}$[${ColumnName}$],${ForEnd}$ VALUES(${ForStar[ALL_NOT_ID][,]}$@${ColumnName}$,${ForEnd}$); SELECT SCOPE_IDENTITY()";
+        private const string _SQL_INSERT_RETURNID = "INSERT INTO [${TableName}$] (${ForStar[ALL_NOT_ID][,]}$[${ColumnName}$],${ForEnd}$) VALUES(${ForStar[ALL_NOT_ID][,]}$@${ColumnName}$,${ForEnd}$); SELECT SCOPE_IDENTITY()";
         private const string _SQL_DELETE = "DELETE FROM [${TableName}$] {0}";
         private const string _SQL_UPDATE = "UPDATE [${TableName}$] SET ${ForStar[ALL_NOT_ID][,]}$[${ColumnName}$] = @${ColumnName}$,${ForEnd}$ {0}";
         private const string _SQL_SELECT = "SELECT ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM [${TableName}$] {0}";
@@ -90,7 +90,7 @@ namespace ${DAL_NameSpace}$
  	    public Int32 Delete(${PK_Type}$ ${PK_Name}$)
 	    {			
 	        //将WHERE条件组合进SQL语句
-            String sqlStr = String.Format(_SQL_UPDATE, "WHERE [${PK_Name}$] = @${PK_Name}$");
+            String sqlStr = String.Format(_SQL_DELETE, "WHERE [${PK_Name}$] = @${PK_Name}$");
 		    //声明参数数组并赋值
 		    SqlParameter[] param = new SqlParameter[]{
 		        new SqlParameter("@${PK_Name}$",${PK_Name}$)
@@ -141,11 +141,9 @@ namespace ${DAL_NameSpace}$
         /// <returns></returns>
         public List<${Model_ClassName}$> SelectList(Int32 pageIndex, Int32 pageSize, out Int32 recordCount)
         {
-            String orderStr = "@${PK_Name}$ DESC";
+            String orderStr = "${PK_Name}$ DESC";
             //分页基本参数的参数数组
-            SqlParameter[] parms = new SqlParameter[]{
-                new SqlParameter("@${PK_Name}$","[${PK_Name}$]")
-            };
+            SqlParameter[] parms = null;
 
             return Paging(pageIndex, pageSize, orderStr, null, parms, out recordCount);
         }
@@ -244,3 +242,4 @@ namespace ${DAL_NameSpace}$
         #endregion
     }
 }
+/* 本类由 TheCode v1.2 自动生成，请勿修改 */
