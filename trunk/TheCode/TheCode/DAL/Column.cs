@@ -94,7 +94,7 @@ namespace TheCode.DAL
                     reval = "Int64";
                     break;
                 case "binary":
-                    reval = "System.Byte[]";
+                    reval = "Byte[]";
                     break;
                 case "bit":
                     reval = "Boolean";
@@ -103,19 +103,19 @@ namespace TheCode.DAL
                     reval = "String";
                     break;
                 case "datetime":
-                    reval = "System.DateTime";
+                    reval = "DateTime";
                     break;
                 case "decimal":
-                    reval = "System.Decimal";
+                    reval = "Decimal";
                     break;
                 case "float":
-                    reval = "System.Double";
+                    reval = "Double";
                     break;
                 case "image":
-                    reval = "System.Byte[]";
+                    reval = "Byte[]";
                     break;
                 case "money":
-                    reval = "System.Decimal";
+                    reval = "Decimal";
                     break;
                 case "nchar":
                     reval = "String";
@@ -124,34 +124,34 @@ namespace TheCode.DAL
                     reval = "String";
                     break;
                 case "numeric":
-                    reval = "System.Decimal";
+                    reval = "Decimal";
                     break;
                 case "nvarchar":
                     reval = "String";
                     break;
                 case "real":
-                    reval = "System.Single";
+                    reval = "Single";
                     break;
                 case "smalldatetime":
-                    reval = "System.DateTime";
+                    reval = "DateTime";
                     break;
                 case "smallint":
                     reval = "Int16";
                     break;
                 case "smallmoney":
-                    reval = "System.Decimal";
+                    reval = "Decimal";
                     break;
                 case "timestamp":
-                    reval = "System.DateTime";
+                    reval = "DateTime";
                     break;
                 case "tinyint":
-                    reval = "System.Byte";
+                    reval = "Byte";
                     break;
                 case "uniqueidentifier":
-                    reval = "System.Guid";
+                    reval = "Guid";
                     break;
                 case "varbinary":
-                    reval = "System.Byte[]";
+                    reval = "Byte[]";
                     break;
                 case "varchar":
                     reval = "String";
