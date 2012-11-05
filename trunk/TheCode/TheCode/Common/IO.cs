@@ -33,6 +33,5 @@ namespace TheCode.Common
             sw.Close();
             //File.AppendAllText(path + "\\" + fileName + ".cs", content, UTF8Encoding.UTF8);
         }
-
     }
 }

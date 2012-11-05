@@ -47,9 +47,16 @@ namespace TheCode.DAL
             obj.TableName = dr["TableName"].ToString();
             obj.IsPk = dr["IsPk"].ToString();
             obj.IsIdentity = dr["IsIdentity"].ToString();
-            obj.IsNull = dr["IsNull"].ToString() ; //可为空可以在字段类型后面加?
+            obj.IsNull = dr["IsNull"].ToString() ; //可为空
             obj.DefaultValue = dr["DefaultValue"].ToString();
-            obj.ColumnType = ToCSharpType(dr["ColumnType"].ToString());
+            if (obj.IsNull == "1")//可为空的话 定义类型时需要加上?
+            {
+                obj.ColumnType = ToCSharpType(dr["ColumnType"].ToString()) + "?";
+            }
+            else
+            {
+                obj.ColumnType = ToCSharpType(dr["ColumnType"].ToString());
+            }
             obj.ConvertStr = ToConvert(dr["ColumnType"].ToString());
             obj.ColumnByte = dr["ColumnByte"].ToString();
             obj.ColumnLength = dr["ColumnLength"].ToString();

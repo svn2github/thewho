@@ -266,7 +266,7 @@ namespace TheCode.Common
 
 
         /// <summary>
-        /// 通用分页方法 (精简改进版) 编写：Tao
+        /// 通用分页方法
         /// </summary>
         /// <param name="conn">连接字符串</param>
         /// <param name="PageIndex">页码（第一页传“1”以此类推）</param>
@@ -300,7 +300,7 @@ namespace TheCode.Common
         }
 
         /// <summary>
-        /// 计算数据总数 编写：Tao
+        /// 计算数据总数
         /// </summary>
         /// <param name="conn">连接字符串</param>
         /// <param name="TableName">表名</param>

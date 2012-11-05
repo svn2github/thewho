@@ -114,11 +114,6 @@ namespace TheCode.Common
         //转型字符串原始类型属性 ConvertTo 如 ${ConvertTo(dr["xxx"])}$
         private Regex regConvertTo = new Regex(@"[\$][\{]ConvertTo[\[].*?[\]][\}][\$]");
 
-        public void SS(string str)
-        {
-            bool s = regIsTempate.IsMatch(str);
-        }
-
         #endregion
 
 
@@ -262,18 +257,14 @@ namespace TheCode.Common
                 else if (forParmData == "ALL_NOT_PK")//除主键
                 {
                     list = GetNotPkColumnList();
-                    //list.Remove(GetPKColumn());
                 }
-                else if (forParmData == "ALL_NOT_ID")//除自增长ID 一般用这个
+                else if (forParmData == "ALL_NOT_ID")//除自增长ID
                 {
                     list = GetNotIDColumnList();
-                    //list.Remove(GetIDColumn());
                 }
                 else if (forParmData == "ALL_NOT_PK_ID")//除主键 除自增长ID
                 {
                     list = GetNotPKIDColumnList();
-                   // list.Remove(GetPKColumn());
-                    //list.Remove(GetIDColumn());
                 }
 
                 //最后一个字段
@@ -297,9 +288,6 @@ namespace TheCode.Common
                 {
                     columnStr = lastChar == null ? temp : temp.Remove(temp.LastIndexOf(lastChar));
                 }
-
-                
-                //columnStr = ReplacePram(columnStr);
 
                 str = str.Replace(forArray[i].Value, columnStr);
             }
@@ -329,7 +317,6 @@ namespace TheCode.Common
         /// <returns></returns>
         private string ReplaceColumn(string str, TheCode.Model.Column c, string lastChar, bool isLine)
         {
-
             str = str.Replace(NameSpace, nameSpace);
             str = str.Replace(DatabaseName, databaseName);
             str = str.Replace(TableName, tableName);
@@ -339,7 +326,15 @@ namespace TheCode.Common
             if (regConvertTo.IsMatch(str))
 	        {
                 string temp = regConvertTo.Matches(str)[0].Value;
-        		str = str.Replace(temp, String.Format(c.ConvertStr,temp.Replace("${ConvertTo[","").Replace("]}$","")));
+                if (c.IsNull == "1") //可为空的话 转换时需要加上数据库空字段（DBNull.Value）验证
+	            {
+                    string s = temp.Replace("${ConvertTo[","").Replace("]}$","");
+                    str = str.Replace(temp, s + " == DBNull.Value ? null : " + String.Format(c.ConvertStr,s));
+	            }
+                else
+                {
+                    str = str.Replace(temp, String.Format(c.ConvertStr,temp.Replace("${ConvertTo[","").Replace("]}$","")));
+                }
 	        }
 
             str = str.Replace(IsPk_Template, c.IsPk == "1" ? "[主键] " : "");
@@ -350,12 +345,6 @@ namespace TheCode.Common
             str = str.Replace(ColumnByte_Template, c.ColumnByte);
             str = str.Replace(ColumnLength_Template, c.ColumnLength);
             str = str.Replace(ColumnRemark_Template, c.ColumnRemark != "" ? "[备注：" + c.ColumnRemark + "] " : "");
-            
-            //添加最后一个字符
-            //if (!string.IsNullOrEmpty(lastChar))
-            //{
-            //    str = str + Convert.ToString(lastChar);
-            //}
            
             return str;
         }

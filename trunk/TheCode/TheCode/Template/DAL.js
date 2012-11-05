@@ -242,4 +242,4 @@ namespace ${DAL_NameSpace}$
         #endregion
     }
 }
-/* 本类由 TheCode v1.2 自动生成，请勿修改 */
+/* 本类由 TheCode v1.2 自动生成 */

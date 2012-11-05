@@ -43,7 +43,7 @@ namespace TheCode
         //窗体初始化方法
         public void Form_Init()
         {
-            this.Text = "代码生成器 - TheCode v1.2";
+            this.Text = "代码生成器 - TheCode v1.3.1";
             com_Type.SelectedItem = "Windows 身份验证";
 
             txt_Model_Namespace.Text = Model_Namespace;

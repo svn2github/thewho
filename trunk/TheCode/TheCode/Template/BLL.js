@@ -105,3 +105,4 @@ namespace ${BLL_NameSpace}$
         }
     }
 }
+/* 本类由 TheCode v1.2 自动生成 */
