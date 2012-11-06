@@ -59,21 +59,12 @@ img{border:0;}
 而其他浏览器将提交 value 属性的内容。请在 HTML 表单中使用 input 元素来创建按钮。
 */
 
-
-.t20{width:20px;}
-.t40{width:40px;}
-.t60{width:60px;}
-.t80{width:80px;}
-.t100{width:100px;}
-.t120{width:120px;}
-.t140{width:140px;}
-.t180{width:180px;}
-.t200{width:200px;}
-.t300{width:300px;}
-.t400{width:400px;}
-.t500{width:500px;}
-.t600{width:600px;}
-
+.w10{width:10px;}.w20{width:20px;}.w40{width:40px;}.w60{width:60px;}.w80{width:80px;}
+.w100{width:100px;}.w120{width:120px;}.w140{width:140px;}.w180{width:180px;}.w200{width:200px;}
+.w300{width:300px;}.w400{width:400px;}.w500{width:500px;}.w600{width:600px;}.w700{width:700px;}.w800{width:800px;}
+.h10{height:10px;}.h20{height:20px;}.h40{height:40px;}.h60{height:60px;}.h80{height:80px;}
+.h100{height:100px;}.h120{height:120px;}.h140{height:140px;}.h180{height:180px;}.h200{height:200px;}
+.h300{height:300px;}.h400{height:400px;}.h500{height:500px;}.h600{height:600px;}.h700{height:700px;}.h800{height:800px;}
 
 
 .textBoxSmall{width:480px; height:100px;}
