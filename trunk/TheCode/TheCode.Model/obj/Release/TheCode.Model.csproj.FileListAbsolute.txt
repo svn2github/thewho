@@ -1,5 +1,0 @@
-F:\Project\trunk\TheCode\TheCode.Model\bin\Release\TheCode.Model.dll
-F:\Project\trunk\TheCode\TheCode.Model\bin\Release\TheCode.Model.pdb
-F:\Project\trunk\TheCode\TheCode.Model\obj\Release\ResolveAssemblyReference.cache
-F:\Project\trunk\TheCode\TheCode.Model\obj\Release\TheCode.Model.dll
-F:\Project\trunk\TheCode\TheCode.Model\obj\Release\TheCode.Model.pdb
