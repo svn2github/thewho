@@ -1,7 +1,0 @@
-F:\Project\trunk\TheCode\TheCode.Common\bin\Release\TheCode.Common.dll
-F:\Project\trunk\TheCode\TheCode.Common\bin\Release\TheCode.Common.pdb
-F:\Project\trunk\TheCode\TheCode.Common\bin\Release\TheCode.Model.dll
-F:\Project\trunk\TheCode\TheCode.Common\bin\Release\TheCode.Model.pdb
-F:\Project\trunk\TheCode\TheCode.Common\obj\Release\ResolveAssemblyReference.cache
-F:\Project\trunk\TheCode\TheCode.Common\obj\Release\TheCode.Common.dll
-F:\Project\trunk\TheCode\TheCode.Common\obj\Release\TheCode.Common.pdb
