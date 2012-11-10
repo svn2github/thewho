@@ -19,13 +19,28 @@ img{border:0;}
 /*上右下左*/
 .text{padding:2px 3px 0px 3px;height:18px;line-height:17px;background-image:url(../Images/textbox_bg.gif);color:#333;border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;letter-spacing:0px;}
 .textbig{padding:4px 4px 4px 4px;height:18px;line-height:18px;font-size:14px;font-weight:bold;background-image:url(../Images/textbox_bg.gif);border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;letter-spacing:0px;}
-.textarea{font-family:Tahoma;padding:3px 3px 3px 3px;border:1px solid #999;background-image:url(../Images/textbox_bg.gif);background-repeat:repeat-x;overflow-y:auto;line-height:16px;letter-spacing:0px;}
+.textarea{font-family:Tahoma;padding:3px 3px 3px 3px;border:1px solid #999;background-image:url(../Images/textbox_bg.gif);background-repeat:repeat-x;overflow-y:auto;line-height:16px;letter-spacing:0px;resize:none;}
 .radio,.checkbox{border:0px;vertical-align:middle; margin:-2px 2px 1px 1px;background-image:none; width:auto; height:auto;}
 .file{height:24px;line-height:20px;width:280px;}
 .select{height:22px;border:1px solid #999; padding:1px 1px 1px 1px;background-image:url(../Images/textbox_bg.gif);outline:none;letter-spacing:1px;}
 /*.button{border:1px solid #999;width:80px;height:30px;outline:none;font-size:12px; 
          color:#333; cursor:pointer; background-image:url(../Images/button_bg2.png);}
 .button:hover{background-color:#63c7fe;}*/
+.fin{ outline:none;border-left:1px solid #999;border-top:1px solid #999;border-right:1px solid #cacaca;border-bottom:1px solid #cacaca;}
+
+.textbig2{outline:none; color:#333; padding:4px 4px 4px 4px;height:18px;line-height:18px;font-size:14px;font-weight:bold;background-image:url(../Images/textbox_bg.gif);border:2px solid #999;letter-spacing:0px;}
+.textbig2fin{border:2px solid #666;}
+
+.textlogin{outline:none; color:#333; padding:4px 4px 4px 4px;height:18px;line-height:18px;font-size:14px;font-weight:bold;border:2px solid #999;letter-spacing:0px;background-image:url(../Images/textbox_bg.gif);}
+.textlogin-in{outline:none; color:#333; padding:4px 4px 4px 4px;height:18px;line-height:18px;font-size:14px;font-weight:bold;border:2px solid #666;letter-spacing:0px;background-image:url(../Images/textbox_bg.gif);}
+
+
+.imgcaptcha{vertical-align:middle; border:2px solid #999; height:26px; margin:0px; padding:0px; cursor:pointer;}
+
+
+.selectdiv{display: inline-block; outline:none; color:#333;height:26px;line-height:26px;font-size:14px;font-weight:bold;border:2px solid #999; zoom:1; text-indent:4px;}
+.selectdiv-in{display: inline-block; outline:none; color:#333;height:26px;line-height:26px;font-size:14px;font-weight:bold;border:2px solid #666;}
+
 
 .button
 {
@@ -36,7 +51,7 @@ img{border:0;}
     text-decoration: none; 
     font: 12px/100% Arial, Helvetica, sans-serif;
     /*padding: .5em 2em .55em; */
-    padding:10px;
+    padding:6px;
     /*text-shadow: 0 1px 1px rgba(0,0,0,.3); 
     -webkit-border-radius: .5em; 
     -moz-border-radius: .5em; 
@@ -70,6 +85,9 @@ img{border:0;}
 .textBoxSmall{width:480px; height:100px;}
 .textBoxBig{width:600px; height:200px;}
 
+.login{background-color:#79be1e; color:#fff; border:1px solid #96a37b; font-size:14px;letter-spacing:2px; font-weight:bold;}
+.login:hover{background-color:#89d228; color:#fff; border:1px solid #96a37b; font-size:14px;letter-spacing:2px; font-weight:bold;}
+
 
 .blue{background-color:#48b5f2; color:#0f4b6d; border:1px solid #84acc3;}
 .blue:hover{background-color:#63c7fe; color:#0f4b6d; border:1px solid #84acc3;}
@@ -84,3 +102,6 @@ img{border:0;}
 .gray:hover{background-color:#b6bbc0; color:#525252; border:1px solid #a5a5a5;}
 
 .big{ padding:12px; font-size:16px; font-weight:bold;font-family:微软雅黑;}
+
+.sd{background-color:#a9adb1;  color:#525252; border:1px solid #a5a5a5; font-size:14px;letter-spacing:1px; font-weight:bold;}
+.sd:hover{background-color:#b6bbc0; color:#525252; border:1px solid #a5a5a5; font-size:14px;letter-spacing:1px; font-weight:bold;}

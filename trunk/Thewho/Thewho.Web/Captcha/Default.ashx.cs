@@ -24,7 +24,7 @@ namespace Thewho.Web.Captcha
 
             context.Response.ClearContent();
             context.Response.ContentType = "image/Gif";
-            context.Response.BinaryWrite(Thewho.Common.CaptchaHelper.Create(4,0,80,26,12,"",true,true,"","",0,0).ToArray());
+            context.Response.BinaryWrite(Thewho.Common.CaptchaHelper.Create(4,0,80,24,12,"",true,true,"","",0,0).ToArray());
             context.Response.Expires = 0;
             context.Response.Buffer = true;
             context.Response.ExpiresAbsolute = DateTime.Now.AddSeconds(-1);
