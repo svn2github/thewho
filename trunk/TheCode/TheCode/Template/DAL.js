@@ -23,7 +23,9 @@ namespace ${DAL_NameSpace}$
         private const string _SQL_SELECT = "SELECT ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM [${TableName}$] {0}";
         private const string _SQL_SELECT_LIST = "SELECT ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM [${TableName}$] {0}";
         //SQL语句 - 分页
-        private const string _SQL_SELECT_PAGING = "SELECT ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM (SELECT ROW_NUMBER() OVER(ORDER BY {0}) AS ROWNUM,${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM [${TableName}$] {1}) AS T WHERE ROWNUM BETWEEN (@PageIndex-1) * @PageSize + 1 AND (@PageIndex * @PageSize)"; 
+        //private const string _SQL_SELECT_PAGING = "SELECT ${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM (SELECT ROW_NUMBER() OVER(ORDER BY {0}) AS ROWNUM,${ForStar[ALL][,]}$[${ColumnName}$],${ForEnd}$ FROM [${TableName}$] {1}) AS T WHERE ROWNUM BETWEEN (@PageIndex-1) * @PageSize + 1 AND (@PageIndex * @PageSize)"; 
+        private const string _SQL_SELECT_PAGING_ASC = "SELECT TOP {0} * FROM [${TableName}$] WHERE [${PK_Name}$] >= (SELECT ISNULL(MAX([${PK_Name}$]),0) FROM (SELECT TOP {1} [${PK_Name}$] FROM [${TableName}$] WHERE 1=1 {2} ORDER BY {3}) T) {4} ORDER BY {5}";
+        private const string _SQL_SELECT_PAGING_DESC = "SELECT TOP {0} * FROM [${TableName}$] WHERE [${PK_Name}$] <= (SELECT ISNULL(MIN([${PK_Name}$]),0) FROM (SELECT TOP {1} [${PK_Name}$] FROM [${TableName}$] WHERE 1=1 {2} ORDER BY {3} DESC) T) {4} ORDER BY {5} DESC";
         private const string _SQL_SELECT_COUNT = "SELECT COUNT([${PK_Name}$]) FROM [${TableName}$] {0}"; 
         #endregion
         
@@ -141,11 +143,12 @@ namespace ${DAL_NameSpace}$
         /// <returns></returns>
         public List<${Model_ClassName}$> SelectList(Int32 pageIndex, Int32 pageSize, out Int32 recordCount)
         {
-            String orderStr = "${PK_Name}$ DESC";
+            //String orderStr = "${PK_Name}$ DESC";
             //分页基本参数的参数数组
             SqlParameter[] parms = null;
 
-            return Paging(pageIndex, pageSize, orderStr, null, parms, out recordCount);
+            //return Paging(pageIndex, pageSize, orderStr, null, parms, out recordCount);
+            return Paging(pageIndex, pageSize, "${PK_Name}$", "DESC", null, parms, out recordCount);
         }
         #endregion
         
@@ -160,17 +163,60 @@ namespace ${DAL_NameSpace}$
         /// <param name="whereParms">WHERE条件的参数数组</param>
         /// <param name="recordCount">数据总数/输出参数</param>
         /// <returns></returns>
-        private List<${Model_ClassName}$> Paging(Int32 pageIndex, Int32 pageSize, String orderStr, String whereStr, SqlParameter[] whereParms, out Int32 recordCount)
+        //private List<${Model_ClassName}$> Paging(Int32 pageIndex, Int32 pageSize, String orderStr, String whereStr, SqlParameter[] whereParms, out Int32 recordCount)
+        //{
+        //    //将ORDER条件和WHERE条件组合进SQL语句
+        //    String sqlStr = String.Format(_SQL_SELECT_PAGING, orderStr, whereStr);
+        //    //分页基本参数的参数数组
+        //    SqlParameter[] pagingParms = new SqlParameter[]{
+        //        new SqlParameter("@PageIndex",pageIndex),
+        //        new SqlParameter("@PageSize",pageSize)
+        //    };
+        //    SqlParameter[] pagingParms = null;
+            
+        //    //获取总数
+        //    recordCount = Count(whereStr, whereParms);
+        //    
+        //    return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, pagingParms, whereParms));
+        //}
+        
+        /// <summary>
+        /// 获取${TableName}$表的分页数据
+        /// </summary>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页尺寸</param>
+        /// <param name="orderId">ORDER的字段</param>
+        /// <param name="orderType">ORDER的类型 升序(ASC)还是降序(DESC)</param>
+        /// <param name="whereStr">WHERE条件字符串</param>
+        /// <param name="whereParms">WHERE条件的参数数组</param>
+        /// <param name="recordCount">数据总数/输出参数</param>
+        /// <returns></returns>
+        private List<${Model_ClassName}$> Paging(Int32 pageIndex, Int32 pageSize, String orderId, String orderType, String whereStr, SqlParameter[] whereParms, out Int32 recordCount)
         {
+            Int32 inTopNum = pageSize * (pageIndex - 1) + 1;
+            String sqlStr = "";
+            
             //将ORDER条件和WHERE条件组合进SQL语句
-            String sqlStr = String.Format(_SQL_SELECT_PAGING, orderStr, whereStr);
-            //分页基本参数的参数数组
+            if(orderType == "DESC")
+            {
+                sqlStr = String.Format(_SQL_SELECT_PAGING_DESC, pageSize, inTopNum, whereStr,orderId, whereStr, orderId);
+            }
+            else
+            {
+                sqlStr = String.Format(_SQL_SELECT_PAGING_ASC, pageSize, inTopNum, whereStr,orderId, whereStr, orderId);
+            }
+            
+            ////分页基本参数的参数数组
             SqlParameter[] pagingParms = new SqlParameter[]{
                 new SqlParameter("@PageIndex",pageIndex),
                 new SqlParameter("@PageSize",pageSize)
             };
             
             //获取总数
+            if(!string.IsNullOrEmpty(whereStr))
+            {
+                whereStr = " WHERE 1=1 " + whereStr;
+            }
             recordCount = Count(whereStr, whereParms);
             
             return ToList(SqlHelper.ExecuteReader(SqlHelper.connectionString, sqlStr, CommandType.Text, pagingParms, whereParms));

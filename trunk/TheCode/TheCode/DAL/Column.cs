@@ -49,13 +49,16 @@ namespace TheCode.DAL
             obj.IsIdentity = dr["IsIdentity"].ToString();
             obj.IsNull = dr["IsNull"].ToString() ; //可为空
             obj.DefaultValue = dr["DefaultValue"].ToString();
+            obj.ColumnType = ToCSharpType(dr["ColumnType"].ToString());
             if (obj.IsNull == "1")//可为空的话 定义类型时需要加上?
             {
-                obj.ColumnType = ToCSharpType(dr["ColumnType"].ToString()) + "?";
-            }
-            else
-            {
-                obj.ColumnType = ToCSharpType(dr["ColumnType"].ToString());
+                if (obj.ColumnType == "Int16" || obj.ColumnType == "Int32" || obj.ColumnType == "Int64" ||
+                    obj.ColumnType == "Uint16" || obj.ColumnType == "Uint32" || obj.ColumnType == "Uint64" || 
+                    obj.ColumnType == "Boolean" || obj.ColumnType == "Byte" || obj.ColumnType == "SByte"
+                    )//并且是值类型
+                {
+                    obj.ColumnType = obj.ColumnType+"?";
+                }
             }
             obj.ConvertStr = ToConvert(dr["ColumnType"].ToString());
             obj.ColumnByte = dr["ColumnByte"].ToString();

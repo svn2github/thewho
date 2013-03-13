@@ -329,7 +329,19 @@ namespace TheCode.Common
                 if (c.IsNull == "1") //可为空的话 转换时需要加上数据库空字段（DBNull.Value）验证
 	            {
                     string s = temp.Replace("${ConvertTo[","").Replace("]}$","");
-                    str = str.Replace(temp, s + " == DBNull.Value ? null : " + String.Format(c.ConvertStr,s));
+
+                    if (c.ColumnType == "Int16?" || c.ColumnType == "Int32?" || c.ColumnType == "Int64?" ||
+                    c.ColumnType == "Uint16?" || c.ColumnType == "Uint32?" || c.ColumnType == "Uint64?" ||
+                    c.ColumnType == "Boolean?" || c.ColumnType == "Byte?" || c.ColumnType == "SByte?"
+                    )//并且是值类型
+                    {
+                        str = str.Replace(temp, s + " == DBNull.Value ? (" + c.ColumnType + ")null : " + String.Format(c.ConvertStr, s));
+                    }
+                    else
+                    {
+                        str = str.Replace(temp, s + " == DBNull.Value ? null : " + String.Format(c.ConvertStr, s));
+                    }
+                    
 	            }
                 else
                 {
