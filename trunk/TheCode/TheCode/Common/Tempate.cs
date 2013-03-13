@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Configuration;
 using System.Text.RegularExpressions;
@@ -195,7 +194,7 @@ namespace TheCode.Common
             }
 
             //第五步 创建文件
-            TheCode.Common.IO.WriteFile(@createPath, tableName + tempsuffix, tempateStr);
+            TheCode.Common.IO.WriteFile(@createPath, tableName + tempsuffix + ".cs", tempateStr);
 
         }
 

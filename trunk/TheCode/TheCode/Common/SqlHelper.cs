@@ -1,320 +1,208 @@
-﻿//===============================================================================
-// This file is based on the Microsoft Data Access Application Block for .NET
-// For more information please go to 
-// http://msdn.microsoft.com/library/en-us/dnbda/html/daab-rm.asp
-//===============================================================================
-
-using System;
-using System.Configuration;
+﻿using System;
 using System.Data;
+using System.Xml;
 using System.Data.SqlClient;
 using System.Collections;
+using System.Configuration;
 
 namespace TheCode.Common
 {
-
-    /// <summary>
-    /// The SqlHelper class is intended to encapsulate high performance, 
-    /// scalable best practices for common uses of SqlClient.
-    /// </summary>
-    public abstract class SqlHelper
+    public sealed class SqlHelper
     {
+        //public static readonly string connectionString = ConfigurationManager.ConnectionStrings["Rcube"].ConnectionString;
 
-        //Database connection strings
-        //public static readonly string ConnectionStringLocalTransaction = ConfigurationManager.ConnectionStrings["SQLConnString1"].ConnectionString;
-        //public static readonly string ConnectionStringInventoryDistributedTransaction = ConfigurationManager.ConnectionStrings["SQLConnString2"].ConnectionString;
-        //public static readonly string ConnectionStringOrderDistributedTransaction = ConfigurationManager.ConnectionStrings["SQLConnString3"].ConnectionString;
-        //public static readonly string ConnectionStringProfile = ConfigurationManager.ConnectionStrings["SQLProfileConnString"].ConnectionString;
-
-        // Hashtable to store cached parameters
-        private static Hashtable parmCache = Hashtable.Synchronized(new Hashtable());
-
+        #region ExecuteNonQuery
         /// <summary>
-        /// Execute a SqlCommand (that returns no resultset) against the database specified in the connection string 
-        /// using the provided parameters.
+        /// 执行指定的SQL语句/存储过程 返回影响行数
         /// </summary>
-        /// <remarks>
-        /// e.g.:  
-        ///  int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24));
-        /// </remarks>
-        /// <param name="connectionString">a valid connection string for a SqlConnection</param>
-        /// <param name="commandType">the CommandType (stored procedure, text, etc.)</param>
-        /// <param name="commandText">the stored procedure name or T-SQL command</param>
-        /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
-        /// <returns>an int representing the number of rows affected by the command</returns>
-        public static int ExecuteNonQuery(string connectionString, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
+        /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param> 
+        /// <param name="commandParameters">SqlParameters参数数组/可为null</param>
+        /// <returns>影响行数</returns>
+        public static Int32 ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
         {
-
-            SqlCommand cmd = new SqlCommand();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection sqlConn = new SqlConnection(connectionString))
             {
-                PrepareCommand(cmd, conn, null, cmdType, cmdText, commandParameters);
-                int val = cmd.ExecuteNonQuery();
+                sqlConn.Open();
+                SqlCommand cmd = CreateCommand(sqlConn, commandType, commandText, null, commandParameters);
+                Int32 r = cmd.ExecuteNonQuery();
                 cmd.Parameters.Clear();
-                return val;
+                return r;
             }
         }
+        #endregion
 
+        #region ExecuteReader
         /// <summary>
-        /// Execute a SqlCommand (that returns no resultset) against an existing database connection 
-        /// using the provided parameters.
+        /// 执行指定的SQL语句/存储过程 返回SqlDataReader读取器（读取完成后，请记得对SqlDataReader读取器进行关闭）
         /// </summary>
-        /// <remarks>
-        /// e.g.:  
-        ///  int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24));
-        /// </remarks>
-        /// <param name="conn">an existing database connection</param>
-        /// <param name="commandType">the CommandType (stored procedure, text, etc.)</param>
-        /// <param name="commandText">the stored procedure name or T-SQL command</param>
-        /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
-        /// <returns>an int representing the number of rows affected by the command</returns>
-        public static int ExecuteNonQuery(SqlConnection connection, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
+        /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param> 
+        /// <param name="commandParameters">SqlParameters参数数组/可为null</param>
+        /// <returns>SqlDataReader读取器</returns>
+        public static SqlDataReader ExecuteReader(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
         {
-            
-            SqlCommand cmd = new SqlCommand();
-
-            PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
-            int val = cmd.ExecuteNonQuery();
-            cmd.Parameters.Clear();
-            return val;
-        }
-       
-        /// <summary>
-        /// Execute a SqlCommand (that returns no resultset) using an existing SQL Transaction 
-        /// using the provided parameters.
-        /// </summary>
-        /// <remarks>
-        /// e.g.:  
-        ///  int result = ExecuteNonQuery(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24));
-        /// </remarks>
-        /// <param name="trans">an existing sql transaction</param>
-        /// <param name="commandType">the CommandType (stored procedure, text, etc.)</param>
-        /// <param name="commandText">the stored procedure name or T-SQL command</param>
-        /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
-        /// <returns>an int representing the number of rows affected by the command</returns>
-        public static int ExecuteNonQuery(SqlTransaction trans, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
-        {
-
-            
-            SqlCommand cmd = new SqlCommand();
-            PrepareCommand(cmd, trans.Connection, trans, cmdType, cmdText, commandParameters);
-            int val = cmd.ExecuteNonQuery();
-            cmd.Parameters.Clear();
-            return val;
-        }
-
-        /// <summary>
-        /// Execute a SqlCommand that returns a resultset against the database specified in the connection string 
-        /// using the provided parameters.
-        /// </summary>
-        /// <remarks>
-        /// e.g.:  
-        ///  SqlDataReader r = ExecuteReader(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24));
-        /// </remarks>
-        /// <param name="connectionString">a valid connection string for a SqlConnection</param>
-        /// <param name="commandType">the CommandType (stored procedure, text, etc.)</param>
-        /// <param name="commandText">the stored procedure name or T-SQL command</param>
-        /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
-        /// <returns>A SqlDataReader containing the results</returns>
-        public static SqlDataReader ExecuteReader(string connectionString, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
-        {
-            SqlCommand cmd = new SqlCommand();
-            SqlConnection conn = new SqlConnection(connectionString);
-
-            // we use a try/catch here because if the method throws an exception we want to 
-            // close the connection throw code, because no datareader will exist, hence the 
-            // commandBehaviour.CloseConnection will not work
-            try
-            {
-                PrepareCommand(cmd, conn, null, cmdType, cmdText, commandParameters);
-                SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            //using (SqlConnection sqlConn = new SqlConnection(connectionString))
+            //{
+                SqlConnection sqlConn = new SqlConnection(connectionString);
+                sqlConn.Open();
+                SqlCommand cmd = CreateCommand(sqlConn, commandType, commandText, null, commandParameters);
+                SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 cmd.Parameters.Clear();
-                return rdr;
-            }
-            catch
-            {
-                conn.Close();
-                throw;
-            }
+                return dr;
+            //}
         }
 
         /// <summary>
-        /// Execute a SqlCommand that returns the first column of the first record against the database specified in the connection string 
-        /// using the provided parameters.
+        /// 执行指定的SQL语句/存储过程 返回SqlDataReader读取器（读取完成后，请记得对SqlDataReader读取器进行关闭）
         /// </summary>
-        /// <remarks>
-        /// e.g.:  
-        ///  Object obj = ExecuteScalar(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24));
-        /// </remarks>
-        /// <param name="connectionString">a valid connection string for a SqlConnection</param>
-        /// <param name="commandType">the CommandType (stored procedure, text, etc.)</param>
-        /// <param name="commandText">the stored procedure name or T-SQL command</param>
-        /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
-        /// <returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
-        public static object ExecuteScalar(string connectionString, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
+        /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param> 
+        /// <param name="commandParameters1">第一组SqlParameters参数数组/可为null</param>
+        /// <param name="commandParameters2">第二组SqlParameters参数数组/可为null</param>
+        /// <returns>SqlDataReader读取器</returns>
+        public static SqlDataReader ExecuteReader(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters1, SqlParameter[] commandParameters2)
         {
-            SqlCommand cmd = new SqlCommand();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
-                object val = cmd.ExecuteScalar();
+            //using (SqlConnection sqlConn = new SqlConnection(connectionString))
+            //{
+            SqlConnection sqlConn = new SqlConnection(connectionString);
+                sqlConn.Open();
+                SqlCommand cmd = CreateCommand(sqlConn, commandType, commandText, null, commandParameters1, commandParameters2);
+                SqlDataReader dr = cmd.ExecuteReader();
                 cmd.Parameters.Clear();
-                return val;
+                return dr;
+            //}
+        }
+        #endregion
+
+        #region ExecuteDataSet
+        /// <summary>
+        /// 执行指定的SQL语句/存储过程 返回一个包含结果集的DataSet
+        /// </summary>
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
+        /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param> 
+        /// <param name="commandParameters">SqlParameters参数数组/可为null</param>
+        /// <returns>包含结果集的DataSet</returns>
+        public static DataSet ExecuteDataSet(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+        {
+            using (SqlConnection sqlConn = new SqlConnection(connectionString))
+            {
+                sqlConn.Open();
+                SqlCommand cmd = CreateCommand(sqlConn, commandType, commandText, null, commandParameters);
+
+                DataSet ds = null;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                sda.Fill(ds);
+                cmd.Parameters.Clear();
+                return ds;
             }
         }
+        #endregion
 
+        #region ExecuteScalar
         /// <summary>
-        /// Execute a SqlCommand that returns the first column of the first record against an existing database connection 
-        /// using the provided parameters.
+        /// 执行指定的SQL语句/存储过程 返回结果集中的第一行第一列
         /// </summary>
-        /// <remarks>
-        /// e.g.:  
-        ///  Object obj = ExecuteScalar(connString, CommandType.StoredProcedure, "PublishOrders", new SqlParameter("@prodid", 24));
-        /// </remarks>
-        /// <param name="conn">an existing database connection</param>
-        /// <param name="commandType">the CommandType (stored procedure, text, etc.)</param>
-        /// <param name="commandText">the stored procedure name or T-SQL command</param>
-        /// <param name="commandParameters">an array of SqlParamters used to execute the command</param>
-        /// <returns>An object that should be converted to the expected type using Convert.To{Type}</returns>
-        public static object ExecuteScalar(SqlConnection connection, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
+        /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param> 
+        /// <param name="commandParameters">SqlParameters参数数组/可为null</param>
+        /// <returns>结果集中的第一行第一列</returns>
+        public static Object ExecuteScalar(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
         {
-
-            SqlCommand cmd = new SqlCommand();
-
-            PrepareCommand(cmd, connection, null, cmdType, cmdText, commandParameters);
-            object val = cmd.ExecuteScalar();
-            cmd.Parameters.Clear();
-            return val;
-        }
-
-
-        public static object ExecuteScalar(SqlTransaction trans, CommandType cmdType, string cmdText, params SqlParameter[] commandParameters)
-        {
-
-
-            SqlCommand cmd = new SqlCommand();
-            PrepareCommand(cmd, trans.Connection, trans, cmdType, cmdText, commandParameters);
-            object val = cmd.ExecuteScalar();
-            cmd.Parameters.Clear();
-            return val;
-        }
-        /// <summary>
-        /// add parameter array to the cache
-        /// </summary>
-        /// <param name="cacheKey">Key to the parameter cache</param>
-        /// <param name="cmdParms">an array of SqlParamters to be cached</param>
-        public static void CacheParameters(string cacheKey, params SqlParameter[] commandParameters)
-        {
-            parmCache[cacheKey] = commandParameters;
-        }
-
-        /// <summary>
-        /// Retrieve cached parameters
-        /// </summary>
-        /// <param name="cacheKey">key used to lookup parameters</param>
-        /// <returns>Cached SqlParamters array</returns>
-        public static SqlParameter[] GetCachedParameters(string cacheKey)
-        {
-            SqlParameter[] cachedParms = (SqlParameter[])parmCache[cacheKey];
-
-            if (cachedParms == null)
-                return null;
-
-            SqlParameter[] clonedParms = new SqlParameter[cachedParms.Length];
-
-            for (int i = 0, j = cachedParms.Length; i < j; i++)
-                clonedParms[i] = (SqlParameter)((ICloneable)cachedParms[i]).Clone();
-
-            return clonedParms;
-        }
-
-        /// <summary>
-        /// Prepare a command for execution
-        /// </summary>
-        /// <param name="cmd">SqlCommand object</param>
-        /// <param name="conn">SqlConnection object</param>
-        /// <param name="trans">SqlTransaction object</param>
-        /// <param name="cmdType">Cmd type e.g. stored procedure or text</param>
-        /// <param name="cmdText">Command text, e.g. Select * from Products</param>
-        /// <param name="cmdParms">SqlParameters to use in the command</param>
-        private static void PrepareCommand(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, CommandType cmdType, string cmdText, SqlParameter[] cmdParms)
-        {
-            
-            if (conn.State != ConnectionState.Open)
-                conn.Open();
-
-            cmd.Connection = conn;
-            cmd.CommandText = cmdText;
-
-            if (trans != null)
-                cmd.Transaction = trans;
-
-            cmd.CommandType = cmdType;
-
-            if (cmdParms != null)
+            using (SqlConnection sqlConn = new SqlConnection(connectionString))
             {
-                //string t = "";
-                foreach (SqlParameter parm in cmdParms){
-                    cmd.Parameters.Add(parm);
-                    //t += "," + parm.Value;
+                sqlConn.Open();
+                SqlCommand cmd = CreateCommand(sqlConn, commandType, commandText, null, commandParameters);
+                object obj = cmd.ExecuteScalar();
+                cmd.Parameters.Clear();
+                return obj;
+            }
+        }
+        #endregion
+
+        #region 创建SqlCommand对象
+        /// <summary>
+        /// 创建SqlCommand对象
+        /// </summary>
+        /// <param name="sqlConn">SqlConnection连接对象</param>
+        /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
+        /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param> 
+        /// <param name="transaction">事务/可为null</param>
+        /// <param name="commandParameters">SqlParameters参数数组/可为null</param>
+        /// <returns>SqlCommand对象</returns>
+        public static SqlCommand CreateCommand(SqlConnection sqlConn, CommandType commandType, String commandText, SqlTransaction transaction, SqlParameter[] commandParameters)
+        {
+            if (sqlConn.State != ConnectionState.Open)
+            {
+                sqlConn.Open();
+            }
+
+            SqlCommand cmd = new SqlCommand ();
+            cmd.Connection = sqlConn;
+            cmd.CommandText = commandText;
+            cmd.CommandType = commandType;
+
+            if (transaction != null)
+            {
+                cmd.Transaction = transaction;
+            }
+
+            if (commandParameters != null)
+            {
+                foreach (SqlParameter item in commandParameters)
+                {
+                    cmd.Parameters.Add(item);
                 }
-                //sstring a = t;
             }
-        }
-
-
-        /// <summary>
-        /// 通用分页方法
-        /// </summary>
-        /// <param name="conn">连接字符串</param>
-        /// <param name="PageIndex">页码（第一页传“1”以此类推）</param>
-        /// <param name="PageSize">页尺寸</param>
-        /// <param name="TableName">表名</param>
-        /// <param name="OrderID">排序ID</param>
-        /// <param name="OrderType">排序类型（desc，asc）</param>
-        /// <param name="StrWhere">条件（“ 1 = 1 and 2 = 2”）</param>
-        /// <param name="RecordCount">返回数据总条数（用于计算页数）</param>
-        /// <returns></returns>
-        public static SqlDataReader Paging
-            (string conn, int PageIndex, int PageSize, string TableName, string OrderID, string OrderType, string StrWhere, out int RecordCount)
-        {
-            RecordCount = 0;
-            RecordCount = PagCount(conn, TableName, OrderID, StrWhere);
-
-            string sql = "select * from (select row_number() over(order by " + OrderID + " " + OrderType + ") as rownum,* from " + TableName;
-            if (!string.IsNullOrEmpty(StrWhere))
-            {
-                sql += " where " + StrWhere;
-            }
-            sql += ") as testbox where rownum between (@PageIndex-1) * @PageSize + 1 and (@PageIndex * @PageSize) ";
-            
-
-            SqlParameter[] _parms = new SqlParameter[]{
-                new SqlParameter("@PageIndex",PageIndex),
-                new SqlParameter("@PageSize",PageSize)
-            };
-
-            return SqlHelper.ExecuteReader(conn, CommandType.Text, sql, _parms);
+            return cmd;
         }
 
         /// <summary>
-        /// 计算数据总数
+        /// 创建SqlCommand对象
         /// </summary>
-        /// <param name="conn">连接字符串</param>
-        /// <param name="TableName">表名</param>
-        /// <param name="KeyID">计算的ID</param>
-        /// <param name="StrWhere">条件（如：“ 1 = 1”）</param>
-        /// <returns></returns>
-        public static int PagCount(string conn, string TableName, string KeyID, string StrWhere)
+        /// <param name="sqlConn">SqlConnection连接对象</param>
+        /// <param name="commandType">命令类型/SQL语句，存储过程或者其他</param>
+        /// <param name="commandText">需要执行的SQL语句或者存储过程名称</param> 
+        /// <param name="transaction">事务/可为null</param>
+        /// <param name="commandParameters1">第一组SqlParameters参数数组/可为null</param>
+        /// <param name="commandParameters2">第二组SqlParameters参数数组/可为null</param>
+        /// <returns>SqlCommand对象</returns>
+        public static SqlCommand CreateCommand(SqlConnection sqlConn, CommandType commandType, String commandText, SqlTransaction transaction, SqlParameter[] commandParameters1, SqlParameter[] commandParameters2)
         {
-            string sql = String.Format("select count({0}) from {1}", KeyID, TableName);
-            if (!string.IsNullOrEmpty(StrWhere))
+            if (sqlConn.State != ConnectionState.Open)
             {
-                sql += " where " + StrWhere;
+                sqlConn.Open();
             }
-            return Convert.ToInt32(SqlHelper.ExecuteScalar(conn, CommandType.Text, sql));
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = sqlConn;
+            cmd.CommandText = commandText;
+            cmd.CommandType = commandType;
+
+            if (transaction != null)
+            {
+                cmd.Transaction = transaction;
+            }
+            if (commandParameters1 != null)//第一组参数数组
+            {
+                foreach (SqlParameter item in commandParameters1)
+                {
+                    cmd.Parameters.Add(item);
+                }
+            }
+            if (commandParameters2 != null)//第二组参数数组
+            {
+                foreach (SqlParameter item in commandParameters2)
+                {
+                    cmd.Parameters.Add(item);
+                }
+            }
+            return cmd;
         }
+        #endregion
     }
 }

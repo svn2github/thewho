@@ -442,6 +442,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.Model.ResumeLayout(false);

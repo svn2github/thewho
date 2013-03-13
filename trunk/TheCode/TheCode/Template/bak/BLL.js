@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using ${Model_NameSpace}$;
 using ${DAL_NameSpace}$;
@@ -104,4 +105,4 @@ namespace ${BLL_NameSpace}$
         }
     }
 }
-/* 本类由 TheCode v1.4 自动生成，请勿修改 */
+/* 本类由 TheCode v1.2 自动生成 */

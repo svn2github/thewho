@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ${NameSpace}$
@@ -7,7 +8,7 @@ namespace ${NameSpace}$
     /// <summary>
     /// ${Model_ClassName}$（模型层）
     /// </summary>
-    public class ${Model_ClassName}$
+    public class ${Model_ClassName}$12121212
     {	
         ${ForStar:[ALL]}$
         private ${ColumnType}$ _${ColumnName}$;
@@ -22,4 +23,4 @@ namespace ${NameSpace}$
         ${ForEnd}$
     }
 }
-/* 本类由 TheCode v1.4 自动生成，请勿修改 */
+/* 本类由 TheCode v1.2 自动生成 */

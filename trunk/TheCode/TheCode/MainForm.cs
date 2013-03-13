@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -23,6 +22,9 @@ namespace TheCode
         public TheCode.DAL.Table _table = new TheCode.DAL.Table();
         public TheCode.DAL.Column _column = new TheCode.DAL.Column();
 
+        private static string ProjectName = "TheCode 代码生成器";
+        private static string Version = ConfigurationSettings.AppSettings["Version"].ToString();
+        private static string Template = ConfigurationSettings.AppSettings["Template"].ToString();
         private static string Model_Namespace = ConfigurationSettings.AppSettings["Model_Namespace"].ToString();
         private static string DAL_Namespace = ConfigurationSettings.AppSettings["DAL_Namespace"].ToString();
         private static string BLL_Namespace = ConfigurationSettings.AppSettings["BLL_Namespace"].ToString();
@@ -30,6 +32,8 @@ namespace TheCode
         private static string Model_Path = ConfigurationSettings.AppSettings["Model_Path"].ToString();
         private static string DAL_Path = ConfigurationSettings.AppSettings["DAL_Path"].ToString();
         private static string BLL_Path = ConfigurationSettings.AppSettings["BLL_Path"].ToString();
+
+        private static string TempConnStr = "TempConnStr.txt";
 
         public MainForm()
         {
@@ -43,7 +47,7 @@ namespace TheCode
         //窗体初始化方法
         public void Form_Init()
         {
-            this.Text = "代码生成器 - TheCode v1.3.1";
+            this.Text = ProjectName + " - " + Version;
             com_Type.SelectedItem = "Windows 身份验证";
 
             txt_Model_Namespace.Text = Model_Namespace;
@@ -112,7 +116,6 @@ namespace TheCode
             return true;
         }
 
-
         public void BindDatabase(string connStr)
         {
             List<TheCode.Model.Database> dblist = _database.GetList(connStr);
@@ -136,6 +139,11 @@ namespace TheCode
                 Display_BLL(true);
 
                 btn_Start.Enabled = true;
+
+                //将连接字符串写入至临时文件temp.txt中
+                TheCode.Common.IO.WriteFile(Template, TempConnStr, connStr);
+                //并设置该文件为隐藏的
+                //TheCode.Common.IO.SetFileHidden(Template + TempConnStr);
             }
             else
             {
@@ -148,15 +156,18 @@ namespace TheCode
             txt_Server.Enabled = isTrue;
             com_Type.Enabled = isTrue;
         }
+
         public void Display_UserPwd(bool isTrue)
         {
             txt_User.Enabled = isTrue;
             txt_Password.Enabled = isTrue;
         }
+
         public void Display_Database(bool isTrue)
         {
             com_Database.Enabled = isTrue;
         }
+
         public void Display_Model(bool isTrue)
         {
             ck_Model.Enabled = isTrue;
@@ -166,6 +177,7 @@ namespace TheCode
             txt_Model_Namespace.Enabled = isTrue;
             btn_Model_Path.Enabled = isTrue;
         }
+
         public void Display_DAL(bool isTrue)
         {
             ck_DAL.Enabled = isTrue;
@@ -175,6 +187,7 @@ namespace TheCode
             txt_DAL_Namespace.Enabled = isTrue;
             btn_DAL_Path.Enabled = isTrue;
         }
+
         public void Display_BLL(bool isTrue)
         {
             ck_BLL.Enabled = isTrue;
@@ -185,9 +198,8 @@ namespace TheCode
             btn_BLL_Path.Enabled = isTrue;
         }
 
-
         #endregion
-
+        //连接
         private void btn_Conn_Click(object sender, EventArgs e)
         {
             if (VerifyServer())
@@ -315,7 +327,6 @@ namespace TheCode
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            
             //模型层
             if (ck_Model.Checked)
             {
@@ -457,11 +468,6 @@ namespace TheCode
             }
         }
 
-        public void sss()
-        { 
-            
-        }
-
         public void Create(int createType, string connStr, string createPath, string nameSpace, string databaseName, List<TheCode.Model.Table> tableList,string modelNameSpace,string dalNameSpace, string bllNameSpace, int sum)
         {
             foreach (TheCode.Model.Table item in tableList)
@@ -513,24 +519,31 @@ namespace TheCode
 
         private void lk_Model_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("还没这个功能哦！");
+            //MessageBox.Show("还没这个功能哦！");
+            System.Diagnostics.Process.Start("notepad.exe", ConfigurationSettings.AppSettings["Model_Template"].ToString());
         }
 
         private void lk_DAL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("还没这个功能哦！");
+            //MessageBox.Show("还没这个功能哦！");
+            System.Diagnostics.Process.Start("notepad.exe", ConfigurationSettings.AppSettings["DAL_Template"].ToString());
         }
 
         private void lk_BLL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("还没这个功能哦！");
+            //MessageBox.Show("还没这个功能哦！");
+            System.Diagnostics.Process.Start("notepad.exe", ConfigurationSettings.AppSettings["BLL_Template"].ToString());
         }
 
         private void lb_LookLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string connStr = lb_LookLink.Tag.ToString();
-            LookLinkForm llf = new LookLinkForm(connStr);
-            llf.Show();
+            System.Diagnostics.Process.Start("notepad.exe", Template + TempConnStr);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //退出窗口时删除连接字符串的临时文件
+            TheCode.Common.IO.DeleteFile(Template + TempConnStr);
         }
     }
 }
