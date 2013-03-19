@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+    <link href="nice.css" rel="stylesheet" type="text/css" />
+    <script src="../jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+    <script src="nice.js" type="text/javascript"></script>
+</head>
+<body>
+   
+   
+            <select id="sl">
+                <option value="1">死亡骑士</option>
+                <option value="2">圣骑士</option>
+                <option value="3">先知</option>
+                <option value="4">祈求者</option>
+                <option value="5">流浪剑客</option>
+                <option value="6">酒仙熊猫</option>
+                <option value="7">死灵法师</option>
+                <option value="8">秀逗魔导士</option>
+                <option value="9">地精工程师</option>
+                <option value="10">发条地精</option>
+                <option value="11">潮汐猎人</option>
+                <option value="12">剑圣</option>
+                <option value="13">胖子</option>
+                <option value="14">风行者</option>
+                <option value="15">受折磨的灵魂</option>
+            </select>
+            <select id="Select1">
+                <option value="1">多弗拉明戈</option>
+                <option value="2">暴君熊</option>
+                <option value="3">女帝</option>
+                <option value="4">鹰眼</option>
+                <option value="5">莫尼亚</option>
+                <option value="6">克罗克达尔</option>
+            </select>
+            <hr />
+   
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td width="600" valign="top" align="left">1212
+             <!--<select id="sl">
+                <option value="1">死亡骑士</option>
+                <option value="2">圣骑士</option>
+                <option value="3">先知</option>
+                <option value="4">祈求者</option>
+                <option value="5">流浪剑客</option>
+                <option value="6">酒仙熊猫</option>
+                <option value="7">死灵法师</option>
+                <option value="8">秀逗魔导士</option>
+                <option value="9">地精工程师</option>
+                <option value="10">发条地精</option>
+                <option value="11">潮汐猎人</option>
+                <option value="12">剑圣</option>
+                <option value="13">胖子</option>
+                <option value="14">风行者</option>
+                <option value="15">受折磨的灵魂</option>
+            </select>
+            <br /><br /><br /><br /><br />
+            <select id="sl2">
+                <option value="1">多弗拉明戈</option>
+                <option value="2">暴君熊</option>
+                <option value="3">女帝</option>
+                <option value="4">鹰眼</option>
+                <option value="5">莫尼亚</option>
+                <option value="6">克罗克达尔</option>
+            </select>-->
+            </td>
+            <td width="100" align="left"><input id="txtusername" name="txtusername" type="text" class="txt"/></td>
+            <td width="100"></td>
+        </tr>
+        <tr>
+            <td height="40"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="checkbox" name="ck" id="ck" checked="checked" title="羽毛球"/>
+                <input type="checkbox" name="ck" id="ck2" title="游泳"/>
+            </td>
+            </td>
+        </tr>
+        <tr>
+            <td height="40"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="rd" id="rd" checked="checked" title="高帅富"  /></td>
+            <td><input type="radio" name="rd" id="rd2" title="屌丝" /></td>
+            <td><input type="radio" name="rd" id="Radio1" title="屌丝1" /></td>
+        </tr>
+    </table>
+    
+</body>
+<script type="text/javascript">
+    //$("#sl").NiceSelect({ "width": 140, "listHeight": 211 });
+    //$("#Select1").NiceSelect({ "width": 140, "listHeight": 211 });
+
+    $("select").NiceSelect({ "width": 140});
+    $("#ck").NiceCheckBox();
+    $("#ck2").NiceCheckBox();
+
+    //$("#rd").NiceRadio();
+    //$("#rd2").NiceRadio();
+
+    $("input[name='rd']").NiceRadio();
+    
+    //$("#txtusername").NiceSelect();
+</script>
+</html>

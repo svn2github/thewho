@@ -15,6 +15,7 @@
 </head>
 
 <script src="Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+<script src="Scripts/NiceE/nice.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(function() {
         $(".textlogin").focusin(function() {

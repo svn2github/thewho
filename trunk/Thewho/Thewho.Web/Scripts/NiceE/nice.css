@@ -1,0 +1,175 @@
+﻿
+.txt
+{
+	outline:none; 
+	color:#333; 
+	padding:4px 4px 4px 4px;
+	height:18px;
+	line-height:18px;
+	font-size:14px;
+	font-weight:bold;
+	border:2px solid #999;
+	letter-spacing:0px;
+	background-image:url(../Images/textbox_bg.gif);
+	}
+.nice-sc-box
+{
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+	outline:none;
+	color:#666;
+	height:26px;
+	border:none;
+	zoom:1;
+	z-index:998;
+	word-break:break-all;
+	cursor:pointer;
+	background-color:#fff;
+	overflow-x:hidden;
+	}
+
+.nice-sc{
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+	outline:none;
+	color:#666;
+	height:26px;
+	line-height:26px;
+	font-size:14px;
+	font-weight:bold;
+	border:0px solid #999;
+	zoom:1;
+	text-indent:4px;
+	z-index:1000;
+	position:fixed;
+	_position:absolute;
+	word-break:break-all;
+	cursor:pointer;
+	background-color:#fff;
+	overflow-x:hidden;
+}
+.nice-sc-in{
+	border:1px solid #666;
+}
+
+
+.nice-ifa{
+	margin:0;
+	padding:0;
+	border:0;
+	filter:alpha(opacity=00);
+	opacity:0.0;
+	z-index:999;
+	position:fixed;
+	_position:absolute;
+	word-break:break-all;
+}
+.nice-ops
+{
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+	outline:none;
+	color:#666;
+	line-height:26px;
+	border:0px solid #666;
+	border-top:0px;
+	zoom:1;
+	background-color:#fff;
+	z-index:1001;
+	position:fixed;
+	_position:absolute;
+	word-break:break-all;
+	display:none;
+	overflow-x:hidden;
+}
+.nice-op
+{
+	height:22px;
+	line-height:22px;
+	border-top:1px solid #999;
+	font-size:12px;
+	cursor:pointer;
+	text-indent:4px;
+	overflow-x:hidden;
+}
+.nice-op-in
+{
+	background-color:#FFFACD;
+	font-weight:bold;
+}
+.nice-op-check
+{
+	background-color:#F0FFF0;
+	font-weight:bold;
+}
+
+/*------------------------*/
+.nice-ck-box
+{
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+	outline:none;
+	color:#666;
+	height:14px;
+	line-height:14px;
+	font-size:14px;
+	zoom:1;
+	z-index:998;
+	word-break:break-all;
+	cursor:pointer;
+	background-color:#fff;
+	overflow-x:hidden;
+	}
+.nice-ck
+{
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+	outline:none;
+	color:#666;
+	height:14px;
+	line-height:14px;
+	font-size:14px;
+	font-weight:bold;
+	zoom:1;
+	z-index:1000;
+	position:fixed;
+	_position:absolute;
+	word-break:break-all;
+	cursor:pointer;
+	background:url(../../Images/ck.jpg) repeat-y 0px 0px;
+	padding-left:18px;
+}
+.nice-ck-in
+{
+	background:url(../../Images/ck.jpg) repeat-y 0px 14px;
+}
+
+.nice-rd
+{
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+	outline:none;
+	color:#666;
+	height:14px;
+	line-height:14px;
+	font-size:14px;
+	font-weight:bold;
+	zoom:1;
+	z-index:1000;
+	position:fixed;
+	_position:absolute;
+	word-break:break-all;
+	cursor:pointer;
+	background:url(../../Images/rd.jpg) repeat-y 0px 0px;
+	padding-left:18px;
+}
+.nice-rd-in
+{
+	background:url(../../Images/rd.jpg) repeat-y 0px 14px;
+}

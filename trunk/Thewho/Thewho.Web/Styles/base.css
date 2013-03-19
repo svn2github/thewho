@@ -11,7 +11,7 @@ q:before,q:after{content:'';}
 abbr,acronym{border:0;font-variant:normal;}
 sup{vertical-align:text-top;}
 sub{vertical-align:text-bottom;}
-input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;z}
 input,textarea,select{*font-size:100%;}
 legend{color:#000;}del,ins{text-decoration:none;}
 img{border:0;}
@@ -101,7 +101,17 @@ img{border:0;}
 .gray{background-color:#a9adb1;  color:#525252; border:1px solid #a5a5a5;}
 .gray:hover{background-color:#b6bbc0; color:#525252; border:1px solid #a5a5a5;}
 
+
+.test123{background-color:#999; color:#666; border:1px solid #999;}
+.test123:hover{background-color:#ccc; color:#333; border:1px solid #666;}
+
 .big{ padding:12px; font-size:16px; font-weight:bold;font-family:微软雅黑;}
 
 .sd{background-color:#a9adb1;  color:#525252; border:1px solid #a5a5a5; font-size:14px;letter-spacing:1px; font-weight:bold;}
 .sd:hover{background-color:#b6bbc0; color:#525252; border:1px solid #a5a5a5; font-size:14px;letter-spacing:1px; font-weight:bold;}
+
+/*选中状态的颜色*/
+::selection{
+background-color:#333;
+color:#fff
+}
