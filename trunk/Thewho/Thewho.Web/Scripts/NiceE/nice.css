@@ -37,8 +37,8 @@
 	color:#666;
 	height:26px;
 	line-height:26px;
-	font-size:14px;
-	font-weight:bold;
+	/*font-size:14px;
+	font-weight:bold;*/
 	border:0px solid #999;
 	zoom:1;
 	text-indent:4px;
@@ -49,7 +49,33 @@
 	cursor:pointer;
 	background-color:#fff;
 	overflow-x:hidden;
+	      
 }
+.nice-sc .nice-sc-down
+{
+	padding:0px;
+    width:14px;
+    height:14px;
+    border:0px solid green;
+    margin-top:6px;
+    margin-right:6px;
+	background:url(/Images/nice.png) no-repeat;
+	background-position:-28px -0px;/*第一个是距离左上角的X距离  第二个是Y距离*/    
+	float:right;
+	}
+.nice-sc-in .nice-sc-down
+{
+	padding:0px;
+    width:14px;
+    height:14px;
+    border:0px solid green;
+    margin-top:6px;
+    margin-right:6px;
+	background:url(/Images/nice.png) no-repeat;
+	background-position:-28px -14px;/*第一个是距离左上角的X距离  第二个是Y距离*/    
+	float:right;
+	}
+	
 .nice-sc-in{
 	border:1px solid #666;
 }
@@ -124,30 +150,68 @@
 	background-color:#fff;
 	overflow-x:hidden;
 	}
-.nice-ck
+.nice-wbox
 {
 	margin:0px;
 	padding:0px;
 	display:inline-block;
 	outline:none;
 	color:#666;
-	height:14px;
-	line-height:14px;
-	font-size:14px;
-	font-weight:bold;
 	zoom:1;
 	z-index:1000;
 	position:fixed;
 	_position:absolute;
 	word-break:break-all;
 	cursor:pointer;
-	background:url(../../Images/ck.jpg) repeat-y 0px 0px;
-	padding-left:18px;
+	height:14px;
+	line-height:14px;
+	font-size:14px;
+	width:200px;
+	}
+.nice-ck
+{
+	padding:0px;
+	margin:0px;
+    width:14px;
+    height:14px;
+    border:0px solid green;
+	background:url(/Images/nice.png) no-repeat;
+	background-position:-0px -0px;/*第一个是距离左上角的X距离  第二个是Y距离*/    
+	position:fixed;
+	_position:absolute;
+	word-break:break-all;
+	float:left;
+	
 }
 .nice-ck-in
 {
-	background:url(../../Images/ck.jpg) repeat-y 0px 14px;
+	padding:0px;
+	margin:0px;
+    width:14px;
+    height:14px;
+    border:0px solid green;
+	background:url(/Images/nice.png) no-repeat;
+	background-position:-0px -14px;/*第一个是距离左上角的X距离  第二个是Y距离*/    
+	position:fixed;
+	_position:absolute;
+	word-break:break-all;
+	float:left;
 }
+.nice-ck-text
+{
+	padding:0px;
+	margin:0px;
+	color:#666;
+	font-size:14px;
+	font-weight:bold;
+	line-height:14px;
+	display:inline-block;
+	position:fixed;
+	_position:absolute;
+	word-break:break-all;
+	float:left;
+	margin-left:18px;
+	}
 
 .nice-rd
 {
@@ -156,6 +220,7 @@
 	display:inline-block;
 	outline:none;
 	color:#666;
+	width:14px;
 	height:14px;
 	line-height:14px;
 	font-size:14px;
@@ -166,10 +231,29 @@
 	_position:absolute;
 	word-break:break-all;
 	cursor:pointer;
-	background:url(../../Images/rd.jpg) repeat-y 0px 0px;
+	background:url(/Images/nice.png) no-repeat;
+	background-position:-14px -0px;/*第一个是距离左上角的X距离  第二个是Y距离*/    
 	padding-left:18px;
 }
 .nice-rd-in
 {
-	background:url(../../Images/rd.jpg) repeat-y 0px 14px;
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+	outline:none;
+	color:#666;
+	width:14px;
+	height:14px;
+	line-height:14px;
+	font-size:14px;
+	font-weight:bold;
+	zoom:1;
+	z-index:1000;
+	position:fixed;
+	_position:absolute;
+	word-break:break-all;
+	cursor:pointer;
+	background:url(/Images/nice.png) no-repeat;
+	background-position:-14px -14px;/*第一个是距离左上角的X距离  第二个是Y距离*/    
+	padding-left:18px;
 }

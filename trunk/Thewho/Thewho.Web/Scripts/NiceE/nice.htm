@@ -24,9 +24,9 @@
                 <option value="12">剑圣</option>
                 <option value="13">胖子</option>
                 <option value="14">风行者</option>
-                <option value="15">受折磨的灵魂</option>
+                <option value="15">受折磨的灵魂受折磨的灵魂</option>
             </select>
-            <select id="Select1">
+            <select id="sl2">
                 <option value="1">多弗拉明戈</option>
                 <option value="2">暴君熊</option>
                 <option value="3">女帝</option>
@@ -66,8 +66,21 @@
                 <option value="6">克罗克达尔</option>
             </select>-->
             </td>
-            <td width="100" align="left"><input id="txtusername" name="txtusername" type="text" class="txt"/></td>
-            <td width="100"></td>
+            <td width="100" align="left"><input id="txtusername" name="txtusername" type="text" class="txt" /></td>
+            <td width="100"><input type="button" id="testsss" style=" " /></td>
+            <style>
+            #testsss
+            {
+            	background:url(/Images/nice.png);
+                padding:0px;
+                width:14px;
+                height:14px;
+                border:0px solid green;
+                margin:10px;
+                background-position:-28px -0px;/*第一个是距离左上角的X距离  第二个是Y距离*/
+                background-repeat:no-repeat;
+            	}
+            </style>
         </tr>
         <tr>
             <td height="40"></td>
@@ -93,19 +106,29 @@
         </tr>
     </table>
     
+    <hr />
+    
+    <div class="nice-wbox">
+        <div class="nice-ck"></div>
+        <div class="nice-ck-text">天蝎座</div>
+    </div>
+    
 </body>
 <script type="text/javascript">
     //$("#sl").NiceSelect({ "width": 140, "listHeight": 211 });
     //$("#Select1").NiceSelect({ "width": 140, "listHeight": 211 });
 
-    $("select").NiceSelect({ "width": 140});
+    $("#sl").NiceSelect({ "width": 0, "listHeight": 140, "isSlide": true, "border": 1, "fontSize": 12, "isBold": false });
+    $("#sl2").NiceSelect({ "width": 0, "listHeight": 140, "isSlide": true });
+    
+    
     $("#ck").NiceCheckBox();
     $("#ck2").NiceCheckBox();
 
     //$("#rd").NiceRadio();
     //$("#rd2").NiceRadio();
 
-    $("input[name='rd']").NiceRadio();
+    //$("input[name='rd']").NiceRadio();
     
     //$("#txtusername").NiceSelect();
 </script>
