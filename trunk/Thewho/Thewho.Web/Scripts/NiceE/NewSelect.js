@@ -1,4 +1,6 @@
-﻿//对象级别的开发
+﻿//老的
+
+//对象级别的开发
 ; (function($) {
     var defaults = {};
     $.fn.extend({

@@ -9,7 +9,7 @@
     $.fn.extend({
         NiceSelect: function(params) {
 
-            defaults.NiceSelect = { "width": 0, "height": 0, "listHeight": 160, "overflow": "auto", "isSlide": true, "border": 2 };
+            defaults.NiceSelect = { "width": 0, "height": 0, "listHeight": 160, "fontSize": 14, "isBold": true, "border": 2, "overflow": "auto", "isSlide": true };
 
             //真正使用的参数
             var options = jQuery.extend(defaults.NiceSelect, params);
@@ -26,11 +26,12 @@
             function DivInit(scobj, scid) {
                 var boxid = "box" + scid;
                 var scid = "sc" + scid;
+                var sctext = scid + "-text"
                 var ifaid = "ifa" + scid;
                 var opsid = "ops" + scid;
                 var opid = "op" + scid;
 
-                var boxwidth = options.width == 0 ? scobj.width() + 12 : options.width + 12;
+                var boxwidth = options.width == 0 ? scobj.width() + 32 : options.width + 32;
                 var boxheight = options.height == 0 ? scobj.height() + 8 : options.height + 12;
 
                 var box = $("<div/>").attr("id", boxid).css(
@@ -47,10 +48,11 @@
                     "height": boxheight,
                     "top": scobj.offset().top,
                     "left": scobj.offset().left,
-                    "border-width": options.border + "px"
-                }).addClass("nice-sc");
+                    "border-width": options.border + "px",
+                    "font-size": options.fontSize + "px",
+                    "font-weight": options.isBold ? "bold" : "normal"
+                }).addClass("nice-sc").html('<span id="' + sctext + '"></span><span class="nice-sc-down">　</span>');
                 sc.appendTo(thisBody);
-
 
                 //new出iframe 遮盖住select
                 var ifa = $("<iframe/>").attr("id", ifaid).css(
@@ -103,14 +105,18 @@
                 }).click(function() {
                     var thisop = $(this);
                     scobj.val(thisop.attr("value"));
-                    sc.text(thisop.text()).removeClass("nice-sc-in");
+                    //sc.text(thisop.text()).removeClass("nice-sc-in");
+                    sc.removeClass("nice-sc-in");
+                    $("#" + sctext).text(thisop.text());
                     hide();
                 });
 
                 //绑定select change事件
                 scobj.change(function() {
                     var thisop = $("#" + opid + scobj.val());
-                    sc.text(thisop.text()).removeClass("nice-sc-in");
+                    //sc.text(thisop.text()).removeClass("nice-sc-in");
+                    sc.removeClass("nice-sc-in");
+                    $("#" + sctext).text(thisop.text());
                 });
 
 
@@ -121,13 +127,14 @@
                     options.isSlide ? ops.slideUp() : ops.hide();
                 }
 
+
+
                 //默认值
                 $("#" + opid + scobj.val()).click();
 
                 //隐藏原始控件
                 //scobj.hide();
                 //scobj.css("height", "0px");
-
 
                 $(document).keydown(function(event) {
                     if (event.which === 37) {
@@ -153,8 +160,6 @@
                             //var thisop = $(ops.find("div").get(scobj.get(0).selectedIndex + 1)).mouseover();
                             //$(".nice-op-check").next().mouseover();
                             //$(".nice-op-in").next().mouseover();
-
-
                         }
                     }
                 });
@@ -181,9 +186,10 @@
 
                 var boxid = "ckbox" + ckid;
                 var ckid = "ck" + ckid;
+                var cktext = ckid + "text";
                 var cklength = cktext.length * 14;
 
-                var boxwidth = ckobj.width() + 14 + cklength;
+                var boxwidth = ckobj.width() + 14 + cklength + 50;
                 var boxheight = ckobj.height() + 8;
                 var boxtop = ckobj.offset().top;
                 var boxleft = ckobj.offset().left;
@@ -198,19 +204,20 @@
 
                 var ck = $("<div/>").attr("id", ckid).css(
                 {
+                    "width": boxwidth,
                     "height": 14,
                     "top": ckobj.offset().top,
                     "left": ckobj.offset().left
-                }).addClass("nice-ck").text(ckobj.attr("title"));
+                }).html('<div class="nice-ck"></div><div class="nice-ck-text">' + ckobj.attr("title") + '</div>').addClass("nice-wbox");
                 ck.appendTo(thisBody);
 
                 ck.click(function() {
                     ckobj.click();
                     if (ckobj.attr("checked")) {
-                        ck.addClass("nice-ck-in");
+                        $(".nice-ck").addClass("nice-ck-in");
                     }
                     else {
-                        ck.removeClass("nice-ck-in");
+                        $(".nice-ck").removeClass("nice-ck-in");
                     }
                 });
 
@@ -224,10 +231,10 @@
             //默认值
             function defaultValue(ckobj, ck) {
                 if (ckobj.attr("checked")) {
-                    ck.addClass("nice-ck-in");
+                    $(".nice-ck").addClass("nice-ck-in");
                 }
                 else {
-                    ck.removeClass("nice-ck-in");
+                    $(".nice-ck").removeClass("nice-ck-in");
                 }
             }
         },
