@@ -120,6 +120,10 @@
                     options.isSlide ? ullist.slideToggle() : ullist.toggle();
                 }
             }
+        },
+        UnTzSelect: function(params) {
+        $("select").prependTo($(".divli").parent()).show();
+            $(".divli").remove();
         }
     });
 })(jQuery);
