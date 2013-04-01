@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+</head>
+
+<script src="../jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $("ul.subnav").parent().append("<span></span>");
+
+        $("ul.topnav li span").click(function() {
+            $(this).parent().find("ul.subnav").slideDown('fast').show();
+
+            $(this).parent().hover(function() {
+            }, function() {
+                //$(this).parent().find("ul.subnav").slideUp('slow'); 
+            });
+        }).hover(function() {
+            $(this).addClass("subhover");
+        }, function() {
+            $(this).removeClass("subhover");
+        });
+
+
+        $("#s222").click(function() {
+            alert($(this).find("a").text());
+        });
+    });
+</script>
+
+<style type="text/css">
+    body
+    {
+        margin: 0;
+        padding: 0;
+        font: 10px normal Arial, Helvetica, sans-serif;
+        background: #ddd url(body_bg.gif) repeat-x;
+    }
+    .container
+    {
+        width: 960px;
+        margin: 0 auto;
+        position: relative;
+    }
+    ul.topnav
+    {
+        list-style: none;
+        padding: 0 20px;
+        margin: 0;
+        float: left;
+        width: 920px;
+        background: #222;
+        font-size: 1.2em;
+        background: url(topnav_bg.gif) repeat-x;
+    }
+    ul.topnav li
+    {
+        float: left;
+        margin: 0;
+        padding: 0 15px 0 0;
+        position: relative; /*--Declare X and Y axis base--*/
+        border: 1px solid #333;
+    }
+    ul.topnav li a
+    {
+        padding: 10px 5px;
+        color: #000;
+        display: block;
+        text-decoration: none;
+        float: left;
+    }
+    /*ul.topnav li a:hover
+    {
+        background: url(topnav_hover.gif) no-repeat center top;
+    }*/ul.topnav li span
+    {
+        /*--Drop down trigger styles--*/
+        width: 17px;
+        height: 35px;
+        float: left;
+        background: url(subnav_btn.gif) no-repeat center top;
+        background-color: #ccc;
+    }
+    ul.topnav li span.subhover
+    {
+        background-position: center bottom;
+        cursor: pointer;
+        background-color: #999;
+    }
+    ul.topnav li ul.subnav
+    {
+        list-style: none;
+        position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
+        left: 0;
+        top: 35px;
+        background: #333;
+        margin: 0;
+        padding: 0;
+        display: none;
+        float: left;
+        width: 170px;
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-bottomright: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -webkit-border-bottom-right-radius: 5px;
+        border: 1px solid #111;
+    }
+    ul.topnav li ul.subnav li
+    {
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid #252525; /*--Create bevel effect--*/
+        border-bottom: 1px solid #444; /*--Create bevel effect--*/
+        clear: both;
+        width: 170px;
+    }
+    /*html ul.topnav li ul.subnav li a {
+	float: left;
+	width: 145px;
+	background: #333 url(dropdown_linkbg.gif) no-repeat 10px center;
+	padding-left: 20px;
+}
+html ul.topnav li ul.subnav li a:hover { 
+	background: #222 url(dropdown_linkbg.gif) no-repeat 10px center; 
+}*/</style>
+<body>
+    <select id="sl">
+        <option value="1">死亡骑士</option>
+        <option value="2">圣骑士</option>
+        <option value="3">先知</option>
+        <option value="4">祈求者</option>
+        <option value="5">流浪剑客</option>
+        <option value="6">酒仙熊猫</option>
+        <option value="7">死灵法师</option>
+        <option value="8">秀逗魔导士</option>
+        <option value="9">地精工程师</option>
+        <option value="10">发条地精</option>
+        <option value="11">潮汐猎人</option>
+        <option value="12">剑圣</option>
+        <option value="13">胖子</option>
+        <option value="14">风行者</option>
+        <option value="15">受折磨的灵魂受折磨的灵魂</option>
+    </select>
+    <select id="sl2">
+        <option value="1">死亡骑士22</option>
+        <option value="2">圣骑士</option>
+        <option value="3">先知</option>
+        <option value="4">祈求者</option>
+        <option value="5">流浪剑客</option>
+        <option value="6">酒仙熊猫</option>
+        <option value="7">死灵法师</option>
+        <option value="8">秀逗魔导士</option>
+        <option value="9">地精工程师</option>
+        <option value="10">发条地精</option>
+        <option value="11">潮汐猎人</option>
+        <option value="12">剑圣</option>
+        <option value="13">胖子</option>
+        <option value="14">风行者</option>
+        <option value="15">受折磨的灵魂受折磨的灵魂</option>
+    </select>
+    <div class="container">
+        <ul class="topnav">
+            <li><a href="#">Tutorials</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Resources</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+        </ul>
+         <ul class="topnav">
+            <li><a href="#">Tutorials</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Resources</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+        </ul>
+         <ul class="topnav">
+            <li><a href="#">Tutorials</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Resources</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+        </ul>
+         <ul class="topnav">
+            <li><a href="#">Tutorials</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Resources</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+
+            //new出对应option的div项
+            $("#sl").children("option").each(function(index, it) {
+                var item = $(it);
+                $("<li/>").attr("id", 12112).attr("value", item.val()).text(item.text()).appendTo($("#u1"));
+            });
+
+
+            $(".divli ul.subnav").parent().append("<span class='downspan'></span>");
+
+            $(".divli .downspan").click(function() {
+                alert($(this).parent().attr("id"));
+                $(this).parent().find("ul.subnav").slideDown('fast').show();
+
+                $(this).parent().hover(function() {
+                }, function() {
+                    //$(this).parent().find("ul.subnav").slideUp('slow'); 
+                });
+            }).hover(function() {
+                $(this).addClass("subhover");
+            }, function() {
+                $(this).removeClass("subhover");
+            });
+
+            var ddd = $("<div/>").addClass("divli").html('<span class="spantitle">Tutorials</span><ul class="subnav"><li>China</li></ul><span class="downspan"></span>');
+
+
+
+            //把select包起来
+            //            $("#sl").wrap(ddd);
+            //            $("#sl").hide();
+
+            //$("#sl2").wrap(ddd);
+            //$("#sl2").hide();
+
+            $(".divli .downspan").live("click", function() {
+                $(this).parent().find("ul.subnav").slideDown('fast').show();
+
+                $(this).parent().hover(function() {
+                }, function() {
+                    //$(this).parent().find("ul.subnav").slideUp('slow');
+                });
+            });
+
+
+
+            //1.
+            var opstr = '';
+            $("#sl").children("option").each(function(index, it) {
+                var item = $(it);
+                opstr += '<li id="op' + item.val() + '" value="' + item.val() + '">' + item.text() + '</li>';
+
+            });
+            $("#sl").live("change", function() {
+                $(".spantitle").text($("#op" + $("#sl").val()).text());
+            });
+
+            $(".subnav li").live("click", function() {
+                $("#sl").val($(this).attr("value"));
+                $(".spantitle").text($(this).text());
+                $(".divli ul.subnav").slideUp('slow');
+            });
+
+
+            var scid = "sl" + "sl";
+            var scdiv = $("<div/>").attr({ "id": scid }).addClass("divli").html('<span class="oldselect"></span><span class="spantitle">Loading...</span><ul class="subnav">' + opstr + '</ul><span class="downspan"><span class="downspanicon"></span></span>');
+            $("#sl").hide();
+            $("#sl").wrap(scdiv);
+
+            //默认值
+            $("#sl").val(2);
+            $("#op" + $("#sl").val()).click();
+
+
+        });
+    </script>
+
+    <style type="text/css">
+        .divli
+        {
+            float: left;
+            margin: 0;
+            position: relative; /*--Declare X and Y axis base--*/
+            border: 2px solid #999;
+            height: 26px;
+            line-height: 26px;
+            text-align: center;
+            width: 170px;
+            background-color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .divli .oldselect
+        {
+        	display:none;
+        	}
+        .divli .spantitle
+        {
+            color: #666;
+            display: block;
+            text-decoration: none;
+            float: left;
+            text-indent: 4px;
+            font-weight: bold;
+        }
+        
+        
+        .divli .downspan
+        {
+            width: 22px;
+            height: 26px;
+            float: right;
+            cursor: pointer;
+        }
+        .divli .downspanicon
+        {
+        	width: 17px;
+            height: 14px;
+            float: right;
+            cursor: pointer;
+            margin-top: 5px;
+            margin-left:2px;
+            margin-right:2px;
+            background: url(/Images/nice.png) no-repeat;
+            background-position: -28px -14px; /*第一个是距离左上角的X距离  第二个是Y距离*/
+        	}
+        
+        .divli ul.subnav
+        {
+            list-style: none;
+            position: absolute;
+            left: 0;
+            top: 27px;
+            margin: 0;
+            padding: 0;
+            display: none;
+            float: left;
+            width: 170px;
+            -moz-border-radius-bottomleft: 5px;
+            -moz-border-radius-bottomright: 5px;
+            -webkit-border-bottom-left-radius: 5px;
+            -webkit-border-bottom-right-radius: 5px;
+            border: 2px solid #999;
+            border-top: 0px solid #999;
+            margin-left: -2px; /*缩进问题 暂时这么写*/
+        }
+        .divli ul.subnav li
+        {
+            color: #666;
+            margin: 0;
+            padding: 0;
+            clear: both;
+            width: 100%;
+            height: 22px;
+            line-height: 22px;
+            background-color: #fff;
+            border-top: 1px solid #999;
+            text-align: left;
+            text-indent: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+    <div style="margin-left: 200px">
+        <!---->
+        <div class="divli" id="d1">
+            <span class="spantitle">Tutorials</span>
+            <ul class="subnav" id="u1">
+                <!--<li>China</li>
+                <li>Sub Nav Link 1</li>
+                <li>Sub Nav Link 2</li>
+                <li>Sub Nav Link 3</li>
+                <li>Sub Nav Link 4</li>-->
+            </ul>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <!--<div class="divli">
+            <a href="#">Resources</a>
+            <ul class="subnav">
+                <li><a href="#">Sub Nav Link</a></li>
+                <li><a href="#">Sub Nav Link</a></li>
+                <li><a href="#">Sub Nav Link</a></li>
+                <li><a href="#">Sub Nav Link</a></li>
+                <li><a href="#">Sub Nav Link</a></li>
+                <li><a href="#">Sub Nav Link</a></li>
+            </ul>
+        </div>-->
+</body>
+</html>
