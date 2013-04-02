@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <title>无标题页</title>
-    <link href="S]tyle.css" rel="stylesheet" type="text/css" />
+    <link href="Style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <select>
+    <select id="sl1">
         <option value="1">死亡骑士</option>
         <option value="2">圣骑士</option>
         <option value="3">先知</option>
@@ -24,25 +24,28 @@
     </select>
     <select>
         <option value="1">死亡骑士22</option>
-        <option value="2">圣骑士</option>
-        <option value="3">先知</option>
-        <option value="4">祈求者</option>
-        <option value="5">流浪剑客</option>
-        <option value="6">酒仙熊猫</option>
-        <option value="7">死灵法师</option>
-        <option value="8">秀逗魔导士</option>
-        <option value="9" selected="selected">地精工程师</option>
-        <option value="10">发条地精</option>
-        <option value="11">潮汐猎人</option>
-        <option value="12">剑圣</option>
-        <option value="13">胖子</option>
-        <option value="14">风行者</option>
+        <option value="2">酒仙熊猫</option>
+        <option value="3">死灵法师</option>
+        <option value="4">秀逗魔导士</option>
+        <option value="5" selected="selected">地精工程师</option>
+        <option value="6">发条地精</option>
+        <option value="7">潮汐猎人</option>
+        <option value="7">剑圣</option>
+        <option value="8">胖子</option>
+        <option value="9">风行者</option>
     </select>
-    <select>
-        <option value="1">死亡骑士22</option>
+    
+    <br/><br/>
+    <select multiple="multiple">
+        <option value="1">China</option>
+        <option value="2">Japan</option>
+        <option value="3">America</option>
     </select>
     <br/><br/><br/><br/><br/>
+    <p><br/>
     <input type="button" id="btnA" value="美化" /><input type="button" id="btnB" value="还原" />
+    <input type="button" id="btnC" value="设置下拉框选中value12(剑圣)" />
+    </p>
 </body>
 
 <script src="../jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
@@ -51,12 +54,20 @@
 <script type="text/javascript">
     $(function() {
         $("#btnA").click(function() {
-            $("select").TzSelect({ "listHeight": 160, "fontSize": 14, "isBold": true, "border": 2, "overflow": "auto", "isSlide": true });
-
+            $("select").TzSelect({ "listHeight": 0, "fontSize": 12, "isBold": false, "border": 1, "overflow": "auto", "isSlide": false });
+            //$("#sl1").TzSelect({ "listHeight": 160, "fontSize": 14 });
         });
+
+
         $("#btnB").click(function() {
             $("select").UnTzSelect();
 
+        });
+
+        $("#btnC").click(function() {
+            $("#sl1").val(12).change();
+            //调用自定义事件
+            //$("#sl1").trigger("SetValue", 12);
         });
     });
     

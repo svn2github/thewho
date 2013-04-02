@@ -6,7 +6,8 @@
             border: 2px solid #666;
             background-color: #fff;
             cursor: pointer;
-            z-index:1000;
+            z-index:1000; 
+            font-family:微软雅黑;
         }
         .divlihover
         {
