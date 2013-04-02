@@ -22,7 +22,7 @@
         <option value="14">风行者</option>
         <option value="15">受折磨的灵魂受折磨的灵魂</option>
     </select>
-    <select>
+    <select id="sl2">
         <option value="1">死亡骑士22</option>
         <option value="2">酒仙熊猫</option>
         <option value="3">死灵法师</option>
@@ -36,11 +36,11 @@
     </select>
     
     <br/><br/>
-    <select multiple="multiple">
+    <!--<select multiple="multiple">
         <option value="1">China</option>
         <option value="2">Japan</option>
         <option value="3">America</option>
-    </select>
+    </select>-->
     <br/><br/><br/><br/><br/>
     <p><br/>
     <input type="button" id="btnA" value="美化" /><input type="button" id="btnB" value="还原" />
@@ -53,21 +53,32 @@
 
 <script type="text/javascript">
     $(function() {
+
+        $("#sl1").change(function() {
+            $("#sl2").val($("#sl1").val()); //.TzSelect();
+        });
+
+
+
         $("#btnA").click(function() {
-            $("select").TzSelect({ "listHeight": 0, "fontSize": 12, "isBold": false, "border": 1, "overflow": "auto", "isSlide": false });
-            //$("#sl1").TzSelect({ "listHeight": 160, "fontSize": 14 });
+            //$("select").TzSelect({ "listHeight": 0, "fontSize": 12, "isBold": false, "border": 2, "overflow": "auto", "isSlide": true });
+            $("#sl1").TzSelect();
         });
 
 
         $("#btnB").click(function() {
             $("select").UnTzSelect();
+            //$("select").parent().parent().remove();
 
         });
 
         $("#btnC").click(function() {
-            $("#sl1").val(12).change();
+            //$("#sl1").val(12).change();
             //调用自定义事件
             //$("#sl1").trigger("SetValue", 12);
+            //$("#sl1").SetTzSelect(12);
+            //$("#sl1").append("<option value='123222'>123</option>").TzSelect();
+            $("#sl1").TzSelect.haha("123");
         });
     });
     

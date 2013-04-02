@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>无标题页</title>
+    <link href="Style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <select id="sl1">
+        <option value="1">死亡骑士</option>
+        <option value="2">圣骑士</option>
+        <option value="3">先知</option>
+        <option value="4">祈求者</option>
+        <option value="5">流浪剑客</option>
+        <option value="6">酒仙熊猫</option>
+        <option value="7">死灵法师</option>
+        <option value="8">秀逗魔导士</option>
+        <option value="9">地精工程师</option>
+        <option value="10">发条地精</option>
+        <option value="11">潮汐猎人</option>
+        <option value="12">剑圣</option>
+        <option value="13">胖子</option>
+        <option value="14">风行者</option>
+        <option value="15">受折磨的灵魂受折磨的灵魂</option>
+    </select>
+    <br/><br/><br/><br/>
+    <input type="button" id="btnmh" value="美化" />
+    <input type="button" id="btnhy" value="还原" />
+    <input type="button" id="btnset" value="设置选中为5" />
+</body>
+
+<script src="../jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+<script src="TzForms.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        
+
+        $("#btnmh").click(function() {
+            $("#sl1").TzSelect();
+        });
+        $("#btnhy").click(function() {
+            $("#sl1").TzSelectUnLoad();
+        });
+        
+        $("#btnset").click(function() {
+            //$("#sl1").append("<option>haha</option>");
+            
+            $("#sl1").TzSelectSet(5);
+        });
+
+    });
+</script>
+</html>

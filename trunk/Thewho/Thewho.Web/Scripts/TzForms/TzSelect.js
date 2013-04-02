@@ -8,7 +8,13 @@
             var divid = "div_" + scid;
             //表示这个divselect已经存在了 不要重复创建
             if ($("#" + divid).length > 0) {
-                //alert("该元素已经存在了，不要对一个对象重复调用美化功能");
+                alert("该元素已经存在了，不要对一个对象重复调用美化功能");
+
+                //覆盖
+                //                var newSelect = scobj.clone(true);
+                //                newSelect.val(scobj.val()).insertAfter(scobj.parent().parent()).show();
+                //                $("#div_" + scobj.attr("id")).remove();
+                //                scobj = newSelect;
                 return false;
             }
 
@@ -63,16 +69,18 @@
             });
 
             //绑定自定义事件
-            //        $("#" + scid).bind('SetValue', function(e, data) {
-            //            scobj.val(data);
-            //            spantitle.text($("#li_" + scid + "_" + data).text());
-            //        });
+            //            $("#" + scid).bind('SetValue', function(e, data) {
+            //                scobj.val(data);
+            //                spantitle.text($("#li_" + scid + "_" + data).text());
+            //            });
 
             lis.click(function(event) {
                 event.stopPropagation(); //阻止事件向上冒泡
                 var thisli = $(this);
                 scobj.val(thisli.attr("value"));
-                spantitle.text(thisli.text());
+                //spantitle.text(thisli.text());
+                scobj.change();
+
                 lis.removeClass("licheck");
                 thisli.addClass("licheck");
                 hide();
@@ -137,15 +145,42 @@
                 TzMethods.initSelect(thisSelect, thisSelectId, zIndex, options);
             });
             return this; //也是为了可链
-        }, 
+        },
+        SetTzSelect: function(value) {
+            $("#li_" + this.attr("id") + "_" + value).click();
+            return this; //也是为了可链
+        },
+        UnTzSelect: function() {
+            this.each(function(index, item) { //这里可以写成 return this.each(function(index, item) { 加return  使方法可链
+                var thisSelect = $(item);
+                var thisSelectId = item.id;
+                //如果这个select连id都没有 那就给他一个tz + 当前时间戳 + index 为id
+                if (thisSelectId === "") {
+                    thisSelectId = "tz" + new Date().getTime() + index;
+                    thisSelect.attr("id", thisSelectId);
+                }
+
+                var newSelect = thisSelect.clone(true);
+                newSelect.val(thisSelect.val()).insertAfter(thisSelect.parent().parent()).show();
+                $("#div_" + thisSelect.attr("id")).remove();
+                //thisSelect.parent().parent().remove();
+            });
+            return this; //也是为了可链
+        },
         TzCheckBox: function(params) {
-        
+
         },
         TzRadio: function(params) {
-        
+
         },
         TzFile: function(params) {
-        
+
         }
     });
+
+    // 定义暴露format函数
+    $.fn.TzSelect.SetValue = function(val) {
+        alert(txt);
+
+    };
 })(jQuery);
