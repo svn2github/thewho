@@ -7,7 +7,7 @@ fieldset,img{border:0;}
 address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
 li{list-style-type:none; list-style-image:none;}
 caption,th{text-align:left;}
-h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;font-family:"微软雅黑";}
 p{line-height:24px;}
 q:before,q:after{content:'';}
 abbr,acronym{border:0;font-variant:normal;}
@@ -18,8 +18,8 @@ input,textarea,select{*font-size:100%;}
 legend{color:#000;}del,ins{text-decoration:none;}
 img{border:0;}
 a{text-decoration:none;color:#333;}
-a:link{color:#00A498;}
-a:visited{color:#00A498;}
+a:link{color:#333;}
+a:visited{color:#333;}
 a:hover{color:#00A498;text-decoration:underline;}
 a:focus{color:#00A498;}
 .clear{clear:both;}
@@ -35,11 +35,12 @@ code::selection {background: #333333;}
 #header{width:960px;}/*头部div*/
 #main{width:960px;zoom:1;margin-bottom:10px;}/*中间div*/
 #main:after{content:'\0020';display:block;height:0;clear:both;}
-#footer{width:100%; margin-top:10px; margin-bottom:10px; padding-top:10px; border-top:#ccc solid 2px; text-align:center;}/*底部div*/
+#footer{width:100%; margin-top:20px; margin-bottom:40px; padding-top:20px; border-top:#ccc solid 2px; text-align:center;}/*底部div*/
+#footer a{ color:#00A498;}
 
 #mainContent{float:left;width:100%;}/*主体div*/
 .forFlow{min-height:1px;margin-right:240px;}/*主体内容div*/
-#sideBar{float:left;position:relative;width:220px;margin-left:-220px;}/*主体侧栏div*/
+#sideBar{float:left;position:relative;width:220px;margin-left:-220px;line-height:18px;}/*主体侧栏div*/
 
 /* 样式详情 */
 /* 博客LOGO和标题 */
@@ -52,27 +53,126 @@ code::selection {background: #333333;}
 
 /* 导航 */
 #navigator{ width:100%;height:30px; margin-bottom:30px; border-bottom:#e7e7e7 solid 2px;}
-#navList { width:730px; height:30px; margin-bottom:10px; padding-left:20px; float:left; overflow:auto;}
+#navList { width:720px; height:30px; margin-bottom:10px; padding-left:20px; float:left; overflow:auto;}
 #navList li{ margin-right:20px; list-style-type:none; list-style-image:none;float:left;}
-.blogStats{}
+.blogStats{ color:#CCCCCC;}/*随笔- 1  文章- 0  评论- 0  */
 
 /* 主体 */
 .forFlow{}
-.day{ margin-bottom:20px; padding-left:20px; padding-right:20px; padding-top:0px; padding-bottom:0px; border:1px solid #E7E7E7;}
+.day,.post{ margin-bottom:10px; padding-left:20px; padding-right:20px; padding-top:0px; padding-bottom:0px; border:1px solid #e7e7e7;}
 .dayTitle{ display:none;}
 .postTitle{ margin-top:10px; margin-bottom:10px; font-size:18px; }
-.postTitle a{color:#333; font-size:18px; font-family:"微软雅黑";text-decoration:none;}
-.postTitle a:link{color:#333;}
-.postTitle a:visited{color:#333;}
-.postTitle a:hover{color:#00A498;}
-.postTitle a:focus{color:#00A498;}
+.postTitle a{font-size:18px; font-family:"微软雅黑";text-decoration:none;}
 
-.postCon{padding-top:10px; font-size:12px; overflow:auto; border-top:1px solid #E7E7E7; }
+.postCon,.postBody{padding-top:10px; font-size:12px; overflow:auto; border-top:1px solid #e7e7e7; }
+.postCon,.postBody p{ text-indent:24px;}
+.postCon,.postBody a{color:#00A498;}
+.postCon,.postBody a:link{color:#00A498;}
+.postCon,.postBody a:visited{color:#00A498;}
+.postCon,.postBody a:hover{color:#333;}
+.postCon,.postBody a:focus{color:#333;}
+
 .postDesc{margin-bottom:10px; padding-top:10px; color:#999; text-align:right;}
 .topicListFooter{}
 
+/*侧栏的元素*/
+.catListTitle{color:#00A498; font-size:16px; margin-bottom:4px;}
+.newsItem,#blog-calendar,.mySearch,.catListLink,.catListTag,.catListPostArchive,.catListComment,.catListView,.catListFeedback,.catListView,.catListEssay,.catListBlogRank,.catListPostCategory{margin-bottom:20px; }
+/*公告*/
+#profile_block{}
+#p_b_follow{width:48px; text-decoration:underline;}/*加关注*/
+/*日历*/
+#blogCalendar{width:100%;}
+.CalNextPrev{display:none;}/*上下一步*/
+td{border:1px solid #e7e7e7; padding:4px; text-align:left;}
+.CalTitle{}
+.CalTitle td{border:0px solid #e7e7e7;text-align:center;}
+.CalDayHeader {border:1px solid #e7e7e7; color:#fff; font-size:12px;background-color:#00A498;padding:4px;}
+.CalTodayDay{ background-color:#E0EEE0;}
+/*搜索*/
+.div_my_zzk{ margin-top:8px; margin-bottom:2px; height:24px; }
+.input_my_zzk{padding:1px 2px 0px 4px;width:100px;height:22px;line-height:21px; font-size:12px;color:#333;border:1px solid #999;vertical-align:top;}
+.btn_my_zzk{display: inline-block; outline:none; cursor: pointer; text-align: center; text-decoration: none; padding:5px;background-color:#a9adb1;  color:#525252; border:1px solid #a5a5a5;vertical-align:top;}
+.btn_my_zzk:hover {background-color:#b6bbc0; color:#525252; border:1px solid #a5a5a5;}
+/*常用链接*/
+.catListLink{}
+/*我的标签*/
+.catListTag{ width:100%;overflow: auto;}
+.catListTag ul{width:100%;}
+.catListTag li{margin-right:10px; float:left;}
+/*随笔档案*/
+.catListPostArchive{}
+/*随笔分类*/
+.catListPostCategory{}
+/*积分排行*/
+.catListBlogRank{}
+/*最新评论*/
+.catListComment{}
+#RecentCommentsBlock{}
+.recent_comment_title{}
+.recent_comment_body{}
+.recent_comment_author{margin-bottom:12px; border-bottom:#333 dashed 1px; padding:8px;}
+/*最新随笔*/
+.catListEssay{}
+.catListEssay ul{}
+.catListEssay li{}
+/*阅读排行榜*/
+.catListView{}
+#TopViewPostsBlock{}
+#TopViewPostsBlock ul{}
+#TopViewPostsBlock li{ margin-bottom:10px;}
+/*评论排行榜*/
+.catListFeedback{}
+#TopFeedbackPostsBlock{}
+#TopFeedbackPostsBlock ul{}
+#TopFeedbackPostsBlock li{ margin-bottom:10px;}
+/*推荐排行榜*/
+.catListView{}
+#TopDiggPostsBlock{}
+#TopDiggPostsBlock ul{}
+#TopDiggPostsBlock li{ margin-bottom:10px;}
+/*自定义分类....*/
 
+/*内容页投票,收藏等功能区*/
+#blog_post_info_block{}
+#blog_post_info{ margin-top:20px; margin-bottom:10px; padding-top:10px; border-top:#999 dashed 1px;}
+#green_channel{ width:400px; height:50px; float:left;}/*绿色通道*/
+#green_channel a{ width:80px; padding-right:8px;}
+#author_profile{display:none;}/*关注信息*/
+#digg_block{ width:200px; height:50px; float:right;}
+#div_digg{}/*顶和踩*/
+.diggit{ width:90px; float:left; cursor:pointer; background-color:#B4EEB4; height:30px; line-height:40px;}
+.buryit{ width:90px; float:right; cursor:pointer; background-color:#B2DFEE; height:30px; line-height:40px; }
+#digg_tips{display:none;}
 
+/*评论和广告*/
+#comment_form{}
+#comment_nav a{padding-right:8px; text-align:right;display:none;}
+#comment_form_container{}/*评论框*/
+#comment_form_container p{ margin-bottom:10px;}
+#commentform_title,.feedback_area_title{ margin-bottom:10px; font-size:18px; }/*发表评论 评论列表*/
+#tbCommentAuthor{padding:1px 2px 0px 4px;width:100px;height:22px;line-height:21px; font-size:12px;color:#333;border:1px solid #999;vertical-align:top;}
+.commentbox_title_left{display:none;}
+.commentbox_title_right{height:26px; line-height:26px; width:716px; ;border:2px solid #ccc; border-bottom:0px; text-align:left;}
+.commentbox_title_right img{ margin-right:2px; margin-left:2px;}
 
+.comment_textarea{width:710px; height:140px; font-family:Tahoma;padding:3px 3px 3px 3px;border:2px solid #ccc;overflow-y:auto;line-height:16px;letter-spacing:0px;resize:none;}
+#commentbox_opt{margin-bottom:10px; height:26px; line-height:26px; width:716px; ;border:2px solid #ccc; border-top:0px; text-align:right;}
+#commentbox_opt a{ margin-right:12px;}
+#commentbox_opt a:hover {}
+.comment_btn{float:right; display:inline-block; outline:none; cursor: pointer; text-align: center; text-decoration: none; padding:5px;background-color:#a9adb1;  color:#525252; border:1px solid #a5a5a5;vertical-align:top; text-align:center;}
+.comment_btn:hover {background-color:#b6bbc0; color:#525252; border:1px solid #a5a5a5;}
 
+.feedbackItem{ margin-bottom:10px;}
+#comment_form_container{ margin-top:10px;}
 
+/*广告*/
+/*#site_nav_under{display:none;}*/
+#site_nav_under{margin-top:10px; margin-bottom:10px; margin-right:4px;}
+#site_nav_under a{margin-right:4px;}
+#ad_text_under_commentbox{margin-top:10px;}
+
+/**/
+.entrylistItem{ margin-bottom:10px;}
+.entrylistItemTitle{ font-weight:bold;}
+.entrylistItemPostDesc{text-align:right;}

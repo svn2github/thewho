@@ -44,8 +44,10 @@
 	<!--end: header 头部 -->
 	<div id="main">
 		<div id="mainContent">
+			<!--日志循环-->
 			<div class="forFlow">
 				<!--done-->
+				<!--日志-->
 				<div class="day">
 					<div class="dayTitle">
 						<a id="homepage1_HomePageDays_ctl03_ImageLink" href="http://www.cnblogs.com/taozhi/">置顶随笔</a>
@@ -79,8 +81,6 @@
 					</div>
 					<div class="clear">
 					</div>
-				</div>
-				<div class="day">
 					<div class="dayTitle">
 						<a id="homepage1_HomePageDays_DaysList_DayItem_0_ImageLink_0" href="http://www.cnblogs.com/taozhi/archive/2013/04/23.html">2013年4月23日</a>
 					</div>
@@ -89,10 +89,10 @@
 					</div>
 					<div class="postCon">
 						<p>
-                                几年的工作中,经历了2个几十号人以上的大项目.深深体会了,一个好的框架对项目的成成败是多么重要的. 尤其是我上一个项目.做的是一个国内顶尖的医疗公司的一个门户项目.当时由于项目的时间比较紧,没有过多时间去考虑和研究框架.于是就简<a
-                                    href="#">单引进公司的另外一个框架</a>,到最后的2年多使用时间,就逐渐感觉到了那框架的弊端.到后面项目中的很多同事都反映,该框架不但没有提高效率,而且严重阻碍项目的进度.结果也恰恰证明了这一点.使得我们中的很多开发进度,都是严重推迟了.</p>
-                            <p>
-                                几年的工作中,经历了2个几十号人以上的大项目.深深体会了,一个好的框架对项目的成成败是多么重要的. 尤其是我上一个项目.做的是一个国内顶尖的医疗公司的一个门户项目.当时由于项目的时间比较紧,没有过多时间去考虑和研究框架.于是就简单引进公司的另外一个框架,到最后的2年多使用时间,就逐渐感觉到了那框架的弊端.到后面项目中的很多同事都反映,该框架不但没有提高效率,而且严重阻碍项目的进度.结果也恰恰证明了这一点.使得我们中的很多开发进度,都是严重推迟了.</p>
+							几年的工作中,经历了2个几十号人以上的大项目.深深体会了,一个好的框架对项目的成成败是多么重要的. 尤其是我上一个项目.做的是一个国内顶尖的医疗公司的一个门户项目.当时由于项目的时间比较紧,没有过多时间去考虑和研究框架.于是就简<a
+								href="#">单引进公司的另外一个框架</a>,到最后的2年多使用时间,就逐渐感觉到了那框架的弊端.到后面项目中的很多同事都反映,该框架不但没有提高效率,而且严重阻碍项目的进度.结果也恰恰证明了这一点.使得我们中的很多开发进度,都是严重推迟了.</p>
+						<p>
+							几年的工作中,经历了2个几十号人以上的大项目.深深体会了,一个好的框架对项目的成成败是多么重要的. 尤其是我上一个项目.做的是一个国内顶尖的医疗公司的一个门户项目.当时由于项目的时间比较紧,没有过多时间去考虑和研究框架.于是就简单引进公司的另外一个框架,到最后的2年多使用时间,就逐渐感觉到了那框架的弊端.到后面项目中的很多同事都反映,该框架不但没有提高效率,而且严重阻碍项目的进度.结果也恰恰证明了这一点.使得我们中的很多开发进度,都是严重推迟了.</p>
 					</div>
 					<div class="clear">
 					</div>
@@ -112,11 +112,12 @@
 		<div id="sideBar">
 			<div id="sideBarMain">
 				<!--done-->
+				<!--公告-->
 				<div class="newsItem">
 					<h3 class="catListTitle">公告</h3>
 					<div id="blog-news">
 					 	<div id="profile_block">
-                                昵称：<a href="http://home.cnblogs.com/u/forcertain/">for certain</a><br>
+                                昵称：<a href="http://home.cnblogs.com/u/forcertain/">TaoZhi</a><br>
                                 园龄：<a href="http://home.cnblogs.com/u/forcertain/" title="入园时间：2009-08-12">3年8个月</a><br>
                                 粉丝：<a href="http://home.cnblogs.com/u/forcertain/followers/">15</a><br>
                                 关注：<a href="http://home.cnblogs.com/u/forcertain/followees/">16</a>
@@ -126,10 +127,236 @@
                            </div>
 					</div>
 				</div>
-				<div id="blog-calendar" style="displya:none">
+				<!--日历-->
+				<div id="blog-calendar">
+				<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+					<tbody>
+						<tr>
+							<td colspan="7">
+								<table class="CalTitle" cellspacing="0">
+									<tbody>
+										<tr>
+											<td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2013/03/01');return false;">&lt;</a></td>
+											<td align="center">2013年4月</td>
+											<td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2013/05/01');return false;">&gt;</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+							<th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+							<th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+							<th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+							<th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+							<th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+							<th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+						</tr>
+						<tr>
+							<td class="CalOtherMonthDay" align="center">31</td>
+							<td align="center">1</td><td align="center">2</td>
+							<td align="center">3</td><td align="center">4</td>
+							<td align="center">5</td><td class="CalWeekendDay" align="center">6</td>
+						</tr>
+						<tr>
+							<td class="CalWeekendDay" align="center">7</td>
+							<td align="center">8</td>
+							<td align="center"><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/09.html"><u>9</u></a></td>
+							<td align="center">10</td><td align="center">11</td>
+							<td align="center"><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/12.html"><u>12</u></a></td>
+							<td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td>
+							<td align="center">15</td>
+							<td align="center">16</td>
+							<td align="center">17</td>
+							<td align="center">18</td>
+							<td align="center">19</td>
+							<td class="CalWeekendDay" align="center">20</td>
+						</tr>
+						<tr>
+							<td class="CalWeekendDay" align="center">21</td>
+							<td align="center"><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/22.html"><u>22</u></a></td>
+							<td class="CalTodayDay" align="center">23</td>
+							<td align="center">24</td>
+							<td align="center">25</td>
+							<td align="center">26</td>
+							<td class="CalWeekendDay" align="center">27</td>
+						</tr>
+						<tr>
+							<td class="CalWeekendDay" align="center">28</td>
+							<td align="center">29</td>
+							<td align="center">30</td>
+							<td class="CalOtherMonthDay" align="center">1</td>
+							<td class="CalOtherMonthDay" align="center">2</td>
+							<td class="CalOtherMonthDay" align="center">3</td>
+							<td class="CalOtherMonthDay" align="center">4</td>
+						</tr>
+						<tr>
+							<td class="CalOtherMonthDay" align="center">5</td>
+							<td class="CalOtherMonthDay" align="center">6</td>
+							<td class="CalOtherMonthDay" align="center">7</td>
+							<td class="CalOtherMonthDay" align="center">8</td>
+							<td class="CalOtherMonthDay" align="center">9</td>
+							<td class="CalOtherMonthDay" align="center">10</td>
+							<td class="CalOtherMonthDay" align="center">11</td>
+						</tr>
+					</tbody>
+				</table>
 				</div>
+				<!--其他-->
 				<div id="leftcontentcontainer">
+					<!--其他块-->
 					<div id="blog-sidecolumn">
+						<!--搜索-->
+						<div class="mySearch">
+							<h3 class="catListTitle">搜索</h3>
+							<div id="widget_my_zzk" class="div_my_zzk">
+								<input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;
+								<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+							</div>
+							<div id="widget_my_google" class="div_my_zzk">
+								<input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;
+								<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+							</div>
+						</div>
+						<!--常用链接-->
+						<div class="catListLink">
+							<h3 class="catListTitle">
+								常用链接</h3>
+							<ul>
+								<li><a id="ctl01_rptMainLinks_lnkLinkItem_0" href="http://www.cnblogs.com/bdccloudy/MyPosts.html">
+									我的随笔</a></li>
+								<li><a id="ctl01_rptMainLinks_lnkLinkItem_1" href="http://www.cnblogs.com/bdccloudy/MyComments.html">
+									我的评论</a></li>
+								<li><a id="ctl01_rptMainLinks_lnkLinkItem_2" title="我发表过评论的随笔" href="http://www.cnblogs.com/bdccloudy/OtherPosts.html">
+									我的参与</a></li>
+								<li><a id="ctl01_rptMainLinks_lnkLinkItem_3" href="http://www.cnblogs.com/bdccloudy/RecentComments.html">
+									最新评论</a></li>
+								<li><a id="ctl01_rptMainLinks_lnkLinkItem_4" href="http://www.cnblogs.com/bdccloudy/tag/">
+									我的标签</a></li>
+							</ul>
+							<div id="itemListLin_con" style="display: none;">
+								<ul>
+								</ul>
+							</div>
+						</div>
+						<!--我的标签-->
+						<div class="catListTag">
+							<h3 class="catListTitle">
+								我的标签</h3>
+							<ul>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%BA%91%E5%AF%BB%E8%A7%85/">Apartment</a>(1)</li>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/">Cleaning</a>(1)</li>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%BA%91%E5%AF%BB%E8%A7%85/">Brooklyn</a>(1)</li>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/">Clean</a>(1)</li>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%BA%91%E5%AF%BB%E8%A7%85/">Cleaning</a>(1)</li>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/">Apartment</a>(1)</li>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%BA%91%E5%AF%BB%E8%A7%85/">NYC</a>(1)</li>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/">Cleaning</a>(1)</li>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%BA%91%E5%AF%BB%E8%A7%85/">Cleaning</a>(1)</li>
+								<li><a href="http://www.cnblogs.com/bdccloudy/tag/%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D/">Dirty Roommates GREEN</a>(1)</li>
+								
+							</ul>
+						</div>
+						<!--随笔档案-->
+						<div class="catListPostArchive">
+							<h3 class="catListTitle">
+								随笔档案</h3>
+							<ul>
+								<li><a id="ctl03_CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/bdccloudy/archive/2013/04.html">
+									2013年4月 (3)</a> </li>
+								<li><a id="ctl03_CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/bdccloudy/archive/2013/03.html">
+									2013年3月 (1)</a> </li>
+								<li><a id="ctl03_CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/bdccloudy/archive/2013/02.html">
+									2013年2月 (3)</a> </li>
+							</ul>
+						</div>
+						<!--最新评论-->
+						<div class="catListComment">
+							<h3 class="catListTitle">
+								最新评论</h3>
+							<div id="RecentCommentsBlock">
+								<ul>
+									<li class="recent_comment_title"><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/22/3036600.html#2664567">
+										1. Re:开源：云寻觅中文分词 (Yunxunmi Chinese Word Segmentation) ，词汇440万，10万字文章分词并计算频率不超过1秒</a></li>
+									<li class="recent_comment_body">这个不错！支持！</li>
+									<li class="recent_comment_author">--黑色街角</li>
+									<li class="recent_comment_title"><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/22/3036600.html#2664549">
+										2. Re:开源：云寻觅中文分词 (Yunxunmi Chinese Word Segmentation) ，词汇440万，10万字文章分词并计算频率不超过1秒</a></li>
+									<li class="recent_comment_body"><a href="#2664461" title="查看所回复的评论">@</a>YamatAmain<br>
+										<fieldset class="comment_quote">
+											<legend><a href="#2664461" title="查看引用原文">引用</a></legend>茫茫词库，我一眼就看出了你：女优</fieldset>
+										<br>
+										讨厌~~~</li>
+									<li class="recent_comment_author">--火地晋</li>
+									<li class="recent_comment_title"><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/22/3036600.html#2664546">
+										3. Re:开源：云寻觅中文分词 (Yunxunmi Chinese Word Segmentation) ，词汇440万，10万字文章分词并计算频率不超过1秒</a></li>
+									<li class="recent_comment_body">强烈鄙视，要源码没源码，要词库没词库，开个毛源哦</li>
+									<li class="recent_comment_author">--East神奇</li>
+									<li class="recent_comment_title"><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/22/3036600.html#2664537">
+										4. Re:开源：云寻觅中文分词 (Yunxunmi Chinese Word Segmentation) ，词汇440万，10万字文章分词并计算频率不超过1秒</a></li>
+									<li class="recent_comment_body">建议将源码发布到开源的平台，比如codeplex或sourceforge</li>
+									<li class="recent_comment_author">--火地晋</li>
+									<li class="recent_comment_title"><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/22/3036600.html#2664535">
+										5. Re:开源：云寻觅中文分词 (Yunxunmi Chinese Word Segmentation) ，词汇440万，10万字文章分词并计算频率不超过1秒</a></li>
+									<li class="recent_comment_body">绝对要支持</li>
+									<li class="recent_comment_author">--火地晋</li>
+								</ul>
+							</div>
+						</div>
+						<!--阅读排行榜-->
+						<div class="catListView">
+							<h3 class="catListTitle">
+								阅读排行榜</h3>
+							<div id="TopViewPostsBlock">
+								<ul>
+									<li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/02/22/2921685.html">1. 我有罪啊,我用了一下午时间,终于无师自学,用C#开发了俺的第一个Android
+										浏览器APP,我对不起java 社区啊(附开发过程讲解)(5265)</a></li><li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/22/3036600.html">
+											2. 开源：云寻觅中文分词 (Yunxunmi Chinese Word Segmentation) ，词汇440万，10万字文章分词并计算频率不超过1秒(1482)</a></li><li>
+												<a href="http://www.cnblogs.com/bdccloudy/archive/2013/02/17/2914068.html">3. Android
+													LBS App：春节在家无聊昨天忙活了一天,终于无师自学,开发了俺的第一个Android 程序(1308)</a></li><li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/12/3017352.html">
+														4. 我的 云寻觅 搜索引擎 开始公测,前天开始开发,昨天买域名,今天发布在本机,请各路专家指正! 顺便开源!(685)</a></li><li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/02/13/2911047.html">
+															5. c# 开源云平台BDC 3.0 详解(274)</a></li></ul>
+							</div>
+						</div>
+						<!--评论排行榜-->
+						<div class="catListFeedback">
+							<h3 class="catListTitle">
+								评论排行榜</h3>
+							<div id="TopFeedbackPostsBlock">
+								<ul>
+									<li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/02/22/2921685.html">1. 我有罪啊,我用了一下午时间,终于无师自学,用C#开发了俺的第一个Android
+										浏览器APP,我对不起java 社区啊(附开发过程讲解)(26)</a></li><li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/22/3036600.html">
+											2. 开源：云寻觅中文分词 (Yunxunmi Chinese Word Segmentation) ，词汇440万，10万字文章分词并计算频率不超过1秒(16)</a></li><li>
+												<a href="http://www.cnblogs.com/bdccloudy/archive/2013/02/17/2914068.html">3. Android
+													LBS App：春节在家无聊昨天忙活了一天,终于无师自学,开发了俺的第一个Android 程序(4)</a></li><li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/12/3017352.html">
+														4. 我的 云寻觅 搜索引擎 开始公测,前天开始开发,昨天买域名,今天发布在本机,请各路专家指正! 顺便开源!(3)</a></li><li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/02/13/2911047.html">
+															5. c# 开源云平台BDC 3.0 详解(3)</a></li></ul>
+							</div>
+						</div>
+						<!--推荐排行榜-->
+						<div class="catListView">
+							<h3 class="catListTitle">
+								推荐排行榜</h3>
+							<div id="TopDiggPostsBlock">
+								<ul>
+									<li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/04/22/3036600.html">1. 开源：云寻觅中文分词
+										(Yunxunmi Chinese Word Segmentation) ，词汇440万，10万字文章分词并计算频率不超过1秒(28)</a></li><li><a
+											href="http://www.cnblogs.com/bdccloudy/archive/2013/02/22/2921685.html">2. 我有罪啊,我用了一下午时间,终于无师自学,用C#开发了俺的第一个Android
+											浏览器APP,我对不起java 社区啊(附开发过程讲解)(7)</a></li><li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/02/17/2914068.html">
+												3. Android LBS App：春节在家无聊昨天忙活了一天,终于无师自学,开发了俺的第一个Android 程序(2)</a></li><li><a href="http://www.cnblogs.com/bdccloudy/archive/2013/02/13/2911047.html">
+													4. c# 开源云平台BDC 3.0 详解(1)</a></li></ul>
+							</div>
+						</div>
+						<!--自定义的模块-->
+						<div class="catList自定义分类的名字">
+							<h3 class="catListTitle">自定义分类</h3>
+							<div id="TopDiggPostsBlock">
+								<ul>
+									<li>123121</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -144,7 +371,9 @@
 	</div>
 	<div id="footer">
 		<!--done-->
-		Copyright &copy;2013 TaoZhi
+		<!--&copy; Copyright 2013 TaoZhi-->
+		<span style="float:left;">&copy; Copyright 2013 <a href="#">TaoZhi</a></span>
+		<span style="float:right;">Theme by <a href="#">TaoZhi</a></span>
 	</div>
 	<!--end: footer -->
 </div>
